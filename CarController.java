@@ -13,7 +13,7 @@ public class CarController {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
+    private final int delay = 20; //50;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -21,15 +21,15 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    // ArrayList<ACar> cars = new ArrayList<>();
+    ArrayList<GroundVehicle> cars = new ArrayList<>();
 
-    //methods:
+    // methods:
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
 
-        // cc.cars.add(new Volvo240());
+        cc.cars.add(new Volvo240());
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -38,28 +38,47 @@ public class CarController {
         cc.timer.start();
     }
 
-    /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+    /*
+     * Each step the TimerListener moves all the cars in the list and tells the
+     * view to update its images. Change this method to your needs.
+     */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
- /*           for (ACar car : cars) {
+            for (GroundVehicle car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getPosition().getX());
                 int y = (int) Math.round(car.getPosition().getY());
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
-            }*/
+            }
         }
     }
 
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-       /* for (ACar car : cars
-                ) {
+        for (GroundVehicle car : cars) {
             car.gas(gas);
-        }*/
+        }
+    }
+
+    void brake(int amount) {
+        double brake = ((double) amount) / 100;
+        for (GroundVehicle car : cars) {
+            car.brake(brake);
+        }
+    }
+
+    void startAllEngines() {
+        for (GroundVehicle car : cars) {
+            car.startEngine();
+        }
+    }
+
+    void stopAllEngines() {
+        for (GroundVehicle car : cars) {
+            car.stopEngine();
+        }
     }
 }
