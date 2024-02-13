@@ -3,6 +3,10 @@ import java.awt.*;
 public class ScaniaV8<T> extends Truck<T> implements Tippable<T>{
 
     private double storageAngle;
+    public ScaniaV8(double x, double y) {
+        super(200, Color.white, "ScaniaV8",10, x, y);
+        this.storageAngle = 0.0;
+    }
     public ScaniaV8() {
         super(200, Color.white, "ScaniaV8",10);
         this.storageAngle = 0.0;

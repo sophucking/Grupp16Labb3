@@ -13,7 +13,7 @@ public abstract class GroundVehicle implements IsVehicle {
     private final String modelName; // The car model name
     private boolean engineOn;
 
-    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName) {
+    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = 0.0;
@@ -21,8 +21,11 @@ public abstract class GroundVehicle implements IsVehicle {
         this.modelName = modelName;
         this.directionAngle = 0.0;
         this.direction = new double[] { Math.cos(directionAngle), Math.sin(directionAngle) };
-        this.position = new Point2D.Double(0, 0);
+        this.position = new Point2D.Double(x, y);
         stopEngine();
+    }
+    GroundVehicle(int nrDoors, double enginePower, Color color, String modelName) {
+        this(nrDoors, enginePower, color, modelName, 0, 0);
     }
 
     @Override

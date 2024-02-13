@@ -1,4 +1,6 @@
 import javax.swing.*;
+
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,7 +31,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
+        cc.cars.add(new Volvo240(0,0));
+        cc.cars.add(new Saab95(0,100));
+        cc.cars.add(new ScaniaV8<Cargo>(0,200));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -44,14 +48,29 @@ public class CarController {
      */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            int i = 0;
             for (GroundVehicle car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getPosition().getX());
                 int y = (int) Math.round(car.getPosition().getY());
-                frame.drawPanel.moveit(x, y);
+                frame.drawPanel.moveit(i++, x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
+        }
+    }
+
+    private <T extends GroundVehicle> ArrayList<T> findAllOfType(T groundVehicle){
+        ArrayList<T> carList = new ArrayList<>();
+        cars.forEach((GroundVehicle car) -> {
+            addIfMatchType(carList, car, groundVehicle);
+        });
+        return carList;
+    }
+
+    private <T extends GroundVehicle> void addIfMatchType(ArrayList<T> carList, GroundVehicle car, T vehicleType) {
+        if (vehicleType.getModel().equals(car.getModel())) {
+            carList.add((T) car);
         }
     }
 
@@ -79,6 +98,30 @@ public class CarController {
     void stopAllEngines() {
         for (GroundVehicle car : cars) {
             car.stopEngine();
+        }
+    }
+
+    void turnTurboOn() {
+        for (Saab95 saab95 : findAllOfType(new Saab95())) {
+            saab95.setTurboOn();
+        }
+    }
+
+    void turnTurboOff() {
+        for (Saab95 saab95 : findAllOfType(new Saab95())) {
+            saab95.setTurboOff();
+        }
+    }
+    
+    void liftBed() {
+        for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
+            scaniaV8.raiseStorage(70);
+        }
+    }
+
+    void lowerBed() {
+        for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
+            scaniaV8.lowerStorage(70);
         }
     }
 }

@@ -3,10 +3,16 @@ import java.awt.*;
 public class Saab95 extends NormalCar {
     private boolean turboOn;
 
+    
+    public Saab95(double x, double y) {
+        super(2,125, Color.red,"Saab95", x, y);
+        turboOn = false;
+    }
     public Saab95() {
         super(2,125, Color.red,"Saab95");
         turboOn = false;
     }
+
 
     public void setTurboOn() {
         turboOn = true;
