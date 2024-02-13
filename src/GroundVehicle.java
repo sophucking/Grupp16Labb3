@@ -117,13 +117,13 @@ public abstract class GroundVehicle implements IsVehicle {
 
     @Override
     public void turnLeft(double angle) {
-        directionAngle += angle;
+        directionAngle -= angle;
         direction = new double[] { Math.cos(directionAngle), Math.sin(directionAngle) };
     }
 
     @Override
     public void turnRight(double angle) {
-        directionAngle -= angle;
+        directionAngle += angle;
         direction = new double[] { Math.cos(directionAngle), Math.sin(directionAngle) };
     }
 
