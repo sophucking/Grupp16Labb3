@@ -14,7 +14,7 @@ public class CarController {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 20; // 50;
+    private final int delay = 10; // 50;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -179,16 +179,16 @@ public class CarController {
     }
 
     boolean workshopCollision(GroundVehicle car) {
-        int xLB = (int) car.getPosition().x;
-        int xRB = xLB + 110;
-        int yTB = (int) car.getPosition().y;
-        int yBB = yTB + 80;
-        int wxL = volvWorkshop.x;
-        int wxR = volvWorkshop.x + volvWorkshop.size;
-        int wyT = volvWorkshop.y;
-        int wyB = volvWorkshop.y + volvWorkshop.size;
-        return (((wxL < xRB && xRB < wxR) || (wxL < xLB && xRB < wxR)) &&
-                ((wyT < yTB && yTB < wyB) || (wyT < yBB && yBB < wyB)));
+        int carLeftEdge = (int) car.getPosition().x;
+        int carRightEdge = carLeftEdge + 110;
+        int carTopEdge = (int) car.getPosition().y;
+        int carBottomEdge = carTopEdge + 80;
+        int shopLeftEdge = volvWorkshop.x;
+        int shopRightEdge = volvWorkshop.x + volvWorkshop.size;
+        int shopTopEdge = volvWorkshop.y;
+        int shopBottomEdge = volvWorkshop.y + volvWorkshop.size;
+        return (((shopLeftEdge < carRightEdge && carRightEdge < shopRightEdge) || (shopLeftEdge < carLeftEdge && carRightEdge < shopRightEdge)) &&
+                ((shopTopEdge < carTopEdge && carTopEdge < shopBottomEdge) || (shopTopEdge < carBottomEdge && carBottomEdge < shopBottomEdge)));
     }
 
     class GraphicalVolvoWorkshop {
