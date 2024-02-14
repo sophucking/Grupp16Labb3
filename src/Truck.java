@@ -53,7 +53,7 @@ public class Truck<T> extends GroundVehicle implements HasStorage<T> {
 
     @Override
     public double speedFactor() {
-        return super.speedFactor() * TOURQUE_FACTOR;
+        return getEnginePower() * 0.01 * TOURQUE_FACTOR;
     }
 
     @Override

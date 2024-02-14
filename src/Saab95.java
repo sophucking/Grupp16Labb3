@@ -5,11 +5,11 @@ public class Saab95 extends NormalCar {
 
     
     public Saab95(double x, double y) {
-        super(2,125, Color.red,"Saab95", x, y);
+        super(2,110, Color.red,"Saab95", x, y);
         turboOn = false;
     }
     public Saab95() {
-        super(2,125, Color.red,"Saab95");
+        super(2,110, Color.red,"Saab95");
         turboOn = false;
     }
 
@@ -28,6 +28,6 @@ public class Saab95 extends NormalCar {
         if (turboOn) {
             turbo = 1.3;
         }
-        return super.speedFactor() * turbo;
+        return getEnginePower() * 0.01 * turbo;
     }
 }

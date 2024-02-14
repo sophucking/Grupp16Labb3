@@ -73,7 +73,7 @@ public abstract class GroundVehicle implements IsVehicle {
         return engineOn;
     }
 
-    public double speedFactor() {return enginePower * 0.01; }
+    public abstract double speedFactor();// {return enginePower * 0.01; }
 
     private void incrementSpeed(double amount) {
         setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
