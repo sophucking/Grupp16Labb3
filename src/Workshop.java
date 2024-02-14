@@ -1,4 +1,4 @@
-public class Workshop<T extends GroundVehicle> implements HasStorage<T> {
+public class Workshop<T extends IsVehicle> implements HasStorage<T> {
     private final Garage<T> garage;
     Workshop(int max_capacity) {
         garage = new Garage<>(max_capacity);

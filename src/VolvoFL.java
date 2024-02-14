@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class VolvoFL extends Truck<NormalCar> {
+public class VolvoFL extends Truck<NormalCar> implements IsVolvo{
     public VolvoFL(double x, double y) {
         super(200, Color.BLUE, "VolvoFL",10, x, y);
     }

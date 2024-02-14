@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,44 +36,59 @@ public class DrawPanel extends JPanel{
     }
     // Just a single image, TODO: Generalize
     // BufferedImage volvoImage;
-    ArrayList<ImagePointPair> carList;
+    ArrayList<GroundVehicle> carList;
+    ArrayList<ImagePointPair> imageList;
 
-    ImagePointPair volvoWorkshop;
+    ImagePointPair workshop;
     // BufferedImage volvoWorkshopImage;
     // Point volvoWorkshopPoint = new Point(300,300);
 
     // TODO: Make this general for all cars
     void moveit(int ind, int x, int y){
-        carList.get(ind).getPoint().move(x, y);
+        imageList.get(ind).getPoint().move(x, y);
     }
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
+        this.imageList = new ArrayList<>();
         this.carList = new ArrayList<>();
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        // Print an error message in case file is not found with a try/catch block
-        try {
+    }
+
+    public void addCar(GroundVehicle car) {
+            int x = (int) car.getPosition().x;
+            int y = (int) car.getPosition().y;
+            String model = car.getModel();
             // volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
             // volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-            carList.add(
-                new ImagePointPair(0, 0, ImageIO.read(
-                    DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"))));
-            carList.add(
-                new ImagePointPair(0, 100, ImageIO.read(
-                    DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"))));
-            carList.add(
-                new ImagePointPair(0, 200, ImageIO.read(
-                    DrawPanel.class.getResourceAsStream("pics/Scania.jpg"))));
-            volvoWorkshop = 
-                new ImagePointPair(300, 300, ImageIO.read(
-                    DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg")));
+            imageList.add(
+                createNewVisualItem(x, y, "pics/"+model+".jpg"));
+            carList.add(car);
+    }
+
+    public void addWorkshop(int x, int y, String imagePath) {
+        workshop = createNewVisualItem(x, y, imagePath);
+    }
+
+    public void removeImage(GroundVehicle car) {
+        int i = carList.indexOf(car);
+        imageList.remove(i);
+        carList.remove(i);
+    }
+
+    private ImagePointPair createNewVisualItem(int x, int y, String imagePath) {
+        // Print an error message in case file is not found with a try/catch block
+        // ImagePointPair newItem;
+        try {
+            return new ImagePointPair(x, y, ImageIO.read(
+                DrawPanel.class.getResourceAsStream(imagePath)));
         } catch (IOException ex)
         {
             ex.printStackTrace();
+            return null;
         }
-
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
@@ -83,11 +97,11 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawAllCars(g);
-        drawImage(g, volvoWorkshop);
+        drawImage(g, workshop);
     }
 
     private void drawAllCars(Graphics g) {
-        for (ImagePointPair car : carList) {
+        for (ImagePointPair car : imageList) {
             drawImage(g, car);
         }
     }

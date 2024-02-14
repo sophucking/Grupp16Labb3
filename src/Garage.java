@@ -1,4 +1,4 @@
-public class Garage<T extends GroundVehicle> extends Storage<T>{
+public class Garage<T extends IsVehicle> extends Storage<T>{
 
     Garage(int max_capacity) {
         super(max_capacity);

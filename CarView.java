@@ -53,8 +53,8 @@ public class CarView extends JFrame{
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
+        initDrawPanel();
         this.add(drawPanel);
-
 
 
         SpinnerModel spinnerModel =
@@ -165,8 +165,20 @@ public class CarView extends JFrame{
     }
 
 
+    private void initDrawPanel() {
+        for (GroundVehicle car : carC.cars) {
+            addCar(car);
+        }
+        drawPanel.addWorkshop(carC.volvWorkshop.x, carC.volvWorkshop.y, carC.volvWorkshop.imagePath);
+    }
+
+    private void addCar(GroundVehicle car) {
+        drawPanel.addCar(car);
+    }
+
     public boolean isOutOfBounds(int x, int y) {
         return x < 0 || x > X - 110 || y < 0 || y > Y - 110;
     }
+
 
 }

@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Volvo240 extends NormalCar {
+public class Volvo240 extends NormalCar implements IsVolvo{
 
     private final static double TRIMFACTOR = 1.25;
 

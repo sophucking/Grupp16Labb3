@@ -1,6 +1,5 @@
 import javax.swing.*;
 
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class CarController {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 20; //50;
+    private final int delay = 20; // 50;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -25,21 +24,29 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<GroundVehicle> cars = new ArrayList<>();
 
+    GraphicalVolvoWorkshop volvWorkshop;
+
     // methods:
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240(0,0));
-        cc.cars.add(new Saab95(0,100));
-        cc.cars.add(new ScaniaV8<Cargo>(0,200));
+        cc.cars.add(new Volvo240(0, 0));
+        cc.cars.add(new Saab95(0, 100));
+        cc.cars.add(new ScaniaV8<Cargo>(0, 200));
+        cc.initWorkshop(10, 300, 0, "pics/VolvoBrand.jpg");
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
         // Start the timer
         cc.timer.start();
+    }
+
+    private void initWorkshop(int capacity, int x, int y, String imagePath) {
+        volvWorkshop = new GraphicalVolvoWorkshop(capacity, x, y, imagePath);
+        volvWorkshop.workshop.openStorage();
     }
 
     /*
@@ -50,33 +57,59 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             // int i = 0;
             // for (GroundVehicle car : cars) {
-                for (int i = 0; i < cars.size(); i++) {
-                    moveCar(cars.get(i));
-                    updateVisuals(i, cars.get(i));
+            for (int i = 0; i < cars.size(); i++) {
+                moveCar(cars.get(i));
+                workshopInteraction(cars.get(i));
+                updateVisuals(i, cars.get(i));
+            }
+        }
+
+        private void workshopInteraction(GroundVehicle car) {
+            if (IsVolvo(car)) {
+                if (workshopCollision(car)) {
+                    storeIfOpen(car);
                 }
             }
         }
 
-        private void updateVisuals(int i, GroundVehicle car) {
-            int x = (int) Math.round(car.getPosition().getX());
-            int y = (int) Math.round(car.getPosition().getY());
-            
-            frame.drawPanel.moveit(i, x, y);
-            // repaint() calls the paintComponent method of the panel
-            frame.drawPanel.repaint();
-        }
-
-        private void moveCar(GroundVehicle car) {
-            worldHasBouncyWalls(car);
-            car.move();
-        }
-    private void worldHasBouncyWalls(GroundVehicle car) {
-            if (frame.isOutOfBounds((int) car.getPosition().x, (int) car.getPosition().y)) {
-                car.turnLeft(Math.PI);
+        private void storeIfOpen(GroundVehicle car) {
+            if (volvWorkshop.workshop.isStorageOpen()) {
+                storeCarInWorkshop(car);
             }
         }
 
-    private <T extends GroundVehicle> ArrayList<T> findAllOfType(T groundVehicle){
+        private void storeCarInWorkshop(GroundVehicle car) {
+            volvWorkshop.workshop.storeThing((IsVolvo) car);
+            cars.remove(car);
+            frame.drawPanel.removeImage(car);
+        }
+
+        private boolean IsVolvo(GroundVehicle car) {
+            return carTypeMatch(car, new Volvo240()) || carTypeMatch(car, new VolvoFL());
+        }
+    }
+
+    private void updateVisuals(int i, GroundVehicle car) {
+        int x = (int) Math.round(car.getPosition().getX());
+        int y = (int) Math.round(car.getPosition().getY());
+
+        frame.drawPanel.moveit(i, x, y);
+        // repaint() calls the paintComponent method of the panel
+        frame.drawPanel.repaint();
+    }
+
+    private void moveCar(GroundVehicle car) {
+        worldHasBouncyWalls(car);
+        car.move();
+    }
+
+    private void worldHasBouncyWalls(GroundVehicle car) {
+        if (frame.isOutOfBounds((int) car.getPosition().x, (int) car.getPosition().y)) {
+            car.turnLeft(Math.PI);
+        }
+    }
+
+    private <T extends GroundVehicle> ArrayList<T> findAllOfType(T groundVehicle) {
         ArrayList<T> carList = new ArrayList<>();
         cars.forEach((GroundVehicle car) -> {
             addIfMatchType(carList, car, groundVehicle);
@@ -85,9 +118,13 @@ public class CarController {
     }
 
     private <T extends GroundVehicle> void addIfMatchType(ArrayList<T> carList, GroundVehicle car, T vehicleType) {
-        if (vehicleType.getModel().equals(car.getModel())) {
+        if (carTypeMatch(car, vehicleType)) {
             carList.add((T) car);
         }
+    }
+
+    private <T extends GroundVehicle> boolean carTypeMatch(GroundVehicle car, T vehicleType) {
+        return vehicleType.getModel().equals(car.getModel());
     }
 
     // Calls the gas method for each car once
@@ -128,7 +165,7 @@ public class CarController {
             saab95.setTurboOff();
         }
     }
-    
+
     void liftBed() {
         for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
             scaniaV8.raiseStorage(70);
@@ -138,6 +175,35 @@ public class CarController {
     void lowerBed() {
         for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
             scaniaV8.lowerStorage(70);
+        }
+    }
+
+    boolean workshopCollision(GroundVehicle car) {
+        int xLB = (int) car.getPosition().x;
+        int xRB = xLB + 110;
+        int yTB = (int) car.getPosition().y;
+        int yBB = yTB + 80;
+        int wxL = volvWorkshop.x;
+        int wxR = volvWorkshop.x + volvWorkshop.size;
+        int wyT = volvWorkshop.y;
+        int wyB = volvWorkshop.y + volvWorkshop.size;
+        return (((wxL < xRB && xRB < wxR) || (wxL < xLB && xRB < wxR)) &&
+                ((wyT < yTB && yTB < wyB) || (wyT < yBB && yBB < wyB)));
+    }
+
+    class GraphicalVolvoWorkshop {
+        Workshop<IsVolvo> workshop;
+        int x;
+        int y;
+        String imagePath;
+        int size;
+
+        public GraphicalVolvoWorkshop(int capacity, int x, int y, String imagePath) {
+            workshop = new Workshop<>(capacity);
+            this.x = x;
+            this.y = y;
+            this.imagePath = imagePath;
+            this.size = 100;
         }
     }
 }
