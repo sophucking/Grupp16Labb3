@@ -102,9 +102,9 @@ public abstract class GroundVehicle implements IsVehicle {
         if (amount < 0 || 1 < amount) {
             throw new IllegalArgumentException();
         }
-        if (engineOn) {
+        // if (engineOn) {
             decrementSpeed(amount);
-        }
+        // }
     }
 
     @Override
