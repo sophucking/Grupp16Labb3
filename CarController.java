@@ -63,30 +63,30 @@ public class CarController {
                 updateVisuals(i, cars.get(i));
             }
         }
+    }
 
-        private void workshopInteraction(GroundVehicle car) {
-            if (IsVolvo(car)) {
-                if (workshopCollision(car)) {
-                    storeIfOpen(car);
-                }
+    private void workshopInteraction(GroundVehicle car) {
+        if (IsVolvo(car)) {
+            if (workshopCollision(car)) {
+                storeIfOpen(car);
             }
         }
+    }
 
-        private void storeIfOpen(GroundVehicle car) {
-            if (volvWorkshop.workshop.isStorageOpen()) {
-                storeCarInWorkshop(car);
-            }
+    private void storeIfOpen(GroundVehicle car) {
+        if (volvWorkshop.workshop.isStorageOpen()) {
+            storeCarInWorkshop(car);
         }
+    }
 
-        private void storeCarInWorkshop(GroundVehicle car) {
-            volvWorkshop.workshop.storeThing((IsVolvo) car);
-            cars.remove(car);
-            frame.drawPanel.removeImage(car);
-        }
+    private void storeCarInWorkshop(GroundVehicle car) {
+        volvWorkshop.workshop.storeThing((IsVolvo) car);
+        cars.remove(car);
+        frame.drawPanel.removeImage(car);
+    }
 
-        private boolean IsVolvo(GroundVehicle car) {
-            return carTypeMatch(car, new Volvo240()) || carTypeMatch(car, new VolvoFL());
-        }
+    private boolean IsVolvo(GroundVehicle car) {
+        return carTypeMatch(car, new Volvo240()) || carTypeMatch(car, new VolvoFL());
     }
 
     private void updateVisuals(int i, GroundVehicle car) {
