@@ -86,6 +86,7 @@ public class CarController {
     }
 
     private boolean IsVolvo(GroundVehicle car) {
+        // TODO: use IsVolvo interface
         return carTypeMatch(car, new Volvo240()) || carTypeMatch(car, new VolvoFL());
     }
 
