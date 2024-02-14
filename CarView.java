@@ -58,7 +58,7 @@ public class CarView extends JFrame{
 
 
         SpinnerModel spinnerModel =
-                new SpinnerNumberModel(0, //initial value
+                new SpinnerNumberModel(99, //initial value
                         0, //min
                         100, //max
                         1);//step
@@ -163,4 +163,10 @@ public class CarView extends JFrame{
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+
+    public boolean isOutOfBounds(int x, int y) {
+        return x < 0 || x > X - 110 || y < 0 || y > Y - 110;
+    }
+
 }

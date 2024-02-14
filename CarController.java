@@ -48,17 +48,33 @@ public class CarController {
      */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            int i = 0;
-            for (GroundVehicle car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getPosition().getX());
-                int y = (int) Math.round(car.getPosition().getY());
-                frame.drawPanel.moveit(i++, x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
+            // int i = 0;
+            // for (GroundVehicle car : cars) {
+                for (int i = 0; i < cars.size(); i++) {
+                    moveCar(cars.get(i));
+                    updateVisuals(i, cars.get(i));
+                }
             }
         }
-    }
+
+        private void updateVisuals(int i, GroundVehicle car) {
+            int x = (int) Math.round(car.getPosition().getX());
+            int y = (int) Math.round(car.getPosition().getY());
+            
+            frame.drawPanel.moveit(i, x, y);
+            // repaint() calls the paintComponent method of the panel
+            frame.drawPanel.repaint();
+        }
+
+        private void moveCar(GroundVehicle car) {
+            worldHasBouncyWalls(car);
+            car.move();
+        }
+    private void worldHasBouncyWalls(GroundVehicle car) {
+            if (frame.isOutOfBounds((int) car.getPosition().x, (int) car.getPosition().y)) {
+                car.turnLeft(Math.PI);
+            }
+        }
 
     private <T extends GroundVehicle> ArrayList<T> findAllOfType(T groundVehicle){
         ArrayList<T> carList = new ArrayList<>();
