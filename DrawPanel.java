@@ -8,7 +8,7 @@ import javax.swing.*;
 
 // This panel represents the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel {
     private class ImagePointPair {
         private Point point;
         private BufferedImage image;
@@ -17,34 +17,39 @@ public class DrawPanel extends JPanel{
             this.point = point;
             this.image = image;
         }
+
         ImagePointPair(int x, int y, BufferedImage image) {
-            this(new Point(x,y), image);
+            this(new Point(x, y), image);
         }
+
         public int getX() {
             return point.x;
         }
+
         public int getY() {
             return point.y;
         }
+
         public Point getPoint() {
             return point;
         }
+
         public BufferedImage getImage() {
             return image;
         }
-        
     }
+
     // Just a single image, TODO: Generalize
     // BufferedImage volvoImage;
-    ArrayList<GroundVehicle> carList;
-    ArrayList<ImagePointPair> imageList;
+    private ArrayList<GroundVehicle> carList;
+    private ArrayList<ImagePointPair> imageList;
 
-    ImagePointPair workshop;
+    private ImagePointPair workshop;
     // BufferedImage volvoWorkshopImage;
     // Point volvoWorkshopPoint = new Point(300,300);
 
     // TODO: Make this general for all cars
-    void moveit(int ind, int x, int y){
+    void moveit(int ind, int x, int y) {
         imageList.get(ind).getPoint().move(x, y);
     }
 
@@ -58,14 +63,16 @@ public class DrawPanel extends JPanel{
     }
 
     public void addCar(GroundVehicle car) {
-            int x = (int) car.getPosition().x;
-            int y = (int) car.getPosition().y;
-            String model = car.getModel();
-            // volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-            // volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-            imageList.add(
-                createNewVisualItem(x, y, "pics/"+model+".jpg"));
-            carList.add(car);
+        int x = (int) car.getPosition().x;
+        int y = (int) car.getPosition().y;
+        String model = car.getModel();
+        // volvoImage =
+        // ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
+        // volvoWorkshopImage =
+        // ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
+        imageList.add(
+                createNewVisualItem(x, y, "pics/" + model + ".jpg"));
+        carList.add(car);
     }
 
     public void addWorkshop(int x, int y, String imagePath) {
@@ -83,9 +90,8 @@ public class DrawPanel extends JPanel{
         // ImagePointPair newItem;
         try {
             return new ImagePointPair(x, y, ImageIO.read(
-                DrawPanel.class.getResourceAsStream(imagePath)));
-        } catch (IOException ex)
-        {
+                    DrawPanel.class.getResourceAsStream(imagePath)));
+        } catch (IOException ex) {
             ex.printStackTrace();
             return null;
         }
