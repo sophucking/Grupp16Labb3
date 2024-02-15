@@ -46,7 +46,7 @@ public class CarController {
 
     private void initWorkshop(int capacity, int x, int y, String imagePath) {
         volvWorkshop = new GraphicalVolvoWorkshop(capacity, x, y, imagePath);
-        volvWorkshop.workshop.openStorage();
+        volvWorkshop.openStorage();
     }
 
     /*
@@ -58,9 +58,10 @@ public class CarController {
             // int i = 0;
             // for (GroundVehicle car : cars) {
             for (int i = 0; i < cars.size(); i++) {
-                moveCar(cars.get(i));
-                workshopInteraction(cars.get(i));
-                updateVisuals(i, cars.get(i));
+                GroundVehicle car = cars.get(i);
+                moveCar(car);
+                workshopInteraction(car);
+                updateVisuals(i, car);
             }
         }
     }
@@ -74,20 +75,19 @@ public class CarController {
     }
 
     private void storeIfOpen(GroundVehicle car) {
-        if (volvWorkshop.workshop.isStorageOpen()) {
+        if (volvWorkshop.isStorageOpen()) {
             storeCarInWorkshop(car);
         }
     }
 
     private void storeCarInWorkshop(GroundVehicle car) {
-        volvWorkshop.workshop.storeThing((IsVolvo) car);
+        volvWorkshop.storeThing((IsVolvo) car);
         cars.remove(car);
         frame.drawPanel.removeImage(car);
     }
 
     private boolean IsVolvo(GroundVehicle car) {
-        // TODO: use IsVolvo interface
-        return carTypeMatch(car, new Volvo240()) || carTypeMatch(car, new VolvoFL());
+        return car instanceof IsVolvo;
     }
 
     private void updateVisuals(int i, GroundVehicle car) {
@@ -129,75 +129,75 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (GroundVehicle car : cars) {
             car.gas(gas);
         }
     }
 
-    void brake(int amount) {
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (GroundVehicle car : cars) {
             car.brake(brake);
         }
     }
 
-    void startAllEngines() {
+    public void startAllEngines() {
         for (GroundVehicle car : cars) {
             car.startEngine();
         }
     }
 
-    void stopAllEngines() {
+    public void stopAllEngines() {
         for (GroundVehicle car : cars) {
             car.stopEngine();
         }
     }
 
-    void turnTurboOn() {
+    public void turnTurboOn() {
         for (Saab95 saab95 : findAllOfType(new Saab95())) {
             saab95.setTurboOn();
         }
     }
 
-    void turnTurboOff() {
+    public void turnTurboOff() {
         for (Saab95 saab95 : findAllOfType(new Saab95())) {
             saab95.setTurboOff();
         }
     }
 
-    void liftBed() {
+    public void liftBed() {
         for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
             scaniaV8.raiseStorage(70);
         }
     }
 
-    void lowerBed() {
+    public void lowerBed() {
         for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
             scaniaV8.lowerStorage(70);
         }
     }
 
-    boolean workshopCollision(GroundVehicle car) {
+    private boolean workshopCollision(GroundVehicle car) {
         int carLeftEdge = (int) car.getPosition().x;
         int carRightEdge = carLeftEdge + 110;
         int carTopEdge = (int) car.getPosition().y;
         int carBottomEdge = carTopEdge + 80;
-        int shopLeftEdge = volvWorkshop.x;
-        int shopRightEdge = volvWorkshop.x + volvWorkshop.size;
-        int shopTopEdge = volvWorkshop.y;
-        int shopBottomEdge = volvWorkshop.y + volvWorkshop.size;
+        int shopLeftEdge = volvWorkshop.getX();
+        int shopRightEdge = volvWorkshop.getX() + volvWorkshop.getSize();
+        int shopTopEdge = volvWorkshop.getY();
+        int shopBottomEdge = volvWorkshop.getY() + volvWorkshop.getSize();
         return (((shopLeftEdge < carRightEdge && carRightEdge < shopRightEdge) || (shopLeftEdge < carLeftEdge && carRightEdge < shopRightEdge)) &&
                 ((shopTopEdge < carTopEdge && carTopEdge < shopBottomEdge) || (shopTopEdge < carBottomEdge && carBottomEdge < shopBottomEdge)));
     }
 
-    class GraphicalVolvoWorkshop {
-        Workshop<IsVolvo> workshop;
-        int x;
-        int y;
-        String imagePath;
-        int size;
+    private class GraphicalVolvoWorkshop {
+        private final Workshop<IsVolvo> workshop;
+        private final int x;
+        private final int y;
+        private final String imagePath;
+        private final int size;
 
         public GraphicalVolvoWorkshop(int capacity, int x, int y, String imagePath) {
             workshop = new Workshop<>(capacity);
@@ -206,5 +206,46 @@ public class CarController {
             this.imagePath = imagePath;
             this.size = 100;
         }
+
+        public void storeThing(IsVolvo car) {
+            workshop.storeThing(car);
+        }
+
+        public boolean isStorageOpen() {
+            return workshop.isStorageOpen();
+        }
+
+        public void openStorage() {
+            workshop.openStorage();
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public String getImagePath() {
+            return imagePath;
+        }
+
+        public int getSize() {
+            return size;
+        }
+        
+    }
+
+    public int getWorkshopX() {
+        return volvWorkshop.getX();
+    }
+
+    public int getWorkshopY() {
+        return volvWorkshop.getY();
+    }
+
+    public String getWorkshopImagePath() {
+        return volvWorkshop.getImagePath();
     }
 }

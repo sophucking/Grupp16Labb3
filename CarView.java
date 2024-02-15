@@ -169,7 +169,11 @@ public class CarView extends JFrame{
         for (GroundVehicle car : carC.cars) {
             addCar(car);
         }
-        drawPanel.addWorkshop(carC.volvWorkshop.x, carC.volvWorkshop.y, carC.volvWorkshop.imagePath);
+        drawWorkshop();
+    }
+
+    private void drawWorkshop() {
+        drawPanel.addWorkshop(carC.getWorkshopX(), carC.getWorkshopY(), carC.getWorkshopImagePath());
     }
 
     private void addCar(GroundVehicle car) {
