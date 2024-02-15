@@ -30,15 +30,19 @@ public class DrawPanel extends JPanel {
             return point.y;
         }
 
-        public Point getPoint() {
-            return point;
-        }
+        // public Point getPoint() {
+        //     return point;
+        // }
 
         public BufferedImage getImage() {
             return image;
         }
-    }
 
+        public void move(int x, int y) {
+            point.move(x, y);
+        }
+    }
+Dra
     // Just a single image, TODO: Generalize
     // BufferedImage volvoImage;
     private ArrayList<GroundVehicle> carList;
@@ -50,7 +54,7 @@ public class DrawPanel extends JPanel {
 
     // TODO: Make this general for all cars
     void moveit(int ind, int x, int y) {
-        imageList.get(ind).getPoint().move(x, y);
+        imageList.get(ind).move(x, y);
     }
 
     // Initializes the panel and reads the images

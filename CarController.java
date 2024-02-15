@@ -188,8 +188,10 @@ public class CarController {
         int shopRightEdge = volvWorkshop.getX() + volvWorkshop.getSize();
         int shopTopEdge = volvWorkshop.getY();
         int shopBottomEdge = volvWorkshop.getY() + volvWorkshop.getSize();
-        return (((shopLeftEdge < carRightEdge && carRightEdge < shopRightEdge) || (shopLeftEdge < carLeftEdge && carRightEdge < shopRightEdge)) &&
-                ((shopTopEdge < carTopEdge && carTopEdge < shopBottomEdge) || (shopTopEdge < carBottomEdge && carBottomEdge < shopBottomEdge)));
+        return (((shopLeftEdge < carRightEdge && carRightEdge < shopRightEdge)
+                || (shopLeftEdge < carLeftEdge && carRightEdge < shopRightEdge)) &&
+                ((shopTopEdge < carTopEdge && carTopEdge < shopBottomEdge)
+                        || (shopTopEdge < carBottomEdge && carBottomEdge < shopBottomEdge)));
     }
 
     private class GraphicalVolvoWorkshop {
@@ -234,7 +236,7 @@ public class CarController {
         public int getSize() {
             return size;
         }
-        
+
     }
 
     public int getWorkshopX() {
