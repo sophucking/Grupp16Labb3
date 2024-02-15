@@ -42,7 +42,7 @@ public class DrawPanel extends JPanel {
             point.move(x, y);
         }
     }
-
+Dra
     // Just a single image, TODO: Generalize
     // BufferedImage volvoImage;
     private ArrayList<GroundVehicle> carList;
