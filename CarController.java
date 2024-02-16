@@ -24,7 +24,7 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<GroundVehicle> cars = new ArrayList<>();
 
-    GraphicalVolvoWorkshop volvWorkshop;
+    GraphicalVolvoWorkshop volvoWorkshop;
 
     // methods:
 
@@ -45,8 +45,8 @@ public class CarController {
     }
 
     private void initWorkshop(int capacity, int x, int y, String imagePath) {
-        volvWorkshop = new GraphicalVolvoWorkshop(capacity, x, y, imagePath);
-        volvWorkshop.openStorage();
+        volvoWorkshop = new GraphicalVolvoWorkshop(capacity, x, y, imagePath);
+        volvoWorkshop.openStorage();
     }
 
     /*
@@ -75,13 +75,13 @@ public class CarController {
     }
 
     private void storeIfOpen(GroundVehicle car) {
-        if (volvWorkshop.isStorageOpen()) {
+        if (volvoWorkshop.isStorageOpen()) {
             storeCarInWorkshop(car);
         }
     }
 
     private void storeCarInWorkshop(GroundVehicle car) {
-        volvWorkshop.storeThing((IsVolvo) car);
+        volvoWorkshop.storeThing((IsVolvo) car);
         cars.remove(car);
         frame.drawPanel.removeImage(car);
     }
@@ -185,10 +185,10 @@ public class CarController {
         int carRightEdge = carLeftEdge + 110;
         int carTopEdge = (int) car.getPosition().y;
         int carBottomEdge = carTopEdge + 80;
-        int shopLeftEdge = volvWorkshop.getX();
-        int shopRightEdge = volvWorkshop.getX() + volvWorkshop.getSize();
-        int shopTopEdge = volvWorkshop.getY();
-        int shopBottomEdge = volvWorkshop.getY() + volvWorkshop.getSize();
+        int shopLeftEdge = volvoWorkshop.getX();
+        int shopRightEdge = volvoWorkshop.getX() + volvoWorkshop.getSize();
+        int shopTopEdge = volvoWorkshop.getY();
+        int shopBottomEdge = volvoWorkshop.getY() + volvoWorkshop.getSize();
         return (((shopLeftEdge < carRightEdge && carRightEdge < shopRightEdge)
                 || (shopLeftEdge < carLeftEdge && carRightEdge < shopRightEdge)) &&
                 ((shopTopEdge < carTopEdge && carTopEdge < shopBottomEdge)
@@ -241,14 +241,14 @@ public class CarController {
     }
 
     public int getWorkshopX() {
-        return volvWorkshop.getX();
+        return volvoWorkshop.getX();
     }
 
     public int getWorkshopY() {
-        return volvWorkshop.getY();
+        return volvoWorkshop.getY();
     }
 
     public String getWorkshopImagePath() {
-        return volvWorkshop.getImagePath();
+        return volvoWorkshop.getImagePath();
     }
 }

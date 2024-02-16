@@ -1,6 +1,6 @@
 # Rafactorising plan
 
-- Create a (Run)CarSimulation class containtning the main method and the Timer/TimerListener
+- Create a (Run)CarSimulation class containing the main method and the Timer/TimerListener
 - CarSimulation has both a CarView and a CarController object. 
 - Create an addCar method in CarSimulation which adds a car to CarController and a graphical representation to the drawPanel. Same with the workshop. 
 - TimerListener in CarSimulation calls CarView and CarController to update each timestep
