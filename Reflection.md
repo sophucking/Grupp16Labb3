@@ -7,7 +7,8 @@
 - CarController och CarView och DrawPanel är så sammankopplade att de inte går emot SoC, de är dock separate klasser pga single responsibility
 - CarController ska vara den enda som beror på GroundVehicle osv minimera beroenden utåt
 - Se över en del variabler och göra private, public osv
-- DiP is followed
+- DiP is violated in car controller where we check for a Saab instead of having a HasTurbo interface (or something similar)
+- 
 
 
 ## part 3
