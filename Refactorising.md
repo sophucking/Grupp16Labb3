@@ -12,8 +12,6 @@
 - Change the addCar method in CarView
 - CarView constructor (and CarController) should have the window size as input parameter
 
-## MABYE
-
 - Create (abstract) VisualItem superclass with VisualCar and VisualWorkshop subclasses
 Each of (sub)classes contains either a car or a workshop as well as the position of the items and the path to the corresponding image
 CarSimulation can then have a list of VisualCars and loop over the elements calling on the seperate classes and giving them the data needed to update. 
