@@ -1,4 +1,4 @@
-# Rafactorising plan
+# Refactorising plan
 
 - Remove inheritance in favor for composition in vehicle package. 
 
@@ -8,7 +8,7 @@ CarSimulation has both a CarView and a CarController object.
 - TimerListener calls the update method in CarSimulation
 - Update in CarSimulation calls CarView and CarController to update each timestep
 - CarController no longer needs dependency of CarView
-- Redo ImagePointPair (and possibly rename) to replaced pint with int x, y and create own move method
+- Redo ImagePointPair (and possibly rename) to replaced point with int x, y and create own move method
 - Redo implementation of adding to workshop, image does not need to be removed? car can remain beneath workshop
 - ? remove the 'removeImage' method form DrawPanel
 - TurnTurboOn/Off and Lift/LowerBed methods use interface instead of specificly Saab and Scania. 
