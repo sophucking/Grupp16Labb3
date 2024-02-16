@@ -17,10 +17,10 @@ public class CarController {
     private final int delay = 10; // 50;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    private Timer timer = new Timer(delay, new TimerListener()); // move
 
     // The frame that represents this instance View of the MVC pattern
-    CarView frame;
+    CarView frame; // move
     // A list of cars, modify if needed
     ArrayList<GroundVehicle> cars = new ArrayList<>();
 
@@ -28,11 +28,11 @@ public class CarController {
 
     // methods:
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // move
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240(0, 0));
+        cc.cars.add(new Volvo240(0, 0)); 
         cc.cars.add(new Saab95(0, 100));
         cc.cars.add(new ScaniaV8<Cargo>(0, 200));
         cc.initWorkshop(10, 300, 300, "pics/VolvoBrand.jpg");
@@ -155,25 +155,26 @@ public class CarController {
         }
     }
 
-    public void turnTurboOn() {
-        for (Saab95 saab95 : findAllOfType(new Saab95())) {
+    // REDOTHESE
+    public void turnTurboOn() { // instead check interface HasTurbo
+        for (Saab95 saab95 : findAllOfType(new Saab95())) { 
             saab95.setTurboOn();
         }
     }
 
-    public void turnTurboOff() {
+    public void turnTurboOff() { // instead check interface HasTurbo
         for (Saab95 saab95 : findAllOfType(new Saab95())) {
             saab95.setTurboOff();
         }
     }
 
-    public void liftBed() {
+    public void liftBed() { // instead check interface Tippable
         for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
             scaniaV8.raiseStorage(70);
         }
     }
 
-    public void lowerBed() {
+    public void lowerBed() {// instead check interface Tippable
         for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
             scaniaV8.lowerStorage(70);
         }

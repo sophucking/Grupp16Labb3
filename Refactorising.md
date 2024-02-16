@@ -6,4 +6,11 @@
 - TimerListener in CarSimulation calls CarView and CarController to update each timestep
 - CarController no longer needs dependency of CarView
 - Redo ImagePointPair (and possibly rename) to replaced pint with int x, y and create own move method
+- Redo implementation of adding to workshop, image does not need to be removed? car can remain beneath workshop, lower 
+- ? remove the 'removeImage' form DrawPanel
 
+## MABYE
+
+- Create (abstract) VisualItem superclass with VisualCar and VisualWorkshop subclasses
+Each of (sub)classes contains either a car or a workshop as well as the position of the items and the path to the corresponding image
+CarSimulation can then have a list of VisualCars and loop over the elements calling on the seperate classes and giving them the data needed to update. 
