@@ -8,7 +8,6 @@
 - CarController ska vara den enda som beror på GroundVehicle osv minimera beroenden utåt
 - Se över en del variabler och göra private, public osv
 - DiP is violated in car controller where we check for a Saab instead of having a HasTurbo interface (or something similar)
-- 
 
 
 ## part 3
@@ -16,8 +15,9 @@
 
 - DrawPanel: ritar ut bilder av bilar och workshop, vet vart de ska ritas ut och hur
 - CarView: UI, om objekt är utanför rutan, säger till DrawPanel vad som ska ritas och vart, säger till CarController att knappar används. 
-- CarController: Har och kontrollerar bilarna, skickar signal att uppdatera grafiken efter att bilarna flyttas.  
+- CarController: Har och kontrollerar bilarna, skickar signal att uppdatera grafiken efter att bilarna flyttas.
 
 - DrawPanel och CarView bör inte ha något beroende av GroundVehicle
 
 - CarSimulation class (med main metod) som lägger till bilar i CarController samt DrawPanel separat. Har Timer och kallar metoderna som hanterar vad som händer vid varje tidssteg i varje separat class. 
+- CarView borde inte hantera knappar eftersom de är en kontroll sak, alltså CarControllers ansvar. Men de är även grafiska element och vi vet inte hur vi skull separera detta så vi lämnar det.
