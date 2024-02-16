@@ -181,7 +181,7 @@ public class CarView extends JFrame{
     }
 
     public boolean isOutOfBounds(int x, int y) {
-        return x < 0 || x > X - 110 || y < 0 || y > Y - 240 - 110;
+        return x < 0 || x > X - 110 || y < 0 || y > Y - 110;
     }
 
 

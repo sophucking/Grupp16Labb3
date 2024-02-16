@@ -35,6 +35,7 @@ public class CarController {
         cc.cars.add(new Volvo240(0, 0)); 
         cc.cars.add(new Saab95(0, 100));
         cc.cars.add(new ScaniaV8<Cargo>(0, 200));
+        cc.cars.add(new Volvo240(0, 300));
         cc.initWorkshop(10, 300, 300, "pics/VolvoBrand.jpg");
 
         // Start a new view and send a reference of self
@@ -60,8 +61,8 @@ public class CarController {
             for (int i = 0; i < cars.size(); i++) {
                 GroundVehicle car = cars.get(i);
                 moveCar(car);
-                workshopInteraction(car);
                 updateVisuals(i, car);
+                workshopInteraction(car);
             }
         }
     }
