@@ -14,3 +14,5 @@
 - Create (abstract) VisualItem superclass with VisualCar and VisualWorkshop subclasses
 Each of (sub)classes contains either a car or a workshop as well as the position of the items and the path to the corresponding image
 CarSimulation can then have a list of VisualCars and loop over the elements calling on the seperate classes and giving them the data needed to update. 
+
+No longer necessary for DrawPanel and CarControll to have their own lists, CarControll then only need usage depenency on GroundVehicle. 
