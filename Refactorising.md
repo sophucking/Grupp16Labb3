@@ -6,7 +6,7 @@
 - TimerListener in CarSimulation calls CarView and CarController to update each timestep
 - CarController no longer needs dependency of CarView
 - Redo ImagePointPair (and possibly rename) to replaced pint with int x, y and create own move method
-- Redo implementation of adding to workshop, image does not need to be removed? car can remain beneath workshop, lower 
+- Redo implementation of adding to workshop, image does not need to be removed? car can remain beneath workshop
 - ? remove the 'removeImage' method form DrawPanel
 
 ## MABYE
