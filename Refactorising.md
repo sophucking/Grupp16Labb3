@@ -23,4 +23,12 @@ No longer necessary for DrawPanel and CarControll to have their own lists, ?CarC
 
 ## WHY?
 
-- 
+- Less dependency on GroundVehicle (and vehicle package)
+- Adding private everywhere possible to follow OCP
+- Following DIP by depending on abstractions instead of concrete implementations
+- Increasing SRP by moving storing cars and the Timer from CarController. The responsibility of CarController in now only to mutate the cars. 
+
+- Using DrawPanel instead of JPanel increases cohesion and decreases coupling
+- TimeListener should tell CarSimulation to update, not handle anything to do with how the update is performed
+- Remove circular depenency (SRP) between CarController and CarView
+- Removing unecesary dependency on Point
