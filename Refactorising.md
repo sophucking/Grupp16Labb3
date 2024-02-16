@@ -8,6 +8,7 @@
 - Redo ImagePointPair (and possibly rename) to replaced pint with int x, y and create own move method
 - Redo implementation of adding to workshop, image does not need to be removed? car can remain beneath workshop
 - ? remove the 'removeImage' method form DrawPanel
+- TurnTurboOn/Off and Lift/LowerBed methods use interface instead of specificly Saab and Scania. 
 
 ## MABYE
 
@@ -15,4 +16,4 @@
 Each of (sub)classes contains either a car or a workshop as well as the position of the items and the path to the corresponding image
 CarSimulation can then have a list of VisualCars and loop over the elements calling on the seperate classes and giving them the data needed to update. 
 
-No longer necessary for DrawPanel and CarControll to have their own lists, CarControll then only need usage depenency on GroundVehicle. 
+No longer necessary for DrawPanel and CarControll to have their own lists, ?CarControll then only need usage depenency on GroundVehicle. 
