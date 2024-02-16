@@ -9,6 +9,8 @@
 - Redo implementation of adding to workshop, image does not need to be removed? car can remain beneath workshop
 - ? remove the 'removeImage' method form DrawPanel
 - TurnTurboOn/Off and Lift/LowerBed methods use interface instead of specificly Saab and Scania. 
+- Change the addCar method in CarView
+- CarView constructor (and CarController) should have the window size as input parameter
 
 ## MABYE
 
