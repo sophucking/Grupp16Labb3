@@ -11,14 +11,14 @@ CarSimulation has both a CarView and a CarController object.
 - Redo ImagePointPair (and possibly rename) to replaced point with int x, y and create own move method
 - Redo implementation of adding to workshop, image does not need to be removed? car can remain beneath workshop
 - ? remove the 'removeImage' method form DrawPanel
-- TurnTurboOn/Off and Lift/LowerBed methods use interface instead of specificly Saab and Scania. 
+- TurnTurboOn/Off and Lift/LowerBed methods use interface instead of specifically Saab and Scania. 
 - Change the addCar method in CarView
 - CarView constructor (and CarController) should have the window size as input parameter
 
 - Create (abstract) VisualItem superclass with VisualCar and VisualWorkshop subclasses
 Each of (sub)classes contains either a car or a workshop as well as the position of the items and the path to the corresponding image. 
-CarSimulation can then have a list of VisualCars and loop over the elements calling on the seperate classes and giving them the data needed to update. 
-No longer necessary for DrawPanel and CarControll to have their own lists, ?CarControll then only need usage depenency on GroundVehicle. 
+CarSimulation can then have a list of VisualCars and loop over the elements calling on the separate classes and giving them the data needed to update. 
+No longer necessary for DrawPanel and CarControl to have their own lists, ?CarControl then only need usage depenency on GroundVehicle. 
 
 
 ## WHY?
@@ -30,5 +30,7 @@ No longer necessary for DrawPanel and CarControll to have their own lists, ?CarC
 
 - Using DrawPanel instead of JPanel increases cohesion and decreases coupling
 - TimeListener should tell CarSimulation to update, not handle anything to do with how the update is performed
-- Remove circular depenency (SRP) between CarController and CarView
-- Removing unecesary dependency on Point
+- Remove circular dependency (SRP) between CarController and CarView
+- Removing unnecessary dependency on Point
+- DIP make TurnTurboOn/Off abstract by using interface
+- Decrease coupling (even DIP) by sending position and picture to CarView instead of GroundVehicle
