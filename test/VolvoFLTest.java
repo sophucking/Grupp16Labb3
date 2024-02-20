@@ -1,4 +1,9 @@
 import org.junit.*;
+
+import Vehicles.Saab95;
+import Vehicles.Volvo240;
+import Vehicles.VolvoFL;
+
 import static org.junit.Assert.*;
 import java.awt.geom.Point2D;
 

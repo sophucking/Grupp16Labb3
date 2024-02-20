@@ -1,3 +1,4 @@
+package Vehicles;
 
 public interface HasStorage<T> {
     public void openStorage();

@@ -1,3 +1,4 @@
+package Vehicles;
 import java.awt.Color;
 
 public class Truck<T> extends GroundVehicle implements HasStorage<T> {

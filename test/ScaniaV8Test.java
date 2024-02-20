@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
 import org.junit.*;
 
+import Vehicles.ScaniaV8;
+
 public class ScaniaV8Test {
 
     ScaniaV8<Object> testTSP;

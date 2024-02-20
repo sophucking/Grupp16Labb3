@@ -1,3 +1,4 @@
+package Vehicles;
 public class Trailer<T> extends Storage<T> {
 
     Trailer(int max_capacity) {

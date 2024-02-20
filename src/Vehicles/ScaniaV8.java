@@ -1,3 +1,4 @@
+package Vehicles;
 import java.awt.*;
 
 public class ScaniaV8<T> extends Truck<T> implements Tippable<T>{

@@ -1,3 +1,4 @@
+package Vehicles;
 import java.awt.*;
 
 // only exist as a label

@@ -3,6 +3,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import Vehicles.Saab95;
+
 public class Saab95Test {
     Saab95 testSaab;
 

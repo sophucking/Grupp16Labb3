@@ -1,6 +1,7 @@
+package Vehicles;
 import java.awt.*;
 
-public class Saab95 extends NormalCar {
+public class Saab95 extends NormalCar implements HasTurbo {
     private boolean turboOn;
 
     
@@ -13,13 +14,19 @@ public class Saab95 extends NormalCar {
         turboOn = false;
     }
 
-
+    @Override
     public void setTurboOn() {
         turboOn = true;
     }
 
+    @Override
     public void setTurboOff() {
         turboOn = false;
+    }
+
+    @Override
+    public boolean isTurboOn(){
+        return turboOn;
     }
 
     @Override

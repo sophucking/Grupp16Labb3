@@ -6,6 +6,8 @@ import static org.junit.Assert.assertThrows;
 import org.junit.Before;
 import org.junit.Test;
 
+import Vehicles.Trailer;
+
 public class TrailerTest {
     Trailer<Integer> trailer;
 
