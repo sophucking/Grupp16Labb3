@@ -1,7 +1,7 @@
+
 import javax.swing.*;
 
 import Vehicles.Cargo;
-import Vehicles.GroundVehicle;
 import Vehicles.IsVolvo;
 import Vehicles.Saab95;
 import Vehicles.ScaniaV8;
@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import Vehicles.*;
 
 
 /*
@@ -32,7 +33,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame; // move
     // A list of cars, modify if needed
-    ArrayList<GroundVehicle> cars = new ArrayList<>();
+    ArrayList<IsVehicle> cars = new ArrayList<>();
 
     GraphicalVolvoWorkshop volvoWorkshop;
 
@@ -69,7 +70,7 @@ public class CarController {
             // int i = 0;
             // for (GroundVehicle car : cars) {
             for (int i = 0; i < cars.size(); i++) {
-                GroundVehicle car = cars.get(i);
+                IsVehicle car = cars.get(i);
                 moveCar(car);
                 updateVisuals(i, car);
                 workshopInteraction(car);
@@ -77,7 +78,7 @@ public class CarController {
         }
     }
 
-    private void workshopInteraction(GroundVehicle car) {
+    private void workshopInteraction(IsVehicle car) {
         if (IsVolvo(car)) {
             if (workshopCollision(car)) {
                 storeIfOpen(car);
@@ -85,23 +86,23 @@ public class CarController {
         }
     }
 
-    private void storeIfOpen(GroundVehicle car) {
+    private void storeIfOpen(IsVehicle car) {
         if (volvoWorkshop.isStorageOpen()) {
             storeCarInWorkshop(car);
         }
     }
 
-    private void storeCarInWorkshop(GroundVehicle car) {
+    private void storeCarInWorkshop(IsVehicle car) {
         volvoWorkshop.storeThing((IsVolvo) car);
         cars.remove(car);
-        frame.drawPanel.removeImage(car);
+        frame.drawPanel.removeImage(car); //give call to listener/observer
     }
 
-    private boolean IsVolvo(GroundVehicle car) {
+    private boolean IsVolvo(IsVehicle car) {
         return car instanceof IsVolvo;
     }
 
-    private void updateVisuals(int i, GroundVehicle car) {
+    private void updateVisuals(int i, IsVehicle car) {
         int x = (int) Math.round(car.getPosition().getX());
         int y = (int) Math.round(car.getPosition().getY());
 
@@ -110,72 +111,84 @@ public class CarController {
         frame.drawPanel.repaint();
     }
 
-    private void moveCar(GroundVehicle car) {
+    private void moveCar(IsVehicle car) {
         worldHasBouncyWalls(car);
         car.move();
     }
 
-    private void worldHasBouncyWalls(GroundVehicle car) {
+    private void worldHasBouncyWalls(IsVehicle car) {
         if (frame.isOutOfBounds((int) car.getPosition().x, (int) car.getPosition().y)) {
             car.turnLeft(Math.PI);
         }
     }
 
-    private <T extends GroundVehicle> ArrayList<T> findAllOfType(T groundVehicle) {
+    private void enableTurboIfHas(IsVehicle car) {
+        if (car instanceof HasTurbo) {
+            ((HasTurbo)car).setTurboOn();
+        }
+    }
+
+    private void disableTurboIfHas(IsVehicle car) {
+        if (car instanceof HasTurbo) {
+            ((HasTurbo)car).setTurboOff();
+        }
+    }
+
+    private <T extends IsVehicle> ArrayList<T> findAllOfType(T IsVehicle) {
         ArrayList<T> carList = new ArrayList<>();
-        cars.forEach((GroundVehicle car) -> {
-            addIfMatchType(carList, car, groundVehicle);
+        cars.forEach((IsVehicle car) -> {
+            addIfMatchType(carList, car, IsVehicle);
         });
         return carList;
     }
 
-    private <T extends GroundVehicle> void addIfMatchType(ArrayList<T> carList, GroundVehicle car, T vehicleType) {
+    private <T extends IsVehicle> void addIfMatchType(ArrayList<T> carList, IsVehicle car, T vehicleType) {
         if (carTypeMatch(car, vehicleType)) {
             carList.add((T) car);
         }
     }
 
-    private <T extends GroundVehicle> boolean carTypeMatch(GroundVehicle car, T vehicleType) {
+    private <T extends IsVehicle> boolean carTypeMatch(IsVehicle car, T vehicleType) {
         return vehicleType.getModel().equals(car.getModel());
     }
 
     // Calls the gas method for each car once
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (GroundVehicle car : cars) {
+        for (IsVehicle car : cars) {
             car.gas(gas);
         }
     }
 
     public void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (GroundVehicle car : cars) {
+        for (IsVehicle car : cars) {
             car.brake(brake);
         }
     }
 
     public void startAllEngines() {
-        for (GroundVehicle car : cars) {
+        for (IsVehicle car : cars) {
             car.startEngine();
         }
     }
 
     public void stopAllEngines() {
-        for (GroundVehicle car : cars) {
+        for (IsVehicle car : cars) {
             car.stopEngine();
         }
     }
 
     // REDOTHESE
     public void turnTurboOn() { // instead check interface HasTurbo
-        for (Saab95 saab95 : findAllOfType(new Saab95())) { 
-            saab95.setTurboOn();
+        for (IsVehicle car : cars) { 
+            enableTurboIfHas(car);
         }
     }
 
     public void turnTurboOff() { // instead check interface HasTurbo
-        for (Saab95 saab95 : findAllOfType(new Saab95())) {
-            saab95.setTurboOff();
+        for (IsVehicle car : cars) { 
+            disableTurboIfHas(car);
         }
     }
 
@@ -191,7 +204,7 @@ public class CarController {
         }
     }
 
-    private boolean workshopCollision(GroundVehicle car) {
+    private boolean workshopCollision(IsVehicle car) {
         int carLeftEdge = (int) car.getPosition().x;
         int carRightEdge = carLeftEdge + 110;
         int carTopEdge = (int) car.getPosition().y;

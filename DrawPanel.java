@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -6,7 +7,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Vehicles.GroundVehicle;
+import Vehicles.IsVehicle;
 
 // This panel represents the animated part of the view with the car images.
 
@@ -47,7 +48,7 @@ public class DrawPanel extends JPanel {
 
     // Just a single image, TODO: Generalize
     // BufferedImage volvoImage;
-    private ArrayList<GroundVehicle> carList;
+    private ArrayList<IsVehicle> carList;
     private ArrayList<ImagePointPair> imageList;
 
     private ImagePointPair workshop;
@@ -68,7 +69,7 @@ public class DrawPanel extends JPanel {
         this.setBackground(Color.green);
     }
 
-    public void addCar(GroundVehicle car) {
+    public void addCar(IsVehicle car) {
         int x = (int) car.getPosition().x;
         int y = (int) car.getPosition().y;
         String model = car.getModel();
@@ -85,7 +86,7 @@ public class DrawPanel extends JPanel {
         workshop = createNewVisualItem(x, y, imagePath);
     }
 
-    public void removeImage(GroundVehicle car) {
+    public void removeImage(IsVehicle car) {
         int i = carList.indexOf(car);
         imageList.remove(i);
         carList.remove(i);

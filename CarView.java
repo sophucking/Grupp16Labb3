@@ -1,8 +1,9 @@
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Vehicles.GroundVehicle;
+import Vehicles.IsVehicle;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -169,7 +170,7 @@ public class CarView extends JFrame{
 
 
     private void initDrawPanel() {
-        for (GroundVehicle car : carC.cars) {
+        for (IsVehicle car : carC.cars) {
             addCar(car);
         }
         drawWorkshop();
@@ -179,7 +180,7 @@ public class CarView extends JFrame{
         drawPanel.addWorkshop(carC.getWorkshopX(), carC.getWorkshopY(), carC.getWorkshopImagePath());
     }
 
-    private void addCar(GroundVehicle car) {
+    private void addCar(IsVehicle car) {
         drawPanel.addCar(car);
     }
 

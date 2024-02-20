@@ -2,7 +2,7 @@ package Vehicles;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public abstract class GroundVehicle implements IsVehicle {
+public class GroundVehicle implements IsVehicle {
 
     private Point2D.Double position; // the position of the car
     private double directionAngle; // the current angle of the car in space
@@ -25,7 +25,7 @@ public abstract class GroundVehicle implements IsVehicle {
         this.position = new Point2D.Double(x, y);
         stopEngine();
     }
-    GroundVehicle(int nrDoors, double enginePower, Color color, String modelName) {
+    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName) {
         this(nrDoors, enginePower, color, modelName, 0, 0);
     }
 
@@ -74,7 +74,7 @@ public abstract class GroundVehicle implements IsVehicle {
         return engineOn;
     }
 
-    public abstract double speedFactor();// {return enginePower * 0.01; }
+    public double speedFactor() {return enginePower * 0.01; }
 
     private void incrementSpeed(double amount) {
         setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
@@ -136,9 +136,9 @@ public abstract class GroundVehicle implements IsVehicle {
         return new Point2D.Double(this.position.x, this.position.y);
     }
 
-    protected Point2D.Double getPositionRef() {return this.position;}
+    Point2D.Double getPositionRef() {return this.position;}
 
-    protected void setPosition(Point2D.Double p) {
+    void setPosition(Point2D.Double p) {
         this.position = p;
     }
 

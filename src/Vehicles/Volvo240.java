@@ -14,7 +14,6 @@ public class Volvo240 extends NormalCar implements IsVolvo{
     }
 
 
-    @Override
     public double speedFactor() {
         return getEnginePower() * 0.01 * TRIMFACTOR;
     }

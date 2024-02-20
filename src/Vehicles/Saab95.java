@@ -29,7 +29,6 @@ public class Saab95 extends NormalCar implements HasTurbo {
         return turboOn;
     }
 
-    @Override
     public double speedFactor() {
         double turbo = 1;
         if (turboOn) {

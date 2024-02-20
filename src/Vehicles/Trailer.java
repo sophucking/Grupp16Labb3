@@ -1,7 +1,7 @@
 package Vehicles;
 public class Trailer<T> extends Storage<T> {
 
-    Trailer(int max_capacity) {
+    public Trailer(int max_capacity) {
         super(max_capacity);
     }
 

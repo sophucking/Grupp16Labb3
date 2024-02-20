@@ -19,7 +19,7 @@ public class GroundVehicleTest {
 
     @Before
     public void init() {
-        testGroundVehicle = new Volvo240();
+        testGroundVehicle = new GroundVehicle(4, 100, Color.YELLOW, "TestGroundVehicle");
         testGroundVehicle.startEngine();
     }
     
