@@ -134,6 +134,19 @@ public class CarController {
         }
     }
 
+
+    private void lowerBedIfTippable(IsVehicle car) {
+        if (car instanceof Tippable) {
+            ((Tippable) car).lowerStorage(70);
+        }
+    }
+
+    private void liftBedIfTippable(IsVehicle car) {
+        if (car instanceof Tippable) {
+            ((Tippable) car).raiseStorage(70);
+        }
+    }
+
     private <T extends IsVehicle> ArrayList<T> findAllOfType(T IsVehicle) {
         ArrayList<T> carList = new ArrayList<>();
         cars.forEach((IsVehicle car) -> {
@@ -193,14 +206,14 @@ public class CarController {
     }
 
     public void liftBed() { // instead check interface Tippable
-        for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
-            scaniaV8.raiseStorage(70);
+        for (IsVehicle car : cars) { 
+            liftBedIfTippable(car);
         }
     }
 
     public void lowerBed() {// instead check interface Tippable
-        for (ScaniaV8<Cargo> scaniaV8 : findAllOfType(new ScaniaV8<Cargo>())) {
-            scaniaV8.lowerStorage(70);
+        for (IsVehicle car : cars) { 
+            lowerBedIfTippable(car);
         }
     }
 

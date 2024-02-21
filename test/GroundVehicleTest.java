@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Vehicles.GroundVehicle;
-import Vehicles.Volvo240;
 
 public class GroundVehicleTest {
 

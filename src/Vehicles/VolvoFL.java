@@ -16,6 +16,7 @@ public class VolvoFL extends Truck<NormalCar> implements IsVolvo{
         double dist = p.distance(this.getPosition());
         return  1.0 >= dist;
     }
+    
     @Override
     public void storeThing(NormalCar thing) {
         boolean closeEnough = closeEnough(thing.getPosition());

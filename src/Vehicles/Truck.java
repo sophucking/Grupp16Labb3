@@ -1,19 +1,20 @@
 package Vehicles;
 import java.awt.Color;
+import java.awt.geom.Point2D;
 
-public class Truck<T> extends GroundVehicle implements HasStorage<T> {
+public class Truck<T> implements IsVehicle, HasStorage<T> {
 
     public static final double TOURQUE_FACTOR = 0.35;
+    private final GroundVehicle baseGroundVehicle;
     private final Trailer<T> storage;
 
     public Truck(double enginePower, Color color, String modelName, int max_capacity, double x, double y) {
-        super(2, enginePower, color, modelName, x, y);
+        baseGroundVehicle = new GroundVehicle(2, enginePower, color, modelName, x, y);
         this.storage = new Trailer<>(max_capacity);
     }
 
     public Truck(double enginePower, Color color, String modelName, int max_capacity) {
-        super(2, enginePower, color, modelName);
-        this.storage = new Trailer<>(max_capacity);
+        this(enginePower, color, modelName, max_capacity, 0, 0);
     }
 
     @Override
@@ -52,7 +53,6 @@ public class Truck<T> extends GroundVehicle implements HasStorage<T> {
         return storage.countThings();
     }
 
-    @Override
     public double speedFactor() {
         return getEnginePower() * 0.01 * TOURQUE_FACTOR;
     }
@@ -62,7 +62,85 @@ public class Truck<T> extends GroundVehicle implements HasStorage<T> {
         if (storage.isStorageOpen()) {
             return;
         }
-        super.gas(amount);
+        baseGroundVehicle.gas(amount);
     }
 
+    @Override
+    public void move() {
+        baseGroundVehicle.move();
+    }
+
+    @Override
+    public void turnLeft(double angle) {
+        baseGroundVehicle.turnLeft(angle);
+    }
+
+    @Override
+    public void turnRight(double angle) {
+        baseGroundVehicle.turnRight(angle);
+    }
+
+    @Override
+    public double getDirection() {
+        return baseGroundVehicle.getDirection();
+    }
+
+    @Override
+    public Point2D.Double getPosition() {
+        return baseGroundVehicle.getPosition();
+    }
+
+    @Override
+    public String getModel() {
+        return baseGroundVehicle.getModel();
+    }
+
+    @Override
+    public int getNrDoors() {
+        return baseGroundVehicle.getNrDoors();
+    }
+
+    @Override
+    public double getEnginePower() {
+        return baseGroundVehicle.getEnginePower();
+    }
+
+    @Override
+    public double getCurrentSpeed() {
+        return baseGroundVehicle.getCurrentSpeed();
+    }
+
+    @Override
+    public Color getColor() {
+        return baseGroundVehicle.getColor();
+    }
+
+    @Override
+    public void setColor(Color clr) {
+        baseGroundVehicle.setColor(clr);
+    }
+
+    @Override
+    public void startEngine() {
+        baseGroundVehicle.startEngine();
+    }
+
+    @Override
+    public void stopEngine() {
+        baseGroundVehicle.stopEngine();
+    }
+
+    @Override
+    public boolean isEngineOn() {
+        return baseGroundVehicle.isEngineOn();
+    }
+
+    @Override
+    public void brake(double amount) {
+        baseGroundVehicle.brake(amount);
+    }
+
+    protected Point2D.Double getPositionRef() {
+        return baseGroundVehicle.getPositionRef();
+    }
 }
