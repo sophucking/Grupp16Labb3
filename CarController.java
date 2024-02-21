@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import Vehicles.*;
 
-
 /*
 * This class represents the Controller part in the MVC pattern.
 * It's responsibilities is to listen to the View and responds in a appropriate manner by
@@ -43,7 +42,7 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240(0, 0)); 
+        cc.cars.add(new Volvo240(0, 0));
         cc.cars.add(new Saab95(0, 100));
         cc.cars.add(new ScaniaV8<Cargo>(0, 200));
         cc.cars.add(new Volvo240(0, 300));
@@ -79,10 +78,8 @@ public class CarController {
     }
 
     private void workshopInteraction(IsVehicle car) {
-        if (IsVolvo(car)) {
-            if (workshopCollision(car)) {
-                storeIfOpen(car);
-            }
+        if (IsVolvo(car) && workshopCollision(car)) {
+            storeIfOpen(car);
         }
     }
 
@@ -95,7 +92,7 @@ public class CarController {
     private void storeCarInWorkshop(IsVehicle car) {
         volvoWorkshop.storeThing((IsVolvo) car);
         cars.remove(car);
-        frame.drawPanel.removeImage(car); //give call to listener/observer
+        frame.drawPanel.removeImage(car); // give call to listener/observer or just remove
     }
 
     private boolean IsVolvo(IsVehicle car) {
@@ -106,6 +103,7 @@ public class CarController {
         int x = (int) Math.round(car.getPosition().getX());
         int y = (int) Math.round(car.getPosition().getY());
 
+        // send signal to listener/observer
         frame.drawPanel.moveit(i, x, y);
         // repaint() calls the paintComponent method of the panel
         frame.drawPanel.repaint();
@@ -122,48 +120,55 @@ public class CarController {
         }
     }
 
-    private void enableTurboIfHas(IsVehicle car) {
-        if (car instanceof HasTurbo) {
-            ((HasTurbo)car).setTurboOn();
-        }
+    private boolean hasTurbo(IsVehicle car) {
+        return car instanceof HasTurbo;
     }
 
-    private void disableTurboIfHas(IsVehicle car) {
-        if (car instanceof HasTurbo) {
-            ((HasTurbo)car).setTurboOff();
-        }
+    private boolean isTippable(IsVehicle car) {
+        return car instanceof Tippable;
     }
 
-
-    private void lowerBedIfTippable(IsVehicle car) {
-        if (car instanceof Tippable) {
-            ((Tippable<?>) car).lowerStorage(70);
-        }
+    private void enableTurbo(IsVehicle car) {
+        ((HasTurbo) car).setTurboOn();
     }
 
-    private void liftBedIfTippable(IsVehicle car) {
-        if (car instanceof Tippable) {
-            ((Tippable<?>) car).raiseStorage(70);
-        }
+    private void disableTurbo(IsVehicle car) {
+        ((HasTurbo) car).setTurboOff();
     }
 
-    /* private <T extends IsVehicle> ArrayList<T> findAllOfType(T IsVehicle) {
-        ArrayList<T> carList = new ArrayList<>();
-        cars.forEach((IsVehicle car) -> {
-            addIfMatchType(carList, car, IsVehicle);
-        });
-        return carList;
-    } */
+    private void liftBed(IsVehicle car) {
+        ((Tippable<?>) car).raiseStorage(70);
+    }
 
-    /* private <T extends IsVehicle> void addIfMatchType(ArrayList<T> carList, IsVehicle car, T vehicleType) {
-        if (carTypeMatch(car, vehicleType)) {
-            carList.add((T) car);
-        }
-    } */
+    private void lowerBed(IsVehicle car) {
+        ((Tippable<?>) car).lowerStorage(70);
+    }
 
-    /* private <T extends IsVehicle> boolean carTypeMatch(IsVehicle car, T vehicleType) {
-        return vehicleType.getModel().equals(car.getModel());
-    } */
+    /*
+     * private <T extends IsVehicle> ArrayList<T> findAllOfType(T IsVehicle) {
+     * ArrayList<T> carList = new ArrayList<>();
+     * cars.forEach((IsVehicle car) -> {
+     * addIfMatchType(carList, car, IsVehicle);
+     * });
+     * return carList;
+     * }
+     */
+
+    /*
+     * private <T extends IsVehicle> void addIfMatchType(ArrayList<T> carList,
+     * IsVehicle car, T vehicleType) {
+     * if (carTypeMatch(car, vehicleType)) {
+     * carList.add((T) car);
+     * }
+     * }
+     */
+
+    /*
+     * private <T extends IsVehicle> boolean carTypeMatch(IsVehicle car, T
+     * vehicleType) {
+     * return vehicleType.getModel().equals(car.getModel());
+     * }
+     */
 
     // Calls the gas method for each car once
     public void gas(int amount) {
@@ -192,28 +197,35 @@ public class CarController {
         }
     }
 
-    // REDOTHESE
     public void turnTurboOn() { // instead check interface HasTurbo
-        for (IsVehicle car : cars) { 
-            enableTurboIfHas(car);
+        for (IsVehicle car : cars) {
+            if (hasTurbo(car)) {
+                enableTurbo(car);
+            }
         }
     }
 
     public void turnTurboOff() { // instead check interface HasTurbo
-        for (IsVehicle car : cars) { 
-            disableTurboIfHas(car);
+        for (IsVehicle car : cars) {
+            if (hasTurbo(car)) {
+                disableTurbo(car);
+            }
         }
     }
 
     public void liftBed() { // instead check interface Tippable
-        for (IsVehicle car : cars) { 
-            liftBedIfTippable(car);
+        for (IsVehicle car : cars) {
+            if (isTippable(car)) {
+                liftBed(car);
+            }
         }
     }
 
     public void lowerBed() {// instead check interface Tippable
-        for (IsVehicle car : cars) { 
-            lowerBedIfTippable(car);
+        for (IsVehicle car : cars) {
+            if (isTippable(car)) {
+                lowerBed(car);
+            }
         }
     }
 
