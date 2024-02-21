@@ -144,31 +144,6 @@ public class CarController {
         ((Tippable<?>) car).lowerStorage(70);
     }
 
-    /*
-     * private <T extends IsVehicle> ArrayList<T> findAllOfType(T IsVehicle) {
-     * ArrayList<T> carList = new ArrayList<>();
-     * cars.forEach((IsVehicle car) -> {
-     * addIfMatchType(carList, car, IsVehicle);
-     * });
-     * return carList;
-     * }
-     */
-
-    /*
-     * private <T extends IsVehicle> void addIfMatchType(ArrayList<T> carList,
-     * IsVehicle car, T vehicleType) {
-     * if (carTypeMatch(car, vehicleType)) {
-     * carList.add((T) car);
-     * }
-     * }
-     */
-
-    /*
-     * private <T extends IsVehicle> boolean carTypeMatch(IsVehicle car, T
-     * vehicleType) {
-     * return vehicleType.getModel().equals(car.getModel());
-     * }
-     */
 
     // Calls the gas method for each car once
     public void gas(int amount) {
@@ -197,7 +172,7 @@ public class CarController {
         }
     }
 
-    public void turnTurboOn() { // instead check interface HasTurbo
+    public void turnTurboOn() {
         for (IsVehicle car : cars) {
             if (hasTurbo(car)) {
                 enableTurbo(car);
@@ -205,7 +180,7 @@ public class CarController {
         }
     }
 
-    public void turnTurboOff() { // instead check interface HasTurbo
+    public void turnTurboOff() {
         for (IsVehicle car : cars) {
             if (hasTurbo(car)) {
                 disableTurbo(car);
@@ -213,7 +188,7 @@ public class CarController {
         }
     }
 
-    public void liftBed() { // instead check interface Tippable
+    public void liftBed() {
         for (IsVehicle car : cars) {
             if (isTippable(car)) {
                 liftBed(car);
@@ -221,7 +196,7 @@ public class CarController {
         }
     }
 
-    public void lowerBed() {// instead check interface Tippable
+    public void lowerBed() {
         for (IsVehicle car : cars) {
             if (isTippable(car)) {
                 lowerBed(car);
