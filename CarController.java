@@ -147,23 +147,23 @@ public class CarController {
         }
     }
 
-    private <T extends IsVehicle> ArrayList<T> findAllOfType(T IsVehicle) {
+    /* private <T extends IsVehicle> ArrayList<T> findAllOfType(T IsVehicle) {
         ArrayList<T> carList = new ArrayList<>();
         cars.forEach((IsVehicle car) -> {
             addIfMatchType(carList, car, IsVehicle);
         });
         return carList;
-    }
+    } */
 
-    private <T extends IsVehicle> void addIfMatchType(ArrayList<T> carList, IsVehicle car, T vehicleType) {
+    /* private <T extends IsVehicle> void addIfMatchType(ArrayList<T> carList, IsVehicle car, T vehicleType) {
         if (carTypeMatch(car, vehicleType)) {
             carList.add((T) car);
         }
-    }
+    } */
 
-    private <T extends IsVehicle> boolean carTypeMatch(IsVehicle car, T vehicleType) {
+    /* private <T extends IsVehicle> boolean carTypeMatch(IsVehicle car, T vehicleType) {
         return vehicleType.getModel().equals(car.getModel());
-    }
+    } */
 
     // Calls the gas method for each car once
     public void gas(int amount) {
