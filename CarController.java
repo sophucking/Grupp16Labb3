@@ -137,13 +137,13 @@ public class CarController {
 
     private void lowerBedIfTippable(IsVehicle car) {
         if (car instanceof Tippable) {
-            ((Tippable) car).lowerStorage(70);
+            ((Tippable<?>) car).lowerStorage(70);
         }
     }
 
     private void liftBedIfTippable(IsVehicle car) {
         if (car instanceof Tippable) {
-            ((Tippable) car).raiseStorage(70);
+            ((Tippable<?>) car).raiseStorage(70);
         }
     }
 
