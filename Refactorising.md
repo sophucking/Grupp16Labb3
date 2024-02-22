@@ -1,6 +1,6 @@
 # Refactorising plan
 
-- Remove inheritance in favor for composition in vehicle package. 
+- Remove inheritance in favor for composition in vehicle package. -done
 
 - Change CarView to only depend on DrawPanel instead of JPanel and DrawPanel(DrawPanel extends JPanel). 
 - Create a (Run)CarSimulation class containing the main method and the Timer/TimerListener. 
@@ -21,7 +21,7 @@ CarSimulation has both a CarView and a CarController object.
 Each of (sub)classes contains either a car or a workshop as well as the position of the items and the path to the corresponding image. 
 CarSimulation can then have a list of VisualCars and loop over the elements calling on the separate classes and giving them the data needed to update. 
 No longer necessary for DrawPanel and CarControl to have their own lists, ?CarControl then only need usage depenency on GroundVehicle. 
-
+- !! a list of cars need to be inside VehicleController for the buttons to work
 
 ## WHY?
 

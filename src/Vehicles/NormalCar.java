@@ -4,10 +4,11 @@ import java.awt.geom.Point2D;
 
 // only exist as a label
 abstract class NormalCar implements IsVehicle{
-    private final GroundVehicle baseGroundVehicle;
+    protected final GroundVehicle baseGroundVehicle;
 
     NormalCar(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
         baseGroundVehicle = new GroundVehicle(nrDoors, enginePower, color, modelName, x, y);
+        setSpeedFactor();
     }
 
     NormalCar(int nrDoors, double enginePower, Color color, String modelName) {
@@ -97,5 +98,7 @@ abstract class NormalCar implements IsVehicle{
     void setPosition(Point2D.Double newPosition) {
         baseGroundVehicle.setPosition(newPosition);
     }
+
+    abstract void setSpeedFactor();
 
 }

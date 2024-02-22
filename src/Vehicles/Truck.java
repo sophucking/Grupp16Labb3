@@ -5,11 +5,12 @@ import java.awt.geom.Point2D;
 public class Truck<T> implements IsVehicle, HasStorage<T> {
 
     public static final double TOURQUE_FACTOR = 0.35;
-    private final GroundVehicle baseGroundVehicle;
-    private final Trailer<T> storage;
+    protected final GroundVehicle baseGroundVehicle;
+    protected final Trailer<T> storage;
 
     public Truck(double enginePower, Color color, String modelName, int max_capacity, double x, double y) {
         baseGroundVehicle = new GroundVehicle(2, enginePower, color, modelName, x, y);
+        setSpeedFactor();
         this.storage = new Trailer<>(max_capacity);
     }
 
@@ -51,10 +52,6 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
     @Override
     public int countThings() {
         return storage.countThings();
-    }
-
-    public double speedFactor() {
-        return getEnginePower() * 0.01 * TOURQUE_FACTOR;
     }
 
     @Override
@@ -142,5 +139,9 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
 
     protected Point2D.Double getPositionRef() {
         return baseGroundVehicle.getPositionRef();
+    }
+
+    void setSpeedFactor() {
+        baseGroundVehicle.setSpeedFactor(TOURQUE_FACTOR);
     }
 }

@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Volvo240 extends NormalCar implements IsVolvo{
 
-    private final static double TRIMFACTOR = 1.25;
+    private static final double TRIMFACTOR = 1.25;
 
     public Volvo240(double x, double y) {
         super(2, 100, Color.black, "Volvo240", x, y);
@@ -14,7 +14,7 @@ public class Volvo240 extends NormalCar implements IsVolvo{
     }
 
 
-    public double speedFactor() {
-        return getEnginePower() * 0.01 * TRIMFACTOR;
+    void setSpeedFactor() {
+        baseGroundVehicle.setSpeedFactor(TRIMFACTOR);
     }
 }

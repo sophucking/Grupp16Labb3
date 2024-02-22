@@ -18,14 +18,13 @@ import java.awt.event.ActionListener;
  **/
 
 public class CarView extends JFrame{
-    private static final int X = 800;
-    private static final int Y = 600;
-
+    private final int X;
+    private final int Y;
     // The controller member
-    CarController carC;
+    VehicleController carC;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
+    DrawPanel drawPanel;
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -44,8 +43,11 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
+    public CarView(String framename, VehicleController cc, int x, int y){
         this.carC = cc;
+        this.drawPanel = new DrawPanel(x, y);
+        this.X = x;
+        this.Y = y;
         initComponents(framename);
     }
 
@@ -54,10 +56,9 @@ public class CarView extends JFrame{
     private void initComponents(String title) {
 
         this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
+        this.setPreferredSize(new Dimension(X,Y+240));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        initDrawPanel();
         this.add(drawPanel);
 
 
@@ -103,8 +104,6 @@ public class CarView extends JFrame{
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
 
-        // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -169,24 +168,11 @@ public class CarView extends JFrame{
     }
 
 
-    private void initDrawPanel() {
-        for (IsVehicle car : carC.cars) {
-            addCar(car);
-        }
-        drawWorkshop();
+    void addItem(int x, int y, String imagePath) {
+        drawPanel.addImage(x, y, imagePath);
     }
 
-    private void drawWorkshop() {
-        drawPanel.addWorkshop(carC.getWorkshopX(), carC.getWorkshopY(), carC.getWorkshopImagePath());
+    void update() {
+        drawPanel.repaint();
     }
-
-    private void addCar(IsVehicle car) {
-        drawPanel.addCar(car);
-    }
-
-    public boolean isOutOfBounds(int x, int y) {
-        return x < 0 || x > X - 110 || y < 0 || y > Y - 110;
-    }
-
-
 }

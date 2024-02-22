@@ -13,6 +13,7 @@ public class GroundVehicle implements IsVehicle {
     private Color color; // Color of the car
     private final String modelName; // The car model name
     private boolean engineOn;
+    private double speedFactor;
 
     public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
         this.nrDoors = nrDoors;
@@ -23,6 +24,7 @@ public class GroundVehicle implements IsVehicle {
         this.directionAngle = 0.0;
         this.direction = new double[] { Math.cos(directionAngle), Math.sin(directionAngle) };
         this.position = new Point2D.Double(x, y);
+        setSpeedFactor(1);
         stopEngine();
     }
     public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName) {
@@ -74,14 +76,14 @@ public class GroundVehicle implements IsVehicle {
         return engineOn;
     }
 
-    public double speedFactor() {return enginePower * 0.01; }
+    void setSpeedFactor(double modifier) {speedFactor =  enginePower * 0.01 * modifier; }
 
     private void incrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
+        setCurrentSpeed(getCurrentSpeed() + speedFactor * amount);
     }
 
     private void decrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
+        setCurrentSpeed(getCurrentSpeed() - speedFactor * amount);
     }
 
     private void setCurrentSpeed(double newSpeed) {

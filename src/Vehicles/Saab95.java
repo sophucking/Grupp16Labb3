@@ -17,11 +17,13 @@ public class Saab95 extends NormalCar implements HasTurbo {
     @Override
     public void setTurboOn() {
         turboOn = true;
+        setSpeedFactor();
     }
 
     @Override
     public void setTurboOff() {
         turboOn = false;
+        setSpeedFactor();
     }
 
     @Override
@@ -29,11 +31,11 @@ public class Saab95 extends NormalCar implements HasTurbo {
         return turboOn;
     }
 
-    public double speedFactor() {
+    void setSpeedFactor() {
         double turbo = 1;
         if (turboOn) {
             turbo = 1.3;
         }
-        return getEnginePower() * 0.01 * turbo;
+        baseGroundVehicle.setSpeedFactor(turbo);
     }
 }

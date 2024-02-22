@@ -1,0 +1,162 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.Timer;
+
+import Vehicles.Cargo;
+import Vehicles.IsVehicle;
+import Vehicles.IsVolvo;
+import Vehicles.Saab95;
+import Vehicles.ScaniaV8;
+import Vehicles.Volvo240;
+import Vehicles.Workshop;
+
+public class VehicleSimulation {
+    private class VisualItem {
+        protected int x;
+        protected int y;
+        private final int width;
+        private final int height;
+        private final String imagePath;
+
+        protected VisualItem(int x, int y, String imagePath) {
+            this.x = x;
+            this.y = y;
+            width = 100;
+            height = 100;
+            this.imagePath = imagePath;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public String getImagePath() {
+            return imagePath;
+        }
+    }
+
+    private class VisualVehicle extends VisualItem {
+        private final IsVehicle vehicle;
+
+        VisualVehicle(IsVehicle vehicle, String imagePath) {
+            super((int) vehicle.getPosition().getX(), (int) vehicle.getPosition().getY(), imagePath);
+            this.vehicle = vehicle;
+        }
+
+        public IsVehicle getVehicle() {
+            return vehicle;
+        }
+
+        public void update() {
+            x = (int) vehicle.getPosition().getX();
+            y = (int) vehicle.getPosition().getY();
+        }
+    }
+
+    private class VisualWorkshop<T extends IsVehicle> extends VisualItem  {
+        private final Workshop<T> workshop;
+
+        VisualWorkshop(Workshop<T> workshop, int x, int y, String imagePath) {
+            super(x, y, imagePath);
+            this.workshop = workshop;
+        }
+
+        public Workshop<T> getWorkshop() {
+            return workshop;
+        }
+    }
+
+    private static final int X = 800;
+    private static final int Y = 400;
+    private final ArrayList<VisualVehicle> vehicles;
+    private final VisualWorkshop<IsVolvo> volvoWorkshop;
+    private VehicleController controller;
+
+    // The delay (ms) corresponds to 20 updates a sec (hz)
+    private final int delay = 10; //50;
+    // The timer is started with a listener (see below) that executes the statements
+    // each step between delays.
+    private Timer timer; // move
+
+    // The frame that represents this instance View of the MVC pattern
+    // Start a new view and send a reference of self
+    CarView view;
+
+    VehicleSimulation() {
+        timer = new Timer(delay, new TimerListener());
+        controller = new VehicleController(X, Y, 100, 100);
+        view = new CarView("CarSim 1.0", controller, X, Y);
+        vehicles = new ArrayList<>();
+        volvoWorkshop = new VisualWorkshop<>(new Workshop<>(30), 300, 300, "pics/VolvoBrand.jpg");
+
+        addVehicle(new Volvo240(0, 0));
+        addVehicle(new Saab95(0, 100));
+        addVehicle(new ScaniaV8<Cargo>(0, 200));
+        addVehicle(new Volvo240(0, 300));
+        init();
+    }
+
+
+    private void addVehicle(IsVehicle vehicle) {
+        vehicles.add(new VisualVehicle(vehicle, "pics/"+vehicle.getModel()+".jpg"));
+    }
+
+    private void init() {
+        for (VisualVehicle visualVehicle : vehicles) {
+            initVehicle(visualVehicle);
+        }
+        drawVisualItem(volvoWorkshop);
+    }
+
+    private void initVehicle(VisualVehicle visualVehicle) {
+        addVehicleToControll(visualVehicle);
+        drawVisualItem(visualVehicle);
+    }
+
+    private void addVehicleToControll(VisualVehicle v) {
+        controller.addVehicle(v.getVehicle());
+    }
+
+
+    private void drawVisualItem(VisualItem item) {
+        view.addItem(item.getX(), item.getY(), item.getImagePath());
+    }
+
+    /*
+     * Each step the TimerListener moves all the cars in the list and tells the
+     * view to update its images. Change this method to your needs.
+     */
+    private class TimerListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            update();
+        }
+    }
+
+    private void start() {
+        timer.start();
+    }
+
+    public void update() {
+        for (VisualVehicle v : vehicles) {
+            controller.update(v.getVehicle());
+            v.update();
+            drawVisualItem(v);
+        }
+        drawVisualItem(volvoWorkshop);
+        view.update();
+    }
+
+    public static void main(String[] args) { 
+        VehicleSimulation vSim = new VehicleSimulation();
+        // Start the timer
+        vSim.start();
+    }
+
+}
