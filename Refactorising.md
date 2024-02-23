@@ -1,5 +1,8 @@
 # Refactorising plan
 
+- - <- these points are done
+- (Name) <- these points are currently assigned
+
 - - Remove inheritance in favor for composition in vehicle package.
 
 - (Nikhil) Change CarView to only depend on DrawPanel instead of JPanel and DrawPanel(DrawPanel extends JPanel). 
