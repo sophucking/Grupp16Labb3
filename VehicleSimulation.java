@@ -36,6 +36,11 @@ public class VehicleSimulation {
             return y;
         }
 
+        public boolean overlaps(VisualItem other) {
+            return false; // TODO: 
+        }
+        /* x,y ---  */
+
         public String getImagePath() {
             return imagePath;
         }
@@ -147,11 +152,41 @@ public class VehicleSimulation {
         for (VisualVehicle v : vehicles) {
             controller.update(v.getVehicle());
             v.update();
+            workshopInteraction(v);
             drawVisualItem(v);
         }
         drawVisualItem(volvoWorkshop);
         view.update();
     }
+
+
+    private void workshopInteraction(VisualVehicle v) {
+        if (collisionOccurs(v, volvoWorkshop)) {
+        enterWorkshopIfAllowed(v.getVehicle(), volvoWorkshop.getWorkshop());
+      }
+    }
+
+    private boolean collisionOccurs(VisualItem a, VisualItem b) {
+        return a.overlaps(b);
+    }
+
+
+    private void enterWorkshopIfAllowed(IsVehicle v, Workshop<? extends IsVehicle> w) {
+        if (canEnter(v, w)) {
+            enterWorkshop(v, w);
+        }
+    }
+
+
+    private void enterWorkshop(IsVehicle v, Workshop<? extends IsVehicle> w) {
+        
+    }
+
+
+    private boolean canEnter(IsVehicle v, Workshop<? extends IsVehicle> w) {
+        return v instanceof IsVolvo && w.isStorageOpen();
+    }
+
 
     public static void main(String[] args) { 
         VehicleSimulation vSim = new VehicleSimulation();
