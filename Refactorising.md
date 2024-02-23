@@ -5,7 +5,7 @@
 
 - - Remove inheritance in favor for composition in vehicle package.
 
-- (Nikhil) Change CarView to only depend on DrawPanel instead of JPanel and DrawPanel(DrawPanel extends JPanel). 
+- - Change CarView to only depend on DrawPanel instead of JPanel and DrawPanel(DrawPanel extends JPanel). 
 - - Create a (Run)CarSimulation class containing the main method and the Timer/TimerListener. 
 CarSimulation has both a CarView and a CarController object. 
 - - TimerListener calls the update method in CarSimulation
