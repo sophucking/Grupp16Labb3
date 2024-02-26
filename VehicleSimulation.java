@@ -76,7 +76,9 @@ public class VehicleSimulation {
         private final IsVehicle vehicle;
 
         VisualVehicle(IsVehicle vehicle, String imagePath) {
-            super((int) vehicle.getPosition().getX(), (int) vehicle.getPosition().getY(), imagePath, 100, 60);
+            super((int) vehicle.getPosition().getX(),
+                (int) vehicle.getPosition().getY(),
+                imagePath, 100, 60);
             this.vehicle = vehicle;
         }
 
