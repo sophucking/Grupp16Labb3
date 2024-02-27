@@ -21,6 +21,11 @@ public class DrawPanel extends JPanel {
         images = new ArrayList<>();
     }
 
+    public DrawPanel() {
+        super();
+        images = new ArrayList<>();
+    }
+
     
     private class PositionImage {
         private int x;
@@ -81,6 +86,7 @@ public class DrawPanel extends JPanel {
     }
 
     private void drawImage(Graphics g, PositionImage image) {
+        //                                                         vv this could be implemented if drawPanel is an observer
         g.drawImage(image.getImage(), image.getX(), image.getY(), null); // see javadoc for more info on the parameters
     }
 }

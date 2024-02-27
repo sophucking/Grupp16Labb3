@@ -24,9 +24,8 @@ public class CarView extends JFrame{
 
 
     DrawPanel drawPanel;
-    JPanel controlPanel = new JPanel();
-
-    JPanel gasPanel = new JPanel();
+    DrawPanel controlPanel = new DrawPanel();
+    DrawPanel gasPanel = new DrawPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
