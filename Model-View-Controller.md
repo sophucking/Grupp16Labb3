@@ -10,4 +10,4 @@
 ### Vad borde ha gjorsts dummare?
 - widgets borde inte vara i view
 ### Vad borde ha gjorsts tunnare?
-- CarController ska inte hantera view eller mode, main metoden ska vara i en application.
+- CarController ska inte hantera view eller model, main metoden ska vara i en application.
