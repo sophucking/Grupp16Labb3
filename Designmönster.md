@@ -33,31 +33,42 @@ Men eftersom det endast är en klass som har detta beroende gör en factory meth
 
 ## State pattern
 ### Vart används, avsiktligt eller oavsiktligt?
-- 
+- vi använder inte det i nuläget
 
 #### Löser designproblem:
-- 
+- inget
 
 ### Kan använda för förbättra
-- 
+- Saab (olika gasmetoder beroende på turbon)
+- Storage various states (open closed/full empty)
+- Specialfall Scania 
+
 
 #### Löser designproblem / varför ej använda:
-- 
+- öka läsbarhet 
+- minska buggrisk 
+- höjer maintainability, extensability, och reusability)
 
 
 
 ## Composite pattern
 ### Vart används, avsiktligt eller oavsiktligt?
-- 
+- alla fordon
+- workshop
+- application
 
 #### Löser designproblem:
-- 
+- ökar modularitet
+- reusability
+- readibility 
+- höjer extensibility 
+- svagare dependencies 
 
 ### Kan använda för förbättra
-- 
+- eventuellt bygga en fasad till model? 
 
 #### Löser designproblem / varför ej använda:
-- 
+- högre modularitet
 
 
 
