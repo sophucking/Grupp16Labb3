@@ -1,8 +1,8 @@
 import org.junit.*;
 
-import Vehicles.Saab95;
-import Vehicles.Volvo240;
-import Vehicles.VolvoFL;
+import Model.Vehicles.Saab95;
+import Model.Vehicles.Volvo240;
+import Model.Vehicles.VolvoFL;
 
 import static org.junit.Assert.*;
 

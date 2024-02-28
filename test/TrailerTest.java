@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThrows;
 import org.junit.Before;
 import org.junit.Test;
 
-import Vehicles.*;
+import Model.Vehicles.*;
 
 public class TrailerTest {
     Trailer<Integer> trailer;

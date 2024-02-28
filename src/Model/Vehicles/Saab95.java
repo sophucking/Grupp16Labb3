@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 import java.awt.*;
 
 public class Saab95 extends NormalCar implements HasTurbo {

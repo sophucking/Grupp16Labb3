@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 public class Workshop<T extends IsVehicle> implements HasStorage<T> {
     private final Garage<T> garage;
     

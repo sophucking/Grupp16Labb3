@@ -1,6 +1,7 @@
+package Controller;
 import java.util.ArrayList;
 
-import Vehicles.*;
+import Model.Vehicles.*;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -8,7 +9,7 @@ import Vehicles.*;
 * modifying the model state and the updating the view.
  */
 
-class VehicleController {
+public class VehicleController {
     private final ArrayList<IsVehicle> cars;
     private final int worldWidth;
     private final int worldHeight;
@@ -17,7 +18,7 @@ class VehicleController {
 
 
     // methods:
-    VehicleController(int width, int height, int vehicleWidth, int vehicleHeight) {
+    public VehicleController(int width, int height, int vehicleWidth, int vehicleHeight) {
         cars = new ArrayList<>();
         worldWidth = width;
         worldHeight = height;
@@ -25,15 +26,15 @@ class VehicleController {
         this.vehicleHeight = vehicleHeight;
     }
 
-    void addVehicle(IsVehicle car) {
+    public void addVehicle(IsVehicle car) {
         cars.add(car);
     }
 
-    void removeVehicle(IsVehicle car) {
+    public void removeVehicle(IsVehicle car) {
         cars.remove(car);
     }
 
-    void update(IsVehicle car) {
+    public void update(IsVehicle car) {
         moveCar(car);
     }
 

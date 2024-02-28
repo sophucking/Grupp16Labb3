@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
-import Vehicles.Cargo;
-import Vehicles.IsVehicle;
-import Vehicles.IsVolvo;
-import Vehicles.Saab95;
-import Vehicles.ScaniaV8;
-import Vehicles.Volvo240;
-import Vehicles.Workshop;
+import Controller.VehicleController;
+import Model.Vehicles.Cargo;
+import Model.Vehicles.IsVehicle;
+import Model.Vehicles.IsVolvo;
+import Model.Vehicles.Saab95;
+import Model.Vehicles.ScaniaV8;
+import Model.Vehicles.Volvo240;
+import Model.Vehicles.Workshop;
+import View.CarView;
 
 public class VehicleSimulation {
     private class VisualItem {

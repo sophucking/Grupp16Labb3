@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 import java.awt.*;
 
 public class Volvo240 extends NormalCar implements IsVolvo{

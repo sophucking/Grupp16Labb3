@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 
 public interface HasStorage<T> {
     public void openStorage();

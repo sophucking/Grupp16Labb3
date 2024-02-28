@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 
 public interface HasTurbo {
 

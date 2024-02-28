@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 import java.awt.*;
 import java.awt.geom.Point2D;
 

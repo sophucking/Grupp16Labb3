@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 public interface Tippable<T> extends HasStorage<T> {
     public double getStorageAngle();
     public void lowerStorage(double angle);

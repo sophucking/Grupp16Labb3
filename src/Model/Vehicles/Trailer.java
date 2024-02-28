@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 public class Trailer<T> extends Storage<T> {
 
     public Trailer(int max_capacity) {

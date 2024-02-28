@@ -1,4 +1,4 @@
-package Vehicles;
+package Model.Vehicles;
 public class Garage<T extends IsVehicle> extends Storage<T>{
 
     Garage(int max_capacity) {
