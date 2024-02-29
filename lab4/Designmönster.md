@@ -76,7 +76,7 @@ Men eftersom det endast är en klass som har detta beroende gör en factory meth
 - svagare dependencies 
 
 ### Kan använda för förbättra
-- eventuellt bygga en fasad till model? 
+- - eventuellt bygga en fasad till model? 
 
 #### Löser designproblem / varför ej använda:
 - högre modularitet
