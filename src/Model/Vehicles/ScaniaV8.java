@@ -19,9 +19,6 @@ public class ScaniaV8<T> extends Truck<T> implements Tippable<T>{
     }
 
     private void setStorageAngle(double angle) {
-        if(Math.abs(getCurrentSpeed()) > 0.01) {
-            return;
-        }
         storageAngle = Math.clamp(angle,0,70);
     }
 

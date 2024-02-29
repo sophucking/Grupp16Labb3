@@ -13,6 +13,7 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
         baseGroundVehicle = new GroundVehicle(2, enginePower, color, modelName, x, y);
         setSpeedFactor();
         this.storage = new Trailer<>(max_capacity);
+        state = TruckStoppedClosed.getState();
     }
 
     public Truck(double enginePower, Color color, String modelName, int max_capacity) {
@@ -21,18 +22,16 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
 
     @Override
     public void openStorage() {
-        if (Math.abs(getCurrentSpeed()) > 0.01) {
-            return;
+        if(state.openTrailerStorage(storage)) {
+            state = TruckStoppedOpen.getState();
         }
-        storage.openStorage();
     }
 
     @Override
     public void closeStorage() {
-        if (Math.abs(getCurrentSpeed()) > 0.01) {
-            return;
+        if (state.closeTrailerStorage(storage)) {
+            state = TruckStoppedClosed.getState();
         }
-        storage.closeStorage();
     }
 
     @Override
@@ -57,10 +56,9 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
 
     @Override
     public void gas(double amount) {
-        if (storage.isStorageOpen()) {
-            return;
+        if (state.gasTruck(baseGroundVehicle, amount)) {
+            state = TruckMovingClosed.getState();
         }
-        baseGroundVehicle.gas(amount);
     }
 
     @Override
@@ -136,6 +134,9 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
     @Override
     public void brake(double amount) {
         baseGroundVehicle.brake(amount);
+        if(baseGroundVehicle.getCurrentSpeed() <= 0.001) {
+            state = TruckStoppedClosed.getState();
+        }
     }
 
     protected Point2D.Double getPositionRef() {

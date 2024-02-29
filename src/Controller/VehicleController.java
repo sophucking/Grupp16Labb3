@@ -71,11 +71,13 @@ public class VehicleController {
     }
 
     private void liftBed(IsVehicle car) {
+        ((Tippable<?>) car).openStorage();
         ((Tippable<?>) car).raiseStorage(70);
     }
 
     private void lowerBed(IsVehicle car) {
         ((Tippable<?>) car).lowerStorage(70);
+        ((Tippable<?>) car).closeStorage();
     }
 
 

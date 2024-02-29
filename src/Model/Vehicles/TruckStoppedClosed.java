@@ -1,24 +1,25 @@
 package Model.Vehicles;
 
-class TruckMovingClosed implements TruckState {
-    
-    private static TruckMovingClosed movingState;
+class TruckStoppedClosed implements TruckState{
 
-    private TruckMovingClosed(){}
+    private static TruckStoppedClosed stateStoppedClosed;
 
-    
+    private TruckStoppedClosed(){
+
+    }
+
     // @Override
-    public static TruckMovingClosed getState(){
-        if (movingState == null) {
-            movingState = new TruckMovingClosed();
+    public static TruckStoppedClosed getState(){
+        if(stateStoppedClosed == null){
+            stateStoppedClosed = new TruckStoppedClosed();
         }
-        return movingState;
+        return stateStoppedClosed;
     }
 
     @Override
     public boolean openTrailerStorage(Trailer<?> storage) {
-        System.out.println("Can't open a moving trailer");
-        return false;
+        storage.openStorage();
+        return true;
     }
 
     @Override
@@ -26,7 +27,6 @@ class TruckMovingClosed implements TruckState {
         System.out.println("Storage trailer is already closed");
         return false;
     }
-
 
     @Override
     public boolean gasTruck(GroundVehicle vehicle, double amount) {

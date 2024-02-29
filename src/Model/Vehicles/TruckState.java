@@ -1,9 +1,8 @@
 package Model.Vehicles;
 
 interface TruckState {
-    TruckState getState();
-    void openTrailerStorage(Trailer<?> storage);
-    void closeTrailerStorage(Trailer<?> storage);
-    void gasTruck(GroundVehicle vehicle);
-    void brakeVehicle(GroundVehicle vehicle);
+    // TruckState getState();
+    boolean openTrailerStorage(Trailer<?> storage);
+    boolean closeTrailerStorage(Trailer<?> storage);
+    boolean gasTruck(GroundVehicle vehicle, double amount);
 }
