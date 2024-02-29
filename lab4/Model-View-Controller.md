@@ -1,5 +1,7 @@
 # Model-View-Controller
 
+- - <-means UML has been updated
+
 ## Avvikelser i ursprungliga användargränssnittet
 
 - CarController: använder både CarView och DrawPanel, tar hand om uppdatering av model, har main-metoden
