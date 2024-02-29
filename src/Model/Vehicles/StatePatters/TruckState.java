@@ -1,6 +1,9 @@
-package Model.Vehicles;
+package Model.Vehicles.StatePatters;
 
-interface TruckState {
+import Model.Vehicles.GroundVehicle;
+import Model.Vehicles.Trailer;
+
+public interface TruckState {
     // TruckState getState();
     boolean openTrailerStorage(Trailer<?> storage);
     boolean closeTrailerStorage(Trailer<?> storage);

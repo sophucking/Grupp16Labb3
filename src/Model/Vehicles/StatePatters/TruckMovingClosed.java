@@ -1,6 +1,9 @@
-package Model.Vehicles;
+package Model.Vehicles.StatePatters;
 
-class TruckMovingClosed implements TruckState {
+import Model.Vehicles.GroundVehicle;
+import Model.Vehicles.Trailer;
+
+public class TruckMovingClosed implements TruckState {
     
     private static TruckMovingClosed movingState;
 

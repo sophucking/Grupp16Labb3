@@ -1,13 +1,18 @@
 package Model.Vehicles;
 import java.util.*;
+import Model.Vehicles.StatePatters.*;
+
+import Model.Vehicles.StatePatters.StorageState;
 public abstract class Storage<T> implements HasStorage<T> {
 
     protected final int max_capacity;
     private boolean storageOpen = false;
     protected List<T> storage = new ArrayList<>();
+    private StorageState state;
 
     Storage(int max_capacity) {
         this.max_capacity = max_capacity;
+        state = StorageClosedEmpty.getState();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package Model.Vehicles;
+package Model.Vehicles.StatePatters;
 
 public class ScaniaStoppedDown implements ScaniaState{
 

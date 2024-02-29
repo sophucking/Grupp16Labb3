@@ -2,6 +2,8 @@ package Model.Vehicles;
 import java.awt.Color;
 import java.awt.geom.Point2D;
 
+import Model.Vehicles.StatePatters.*;
+
 public class Truck<T> implements IsVehicle, HasStorage<T> {
 
     public static final double TOURQUE_FACTOR = 0.35;
