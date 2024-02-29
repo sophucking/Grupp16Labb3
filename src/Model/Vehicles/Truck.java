@@ -7,6 +7,7 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
     public static final double TOURQUE_FACTOR = 0.35;
     protected final GroundVehicle baseGroundVehicle;
     protected final Trailer<T> storage;
+    private TruckState state;
 
     public Truck(double enginePower, Color color, String modelName, int max_capacity, double x, double y) {
         baseGroundVehicle = new GroundVehicle(2, enginePower, color, modelName, x, y);
