@@ -26,11 +26,11 @@
 
 ## Vad har åtgärdats och inte
 
-### CarController
+### VehicleController
 
 - \+ Har inget att göra med view längre
 - \+ Main metod flyttad
-- \- Har fortfarande logik som bestämmer var världens kant är, detta bör hanteras av modellen
+- - \- Har fortfarande logik som bestämmer var världens kant är, detta bör hanteras av modellen
 
 ### CarView
 
@@ -40,8 +40,8 @@
 
 - \+\- ingen ändring ur MVC synpunkt
 
-### Simulation (Application)
+### Simulation (Application) <- (Changed to model)
 
-- \+ Har nu main metod samt håller i alla andra delar
-- \- Har logik som hanterar workshops. Bör flyttas till modellen
-- \- Hanterar bilder åt view, bör göras med någon form av decorator patern eller liknande
+- - \+ (FLYTTAD TILL EN NEW APPLICATION KLASS) Har nu main metod samt håller i alla andra delar
+- - \- Har logik som hanterar workshops. Bör flyttas till modellen
+- - \- Hanterar bilder åt view, bör göras med någon form av decorator patern eller liknande
