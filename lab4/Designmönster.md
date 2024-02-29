@@ -13,6 +13,8 @@
 #### Löser designproblem / varför ej använda:
 - Låter oss följa SOC och MVC, kan separera model och view och behöver inte ha en klass som ser till att både model och grafik är synkade.
 
+- OpenClose-Principle/extensability? för att lägga till nya knappar?
+
 
 ## Factory Method
 ### Vart används, avsiktligt eller oavsiktligt?
@@ -29,14 +31,14 @@
 Men eftersom vi endast har en klass som beror på de tre bil-subklasserna där vi skulle kunna lägga en factory method mellan.\
 Men eftersom det endast är en klass som har detta beroende gör en factory method inget för oss för tillfället.
 
-
+- Open-Close principle: enklare att skapa nya bilar?
 
 ## State pattern
 ### Vart används, avsiktligt eller oavsiktligt?
 - vi använder inte det i nuläget
 
 #### Löser designproblem:
-- inget
+- inget just nu
 
 ### Kan använda för förbättra
 - Saab (olika gasmetoder beroende på turbon)
@@ -48,6 +50,12 @@ Men eftersom det endast är en klass som har detta beroende gör en factory meth
 - öka läsbarhet 
 - minska buggrisk 
 - höjer maintainability, extensability, och reusability)
+- open/closed principle, underlättar extensability (t.ex. genom att lägga till nya states)
+
+- SRP: de olika tillstånden separeras
+
+
+
 
 
 
@@ -61,7 +69,7 @@ Men eftersom det endast är en klass som har detta beroende gör en factory meth
 - ökar modularitet
 - reusability
 - readibility 
-- höjer extensibility 
+- höjer extensibility/OCP
 - svagare dependencies 
 
 ### Kan använda för förbättra
