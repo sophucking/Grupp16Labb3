@@ -1,4 +1,7 @@
 # Designmönster
+ 
+- - <- klart!
+
 ## Observer pattern
 ### Vart används, avsiktligt eller oavsiktligt?
 - Använder observers för att känna av när knappar trycks och när timern ger signaler. Inte vi som implementerade fanns i befintliga koden vi fick som del av projektet. 
@@ -8,7 +11,7 @@
 - Låter oss också följa DIP, observers/listeners är en abstraktion som vår model kan använda sig av utan att behöva veta vad för specifikt view vi har. 
 
 ### Kan använda för förbättra
-- Varje gång modellen uppdateras vid varje nytt tidssteg kan en signal skickas till alla tillagda observers/listeners. 
+- - Varje gång modellen uppdateras vid varje nytt tidssteg kan en signal skickas till alla tillagda observers/listeners. 
 
 #### Löser designproblem / varför ej använda:
 - Låter oss följa SOC och MVC, kan separera model och view och behöver inte ha en klass som ser till att både model och grafik är synkade.
@@ -41,9 +44,9 @@ Men eftersom det endast är en klass som har detta beroende gör en factory meth
 - inget just nu
 
 ### Kan använda för förbättra
-- Saab (olika gasmetoder beroende på turbon)
-- Storage various states (open closed/full empty)
-- Specialfall Scania 
+- - Saab (olika gasmetoder beroende på turbon)
+- - Storage various states (open closed/full empty)
+- - Specialfall Scania 
 
 
 #### Löser designproblem / varför ej använda:
