@@ -11,7 +11,9 @@ public class VisualVehicle extends ConcreteVisualItem {
                 imagePath, 100, 60);
         this.vehicle = vehicle;
     }
+
+    public void update() {
+        this.x = (int) vehicle.getPosition().getX();
+        this.y = (int) vehicle.getPosition().getY();
+    }
 }
-
-
-

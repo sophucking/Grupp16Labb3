@@ -7,13 +7,16 @@ public class ConcreteVisualItem implements VisualItem{
     public final int height;
     private final String imagePath;
 
+    @Override
     public int getX() {
         return x;
     }
 
+    @Override
     public int getY() {
         return y;
     }
+
     protected ConcreteVisualItem(int x, int y, String imagePath, int width, int height) {
         this.x = x;
         this.y = y;
@@ -21,7 +24,6 @@ public class ConcreteVisualItem implements VisualItem{
         this.width = width;
         this.height = height;
     }
-
 
 
     public boolean overlaps(ConcreteVisualItem other) {
@@ -43,20 +45,29 @@ public class ConcreteVisualItem implements VisualItem{
         return imagePath;
     }
 
+    @Override
     public int rBound() {
         return x + width;
     }
 
+    @Override
     public int lBound() {
         return x;
     }
 
+    @Override
     public int tBound() {
         return y;
     }
 
+    @Override
     public int bBound() {
         return y + height;
+    }
+
+    @Override
+    public String getImage() {
+        return imagePath;
     }
 
 }

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-
 // This panel represents the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel {
@@ -73,10 +72,11 @@ public class DrawPanel extends JPanel {
         }
     }
     // private void drawVisualItem(ConcreteVisualItem item) {
-    //     view.addItem(item.getX(), item.getY(), item.getImagePath());
+    // view.addItem(item.getX(), item.getY(), item.getImagePath());
     // }
     // private void addVehicle(IsVehicle vehicle) {
-    //     vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
+    // vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() +
+    // ".jpg"));
     // }
 
     // This method is called each time the panel updates/refreshes/repaints itself
@@ -94,7 +94,7 @@ public class DrawPanel extends JPanel {
     }
 
     private void drawImage(Graphics g, PositionImage image) {
-        //                                                         vv this could be implemented if drawPanel is an observer
+        // vv this could be implemented if drawPanel is an observer
         g.drawImage(image.getImage(), image.getX(), image.getY(), null); // see javadoc for more info on the parameters
     }
 
