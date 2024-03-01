@@ -72,12 +72,12 @@ public class DrawPanel extends JPanel {
             return null;
         }
     }
-    private void drawVisualItem(ConcreteVisualItem item) {
-        view.addItem(item.getX(), item.getY(), item.getImagePath());
-    }
-    private void addVehicle(IsVehicle vehicle) {
-        vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
-    }
+    // private void drawVisualItem(ConcreteVisualItem item) {
+    //     view.addItem(item.getX(), item.getY(), item.getImagePath());
+    // }
+    // private void addVehicle(IsVehicle vehicle) {
+    //     vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
+    // }
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override

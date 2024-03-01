@@ -116,7 +116,7 @@ public class VehicleSimulation {
     private final ArrayList<VisualVehicle> vehicles;
     private final VisualWorkshop<IsVolvo> volvoWorkshop;
     private VehicleController controller;
-    private VehicleUI app;
+    private VehicleUI ui;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 10; // 50;
@@ -132,7 +132,8 @@ public class VehicleSimulation {
         timer = new Timer(delay, new TimerListener());
         controller = new VehicleController(X, Y, 100, 100);
         view = new VehicleView("CarSim 1.0", X, Y);
-        app = new VehicleUI(view, controller);
+        ui = new VehicleUI(view, controller);
+        ui.initWidgets();
         view.initFinished();
         vehicles = new ArrayList<>();
         volvoWorkshop = new VisualWorkshop<>(new Workshop<>(30), 300, 300, "pics/VolvoBrand.jpg");

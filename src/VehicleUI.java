@@ -35,7 +35,7 @@ public class VehicleUI {
     public VehicleUI(VehicleView view, VehicleController carC) {
         this.view = view;
         this.carC = carC;
-        initWidgets();
+        // initWidgets();
     }
 
     public void initWidgets(){
