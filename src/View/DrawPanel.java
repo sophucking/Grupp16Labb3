@@ -1,5 +1,7 @@
 package View;
 
+import Model.Vehicles.IsVehicle;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -27,7 +29,6 @@ public class DrawPanel extends JPanel {
         images = new ArrayList<>();
     }
 
-    
     private class PositionImage {
         private int x;
         private int y;
@@ -71,6 +72,12 @@ public class DrawPanel extends JPanel {
             return null;
         }
     }
+    private void drawVisualItem(ConcreteVisualItem item) {
+        view.addItem(item.getX(), item.getY(), item.getImagePath());
+    }
+    private void addVehicle(IsVehicle vehicle) {
+        vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
+    }
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override
@@ -90,4 +97,5 @@ public class DrawPanel extends JPanel {
         //                                                         vv this could be implemented if drawPanel is an observer
         g.drawImage(image.getImage(), image.getX(), image.getY(), null); // see javadoc for more info on the parameters
     }
+
 }
