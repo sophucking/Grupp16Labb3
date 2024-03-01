@@ -29,6 +29,7 @@ public class CarView extends JFrame implements UpdateListener{
     private DrawPanel drawPanel;
     private DrawPanel controlPanel = new DrawPanel();
     private DrawPanel gasPanel = new DrawPanel();
+
     private JSpinner gasSpinner = new JSpinner();
     private int gasAmount = 0;
     private JLabel gasLabel = new JLabel("Amount of gas");
@@ -76,19 +77,13 @@ public class CarView extends JFrame implements UpdateListener{
         });
 
         gasPanel.setLayout(new BorderLayout());
-        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
-        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+        addGasSpinner();
 
         this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
 
-        controlPanel.add(gasButton, 0);
-        controlPanel.add(turboOnButton, 1);
-        controlPanel.add(liftBedButton, 2);
-        controlPanel.add(brakeButton, 3);
-        controlPanel.add(turboOffButton, 4);
-        controlPanel.add(lowerBedButton, 5);
+        addControllButtons();
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
@@ -166,6 +161,20 @@ public class CarView extends JFrame implements UpdateListener{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void addGasSpinner() {
+        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
+        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+    }
+
+    private void addControllButtons() {
+        controlPanel.add(gasButton, 0);
+        controlPanel.add(turboOnButton, 1);
+        controlPanel.add(liftBedButton, 2);
+        controlPanel.add(brakeButton, 3);
+        controlPanel.add(turboOffButton, 4);
+        controlPanel.add(lowerBedButton, 5);
     }
 
 
