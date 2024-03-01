@@ -18,13 +18,12 @@ public class VolvoFL extends Truck<NormalCar> implements IsVolvo{
     }
     
     @Override
-    public void storeThing(NormalCar thing) {
+    public void addToStorage(NormalCar thing) {
         boolean closeEnough = closeEnough(thing.getPosition());
         if(!closeEnough) {
-            return;
+            thing.setPosition(this.getPositionRef());
+            super.addToStorage(thing);
         }
-        thing.setPosition(this.getPositionRef());
-        super.storeThing(thing);
     }
 
     @Override

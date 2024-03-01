@@ -42,11 +42,6 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
     }
 
     @Override
-    public void storeThing(T toStore) {
-        storage.storeThing(toStore);
-    }
-
-    @Override
     public T removeThing() {
         return storage.removeThing();
     }
@@ -147,5 +142,10 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
 
     void setSpeedFactor() {
         baseGroundVehicle.setSpeedFactor(TOURQUE_FACTOR);
+    }
+
+    @Override
+    public void addToStorage(T toStore) {
+        storage.addToStorage(toStore);
     }
 }

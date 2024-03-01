@@ -218,7 +218,7 @@ public class VehicleSimulation {
     private void enterWorkshop(IsVehicle v, Workshop<IsVolvo> w) {
         System.out.println("A " + v.getModel() + " has entered the workshop for service!");
         controller.removeVehicle(v);
-        w.storeThing((IsVolvo)v);
+        w.addToStorage((IsVolvo)v);
     }
 
     private boolean canEnter(IsVehicle v, Workshop<? extends IsVehicle> w) {

@@ -24,8 +24,8 @@ public class Workshop<T extends IsVehicle> implements HasStorage<T> {
     }
 
     @Override
-    public void storeThing(T toStore) {
-        garage.storeThing(toStore);
+    public void addToStorage(T toStore) {
+        garage.addToStorage(toStore);
     }
 
     @Override

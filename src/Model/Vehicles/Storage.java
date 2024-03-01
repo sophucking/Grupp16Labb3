@@ -17,12 +17,38 @@ public abstract class Storage<T> implements HasStorage<T> {
 
     @Override
     public void openStorage() {
-        storageOpen = true;
+        if (state.openStorage()) {
+            storageOpen = true;
+            stateOpen();
+        }
+    }
+
+    private void stateOpen() {
+        if (state instanceof StorageClosedEmpty) {
+            state = StorageOpenEmpty.getState();
+        } else if (state instanceof StorageClosedHasSpace) {
+            state = StorageOpenHasSpace.getState();
+        } else if (state instanceof StorageClosedFull) {
+            state = StorageOpenFull.getState();
+        }
     }
 
     @Override
     public void closeStorage() {
-        storageOpen = false;
+        if (state.closeStorage()) {
+            storageOpen = false;
+            stateClosed();
+        }
+    }
+
+    private void stateClosed() {
+        if (state instanceof StorageOpenEmpty) {
+            state = StorageClosedEmpty.getState();
+        } else if (state instanceof StorageOpenHasSpace) {
+            state = StorageClosedHasSpace.getState();
+        } else if (state instanceof StorageOpenFull) {
+            state = StorageClosedFull.getState();
+        }
     }
 
     @Override
@@ -31,15 +57,37 @@ public abstract class Storage<T> implements HasStorage<T> {
     }
 
     @Override
-    public abstract void storeThing(T toStore);
+    public void addToStorage(T tostore) {
+        if (state.addToStorage()) {
+            storeThing(tostore);
+            stateFullness();
+        }
+    }
+
+    protected abstract void storeThing(T toStore);
 
     @Override
     public T removeThing() {
-        if (!isStorageOpen()) {
-            throw new IllegalAccessError("Can't remove a thing from a closed storage");
+        if (state.removeFromStorage()) {
+            T removed = storage.removeFirst();
+            stateFullness();
+            return removed;
         }
-        return storage.removeFirst();
+        else {
+            throw new IllegalArgumentException();
+        }
     }
+    private void stateFullness() {
+        int size  = storage.size();
+        if (size == 0) {
+            state = StorageOpenEmpty.getState();
+        } else if (size == max_capacity) {
+            state = StorageOpenFull.getState();
+        } else {
+            state = StorageOpenHasSpace.getState();
+        }
+    }
+
     @Override
     public int countThings() {
         return storage.size();
