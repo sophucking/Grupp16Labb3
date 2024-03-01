@@ -5,7 +5,6 @@ import java.awt.*;
 import Model.Vehicles.StatePatters.*;
 
 public class ScaniaV8<T> extends Truck<T> implements Tippable<T> {
-
     private double storageAngle;
     private ScaniaState state;
 
@@ -52,6 +51,13 @@ public class ScaniaV8<T> extends Truck<T> implements Tippable<T> {
         if (state.gasVehicle()) {
             super.gas(ammount);
             state = ScaniaMovingDown.getState();
+        }
+    }
+
+    @Override public void brake(double amount) {
+        super.brake(amount);
+        if (getCurrentSpeed() < 0.001) {
+            state = ScaniaStoppedDown.getState();
         }
     }
 }

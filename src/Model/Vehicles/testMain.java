@@ -13,11 +13,11 @@ public class testMain {
         Saab95 saab = new Saab95();
         VolvoFL volvoTruck = new VolvoFL();
 
-        workshop.storeThing(saab);
-        workshop.storeThing(volvoTruck);
-        workshop.storeThing(volvo);
-        // //volvo240Workshop.storeThing(saab);
-        // volvo240Workshop.storeThing(volvoTruck);
-        volvo240Workshop.storeThing(volvo);
+        workshop.addToStorage(saab);
+        workshop.addToStorage(volvoTruck);
+        workshop.addToStorage(volvo);
+        // //volvo240Workshop.addToStorage(saab);
+        // volvo240Workshop.addToStorage(volvoTruck);
+        volvo240Workshop.addToStorage(volvo);
     }
 }

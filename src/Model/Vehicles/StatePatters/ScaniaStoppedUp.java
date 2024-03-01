@@ -7,6 +7,9 @@ public class ScaniaStoppedUp implements ScaniaState{
     private ScaniaStoppedUp(){}
 
     public static ScaniaStoppedUp getState() {
+        if (state == null) {
+            state = new ScaniaStoppedUp();
+        }
         return state;
     }
 
