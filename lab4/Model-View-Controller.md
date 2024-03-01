@@ -44,4 +44,4 @@
 
 - - \+ (FLYTTAD TILL EN NEW APPLICATION KLASS) Har nu main metod samt håller i alla andra delar
 - - \- Har logik som hanterar workshops. Bör flyttas till modellen
-- - \- Hanterar bilder åt view, bör göras med någon form av decorator patern eller liknande
+- - \- Hanterar bilder åt view, bör göras med någon form av decorator pattern eller liknande
