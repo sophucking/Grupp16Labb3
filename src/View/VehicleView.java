@@ -3,7 +3,7 @@ package View;
 import javax.swing.*;
 
 // import Controller.VehicleController;
-import Model.UpdateListener;
+import Model.ModelListener;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *  Write more actionListeners and wire the rest of the buttons
  **/
 
-public class VehicleView extends JFrame implements UpdateListener{
+public class VehicleView extends JFrame implements ModelListener{
     private final int X;
     private final int Y;
     // The controller member
@@ -98,5 +98,10 @@ public class VehicleView extends JFrame implements UpdateListener{
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
         this.add(gasPanel);
+    }
+
+    @Override
+    public void onUpdate() {
+        update();
     }
 }

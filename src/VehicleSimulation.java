@@ -1,10 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Timer;
 
 import Controller.VehicleController;
+import Model.ModelListener;
 import Model.Vehicles.Cargo;
 import Model.Vehicles.IsVehicle;
 import Model.Vehicles.IsVolvo;
@@ -123,18 +125,20 @@ public class VehicleSimulation {
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer; // move
-
+    private List<ModelListener> listeners;
     // The frame that represents this instance View of the MVC pattern
     // Start a new view and send a reference of self
     VehicleView view;
 
     VehicleSimulation() {
         timer = new Timer(delay, new TimerListener());
+        listeners = new ArrayList<>();
         controller = new VehicleController(X, Y, 100, 100);
         view = new VehicleView("CarSim 1.0", X, Y);
         ui = new VehicleUI(view, controller);
         ui.initWidgets();
         view.initFinished();
+        addModelListener(view);
         vehicles = new ArrayList<>();
         volvoWorkshop = new VisualWorkshop<>(new Workshop<>(30), 300, 300, "pics/VolvoBrand.jpg");
 
@@ -143,6 +147,10 @@ public class VehicleSimulation {
         addVehicle(new ScaniaV8<Cargo>(0, 200));
         addVehicle(new Volvo240(0, 300));
         init();
+    }
+
+    public void addModelListener(ModelListener listener) {
+        listeners.add(listener);
     }
 
     private void addVehicle(IsVehicle vehicle) {
@@ -178,6 +186,13 @@ public class VehicleSimulation {
         @Override
         public void actionPerformed(ActionEvent e) {
             update();
+            informListeners();
+        }
+    }
+
+    private void informListeners() {
+        for (ModelListener modelListener : listeners) {
+            modelListener.onUpdate();
         }
     }
 
@@ -197,7 +212,7 @@ public class VehicleSimulation {
         }
         vehicles.remove(enteredWorkshop);
         drawVisualItem(volvoWorkshop);
-        view.update();
+        // view.update();
     }
 
     private boolean workshopInteraction(VisualVehicle v) {
