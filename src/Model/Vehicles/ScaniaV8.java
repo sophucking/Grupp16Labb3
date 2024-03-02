@@ -8,14 +8,14 @@ public class ScaniaV8<T> extends Truck<T> implements Tippable<T> {
     private double storageAngle;
     private ScaniaState state;
 
-    public ScaniaV8(double x, double y) {
-        super(200, Color.white, "ScaniaV8", 10, x, y);
+    public ScaniaV8(double x, double y, double width, double height) {
+        super(200,  "ScaniaV8", 10,x,y, Color.white, width, height);
         this.storageAngle = 0.0;
         state = ScaniaStoppedDown.getState();
     }
 
     public ScaniaV8() {
-        this(0, 0);
+        this(0, 0,100,100);
     }
 
     @Override

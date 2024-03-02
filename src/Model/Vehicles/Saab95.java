@@ -5,12 +5,12 @@ public class Saab95 extends NormalCar implements HasTurbo {
     private boolean turboOn;
 
     
-    public Saab95(double x, double y) {
-        super(2,110, Color.red,"Saab95", x, y);
+    public Saab95(double x, double y, double width, double height) {
+        super(2,110, "Saab95", x, y, Color.red, width, height);
         turboOn = false;
     }
     public Saab95() {
-        super(2,110, Color.red,"Saab95");
+        super(2,110, "Saab95", Color.red, 100,100);
         turboOn = false;
     }
 

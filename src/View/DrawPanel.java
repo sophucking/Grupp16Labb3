@@ -1,7 +1,5 @@
 package View;
 
-import Model.Vehicles.IsVehicle;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -29,25 +27,25 @@ public class DrawPanel extends JPanel {
     }
 
     private class PositionImage {
-        private int x;
-        private int y;
+        private double x;
+        private double y;
         private BufferedImage image;
 
-        private PositionImage(int x, int y, BufferedImage image) {
+        private PositionImage(double x, double y, BufferedImage image) {
             set(x, y);
             this.image = image;
         }
 
-        private void set(int x, int y) {
+        private void set(double x, double y) {
             this.x = x;
             this.y = y;
         }
 
-        public int getX() {
+        public double getX() {
             return x;
         }
 
-        public int getY() {
+        public double getY() {
             return y;
         }
 
@@ -56,11 +54,11 @@ public class DrawPanel extends JPanel {
         }
     }
 
-    public void addImage(int x, int y, String imagePath) {
+    public void addImage(double x, double y, String imagePath) {
         images.add(createNewVisualItem(x, y, imagePath));
     }
 
-    private PositionImage createNewVisualItem(int x, int y, String imagePath) {
+    private PositionImage createNewVisualItem(double x, double y, String imagePath) {
         // Print an error message in case file is not found with a try/catch block
         // ImagePointPair newItem;
         try {
@@ -95,7 +93,7 @@ public class DrawPanel extends JPanel {
 
     private void drawImage(Graphics g, PositionImage image) {
         // vv this could be implemented if drawPanel is an observer
-        g.drawImage(image.getImage(), image.getX(), image.getY(), null); // see javadoc for more info on the parameters
+        g.drawImage(image.getImage(), (int) image.getX(), (int) image.getY(), null); // see javadoc for more info on the parameters
     }
 
 }

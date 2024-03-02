@@ -16,7 +16,7 @@ public class GroundVehicle implements IsVehicle {
     private boolean engineOn;
     private double speedFactor;
 
-    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, double width, double height) {
+    public GroundVehicle(int nrDoors, double enginePower, String modelName, double x, double y, Color color, double width, double height) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = 0.0;
@@ -30,9 +30,9 @@ public class GroundVehicle implements IsVehicle {
         setSpeedFactor(1);
         stopEngine();
     }
-    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double width, double height) {
-        this(nrDoors, enginePower, color, modelName, 0, 0, width, height);
-    }
+    //public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double width, double height) {
+    //    this(nrDoors, enginePower, color, modelName, 0, 0, width, height);
+    //}
 
     @Override
     public String getModel() {
@@ -149,8 +149,6 @@ public class GroundVehicle implements IsVehicle {
 
     double getWidth() {return this.width;}
     double getHeight() {return this.height;}
-
-
 
     @Override
     public double rBound() {

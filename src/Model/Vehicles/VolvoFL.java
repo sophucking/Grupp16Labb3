@@ -3,12 +3,12 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class VolvoFL extends Truck<NormalCar> implements IsVolvo{
-    public VolvoFL(double x, double y) {
-        super(200, Color.BLUE, "VolvoFL",10, x, y);
+    public VolvoFL(double x, double y, double width, double height) {
+        super(200,  "VolvoFL",10, x, y, Color.BLUE, width, height);
     }
     
     public VolvoFL() {
-        super(200, Color.BLUE, "VolvoFL",10);
+        super(200,  "VolvoFL",10, Color.BLUE,100,100);
     }
 
 

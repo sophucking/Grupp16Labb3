@@ -2,12 +2,16 @@ package Model.Vehicles;
 public class Workshop<T extends IsVehicle> implements HasStorage<T>, Bumpable {
     private final Garage<T> garage;
 
+    // needed since it implement Bumpable
+    private final double x,y,width,height;
     
-    
-    public Workshop(int max_capacity) {
+    public Workshop(int max_capacity, double x, double y, double width, double height) {
         garage = new Garage<>(max_capacity);
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
-
     @Override
     public void openStorage() {
         garage.openStorage();
@@ -42,21 +46,21 @@ public class Workshop<T extends IsVehicle> implements HasStorage<T>, Bumpable {
 
     @Override
     public double rBound() {
-        return this.;
+        return x+width;
     }
 
     @Override
     public double lBound() {
-        return 0;
+        return x;
     }
 
     @Override
     public double tBound() {
-        return 0;
+        return y;
     }
 
     @Override
     public double bBound() {
-        return 0;
+        return y+height;
     }
 }

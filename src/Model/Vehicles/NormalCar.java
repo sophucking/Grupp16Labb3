@@ -6,13 +6,13 @@ import java.awt.geom.Point2D;
 abstract class NormalCar implements IsVehicle{
     protected final GroundVehicle baseGroundVehicle;
 
-    NormalCar(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
-        baseGroundVehicle = new GroundVehicle(nrDoors, enginePower, color, modelName, x, y);
+    NormalCar(int nrDoors, double enginePower, String modelName, double x, double y, Color color, double w, double h) {
+        baseGroundVehicle = new GroundVehicle(nrDoors, enginePower, modelName, x, y, color, w, h);
         setSpeedFactor();
     }
 
-    NormalCar(int nrDoors, double enginePower, Color color, String modelName) {
-        this(nrDoors, enginePower, color, modelName, 0, 0);
+    NormalCar(int nrDoors, double enginePower, String modelName, Color color, double w, double h) {
+        this(nrDoors, enginePower, modelName, 0, 0, color, w, h);
     }
 
     @Override
@@ -100,5 +100,25 @@ abstract class NormalCar implements IsVehicle{
     }
 
     abstract void setSpeedFactor();
+
+        @Override
+    public double rBound() {
+        return baseGroundVehicle.rBound();
+    }
+
+    @Override
+    public double lBound() {
+        return baseGroundVehicle.lBound();
+    }
+
+    @Override
+    public double tBound() {
+        return baseGroundVehicle.tBound();
+    }
+
+    @Override
+    public double bBound() {
+        return baseGroundVehicle.bBound();
+    }
 
 }

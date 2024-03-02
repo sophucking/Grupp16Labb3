@@ -11,15 +11,15 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
     protected final Trailer<T> storage;
     private TruckState state;
 
-    public Truck(double enginePower, Color color, String modelName, int max_capacity, double x, double y) {
-        baseGroundVehicle = new GroundVehicle(2, enginePower, color, modelName, x, y);
+    public Truck(double enginePower, String modelName, int max_capacity, double x, double y, Color color, double w, double h) {
+        baseGroundVehicle = new GroundVehicle(2, enginePower, modelName, x, y, color, w, h);
         setSpeedFactor();
         this.storage = new Trailer<>(max_capacity);
         state = TruckStoppedClosed.getState();
     }
 
-    public Truck(double enginePower, Color color, String modelName, int max_capacity) {
-        this(enginePower, color, modelName, max_capacity, 0, 0);
+    public Truck(double enginePower, String modelName, int max_capacity, Color color, double w, double h) {
+        this(enginePower, modelName, max_capacity, 0, 0,color, w, h);
     }
 
     @Override
@@ -148,4 +148,25 @@ public class Truck<T> implements IsVehicle, HasStorage<T> {
     public void addToStorage(T toStore) {
         storage.addToStorage(toStore);
     }
+
+        @Override
+    public double rBound() {
+        return baseGroundVehicle.rBound();
+    }
+
+    @Override
+    public double lBound() {
+        return baseGroundVehicle.lBound();
+    }
+
+    @Override
+    public double tBound() {
+        return baseGroundVehicle.tBound();
+    }
+
+    @Override
+    public double bBound() {
+        return baseGroundVehicle.bBound();
+    }
+
 }

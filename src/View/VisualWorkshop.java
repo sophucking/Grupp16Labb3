@@ -7,7 +7,7 @@ public class VisualWorkshop<T extends IsVehicle> extends ConcreteVisualItem {
         private final Workshop<T> workshop;
 
         VisualWorkshop(Workshop<T> workshop, int x, int y, String imagePath) {
-            super(x, y, imagePath, 101, 96);
+            super(x, y, imagePath, 100, 100);
             this.workshop = workshop;
         }
 

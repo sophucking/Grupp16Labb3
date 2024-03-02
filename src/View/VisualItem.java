@@ -2,19 +2,19 @@ package View;
 
 public interface VisualItem /* extends DrawPanel */ {
 
-    public int getX();
+    public double getX();
 
-    public int getY();
+    public double getY();
 
     public String getImagePath();
 
-    public int rBound();
+    public double rBound();
 
-    public int lBound();
+    public double lBound();
 
-    public int tBound();
+    public double tBound();
 
-    public int bBound();
+    public double bBound();
 
     //update any variables for any changes that may or may not happen
     public void update();

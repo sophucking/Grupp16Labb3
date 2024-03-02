@@ -8,7 +8,7 @@ public class VisualVehicle extends ConcreteVisualItem {
     VisualVehicle(IsVehicle vehicle, String imagePath) {
         super((int) vehicle.getPosition().getX(),
                 (int) vehicle.getPosition().getY(),
-                imagePath, 100, 60);
+                imagePath, 100, 100);
         this.vehicle = vehicle;
     }
 

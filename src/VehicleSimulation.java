@@ -136,12 +136,12 @@ public class VehicleSimulation {
         addModelListener(view);
         
         vehicles = new ArrayList<>();
-        volvoWorkshop = new Workshop<IsVolvo>(30);
+        volvoWorkshop = new Workshop<IsVolvo>(30, 0,300,100,100);
 
-        addVehicle(new Volvo240(0, 0));
-        addVehicle(new Saab95(0, 100));
-        addVehicle(new ScaniaV8<Cargo>(0, 200));
-        addVehicle(new Volvo240(0, 300));
+        addVehicle(new Volvo240(0, 0,100,100));
+        addVehicle(new Saab95(0, 100,100,100));
+        addVehicle(new ScaniaV8<Cargo>(0, 200,100,100));
+        addVehicle(new Volvo240(0, 300,100,100));
 
         initWorkshop();
 

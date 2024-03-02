@@ -1,19 +1,19 @@
 package View;
 
 public class ConcreteVisualItem implements VisualItem{
-    protected int x;
-    protected int y;
-    public final int width;
-    public final int height;
+    protected double x;
+    protected double y;
+    public final double width;
+    public final double height;
     private final String imagePath;
 
     @Override
-    public int getX() {
+    public double getX() {
         return x;
     }
 
     @Override
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -31,12 +31,12 @@ public class ConcreteVisualItem implements VisualItem{
                 && (this.yOverlap(other.tBound(), other.bBound()));
     }
 
-    private boolean yOverlap(int otherTop, int otherBottom) {
+    private boolean yOverlap(double otherTop, double otherBottom) {
         return (otherTop <= this.tBound() && this.tBound() <= otherBottom)
                 || (otherTop <= this.bBound() && this.bBound() <= otherBottom);
     }
 
-    private boolean xOverlap(int otherLeft, int otherRight) {
+    private boolean xOverlap(double otherLeft, double otherRight) {
         return (otherLeft <= this.lBound() && this.lBound() <= otherRight)
                 || (otherLeft <= this.rBound() && this.rBound() <= otherRight);
     }
@@ -47,22 +47,22 @@ public class ConcreteVisualItem implements VisualItem{
     }
 
     @Override
-    public int rBound() {
+    public double rBound() {
         return x + width;
     }
 
     @Override
-    public int lBound() {
+    public double lBound() {
         return x;
     }
 
     @Override
-    public int tBound() {
+    public double tBound() {
         return y;
     }
 
     @Override
-    public int bBound() {
+    public double bBound() {
         return y + height;
     }
 

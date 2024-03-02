@@ -88,7 +88,7 @@ public class VehicleView extends JFrame implements ModelListener{
         this.add(stop);
     }
 
-    public void addItem(int x, int y, String imagePath) {
+    public void addItem(double x, double y, String imagePath) {
         drawPanel.addImage(x, y, imagePath);
     }
 
