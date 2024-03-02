@@ -1,6 +1,8 @@
 package Model.Vehicles;
-public class Workshop<T extends IsVehicle> implements HasStorage<T> {
+public class Workshop<T extends IsVehicle> implements HasStorage<T>, Bumpable {
     private final Garage<T> garage;
+
+    
     
     public Workshop(int max_capacity) {
         garage = new Garage<>(max_capacity);
@@ -36,5 +38,25 @@ public class Workshop<T extends IsVehicle> implements HasStorage<T> {
     @Override
     public int countThings() {
         return garage.countThings();
+    }
+
+    @Override
+    public double rBound() {
+        return this.;
+    }
+
+    @Override
+    public double lBound() {
+        return 0;
+    }
+
+    @Override
+    public double tBound() {
+        return 0;
+    }
+
+    @Override
+    public double bBound() {
+        return 0;
     }
 }
