@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 public class GroundVehicle implements IsVehicle {
 
     private Point2D.Double position; // the position of the car
+    private final double width, height; // width and height of the car
     private double directionAngle; // the current angle of the car in space
     private double[] direction; // cos and sin of directionAngle (in that order)
     private final int nrDoors; // Number of doors on the car
@@ -15,7 +16,7 @@ public class GroundVehicle implements IsVehicle {
     private boolean engineOn;
     private double speedFactor;
 
-    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y) {
+    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double x, double y, double width, double height) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = 0.0;
@@ -24,11 +25,13 @@ public class GroundVehicle implements IsVehicle {
         this.directionAngle = 0.0;
         this.direction = new double[] { Math.cos(directionAngle), Math.sin(directionAngle) };
         this.position = new Point2D.Double(x, y);
+        this.width = width;
+        this.height = height;
         setSpeedFactor(1);
         stopEngine();
     }
-    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName) {
-        this(nrDoors, enginePower, color, modelName, 0, 0);
+    public GroundVehicle(int nrDoors, double enginePower, Color color, String modelName, double width, double height) {
+        this(nrDoors, enginePower, color, modelName, 0, 0, width, height);
     }
 
     @Override
@@ -143,5 +146,8 @@ public class GroundVehicle implements IsVehicle {
     void setPosition(Point2D.Double p) {
         this.position = p;
     }
+
+    double getWidth() {return this.width;}
+    double getHeight() {return this.height;}
 
 }
