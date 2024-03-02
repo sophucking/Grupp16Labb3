@@ -210,10 +210,21 @@ public class VehicleSimulation {
         timer.start();
     }
 
+    private boolean isOutOfBoundsY(IsVehicle v) {
+        return v.tBound() < 0 || v.bBound() > Y;
+    }
+    private boolean isOutOfBoundsX(IsVehicle v) {
+        return v.rBound() > X || v.lBound() < 0;
+    }
     public void update() {
         IsVehicle enteredWorkshop = null;
         for (IsVehicle v : vehicles) {
             controller.update(v);
+            if(isOutOfBoundsX(v)) {
+                v.turnLeft(Math.PI);
+            } else if(isOutOfBoundsY(v)) {
+                v.turnLeft(Math.PI);
+            }
             if(workshopInteraction(v)) {
                 enteredWorkshop = v;
             }
