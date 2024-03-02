@@ -28,8 +28,7 @@ public class VehicleView extends JFrame implements ModelListener{
     private DrawPanel drawPanel;
     private DrawPanel controlPanel = new DrawPanel();
     private DrawPanel gasPanel = new DrawPanel();
-    private ArrayList<VisualItem> vehicles = new ArrayList<>();
-    private ArrayList<VisualItem> workshops = new ArrayList<>();
+    private ArrayList<VisualItem> vehiclesAndWorkshops = new ArrayList<>();
 
     // Constructor
     public VehicleView(String framename,/*  VehicleController cc, */ int x, int y){
@@ -102,26 +101,27 @@ public class VehicleView extends JFrame implements ModelListener{
 
     
     public void addWorkshop(Workshop<?> workshop, int x, int y, String brand) {
-        workshops.add(new VisualWorkshop<>(workshop, x, y, "pics/" + brand + "Brand.jpg"));
+        vehiclesAndWorkshops.add(new VisualWorkshop<>(workshop, x, y, "pics/" + brand + "Brand.jpg"));
     }
 
 
     public void addVehicle(IsVehicle vehicle) {
-        vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
+        vehiclesAndWorkshops.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
     }
 
     @Override
     public void onUpdate() {
+        for (VisualItem item : vehiclesAndWorkshops) {
+            item.update();
+        }
+        initVisuals();
         drawPanel.repaint();
     }
 
     
     public void initVisuals() {
-        for (VisualItem vehicle : vehicles) {
-            addItem(vehicle.getX(), vehicle.getY(), vehicle.getImagePath());
-        }
-        for (VisualItem workshop : workshops) {
-            addItem(workshop.getX(), workshop.getY(), workshop.getImagePath());;
+        for (VisualItem item : vehiclesAndWorkshops) {
+            addItem(item.getX(), item.getY(), item.getImagePath());
         }
     }
 }

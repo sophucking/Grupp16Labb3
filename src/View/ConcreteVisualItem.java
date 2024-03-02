@@ -65,6 +65,10 @@ public class ConcreteVisualItem implements VisualItem{
     public int bBound() {
         return y + height;
     }
+
+    @Override
+    public void update() {
+    }
 }
 
 

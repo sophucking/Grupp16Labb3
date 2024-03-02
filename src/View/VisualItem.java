@@ -16,4 +16,7 @@ public interface VisualItem /* extends DrawPanel */ {
 
     public int bBound();
 
+    //update any variables for any changes that may or may not happen
+    public void update();
+
 }

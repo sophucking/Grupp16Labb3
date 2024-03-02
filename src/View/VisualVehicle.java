@@ -12,6 +12,7 @@ public class VisualVehicle extends ConcreteVisualItem {
         this.vehicle = vehicle;
     }
 
+    @Override
     public void update() {
         this.x = (int) vehicle.getPosition().getX();
         this.y = (int) vehicle.getPosition().getY();
