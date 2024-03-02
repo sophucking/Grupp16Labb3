@@ -136,7 +136,7 @@ public class VehicleSimulation {
         addModelListener(view);
         
         vehicles = new ArrayList<>();
-        volvoWorkshop = new Workshop<IsVolvo>(30, 0,300,100,100);
+        volvoWorkshop = new Workshop<IsVolvo>(30, 300,300,100,100);
 
         addVehicle(new Volvo240(0, 0,100,100));
         addVehicle(new Saab95(0, 100,100,100));
@@ -150,7 +150,7 @@ public class VehicleSimulation {
     }
 
     private void initWorkshop() {
-        view.addWorkshop(volvoWorkshop, 300, 300, "Volvo");
+        view.addWorkshop(volvoWorkshop, "Volvo");
     }
 
     public void addModelListener(ModelListener listener) {
@@ -224,10 +224,6 @@ public class VehicleSimulation {
             return enterWorkshopIfAllowed(v);
         }
         return false;
-    }
-
-    private boolean collisionOccurs(Bumpable a, Bumpable b) {
-        return a.overlaps(b);
     }
 
     // private void worldHasBouncyWalls(IsVehicle car) {

@@ -3,7 +3,10 @@ public class Workshop<T extends IsVehicle> implements HasStorage<T>, Bumpable {
     private final Garage<T> garage;
 
     // needed since it implement Bumpable
-    private final double x,y,width,height;
+    private final double x;
+    private final double y;
+    private final double width;
+    private final double height;
     
     public Workshop(int max_capacity, double x, double y, double width, double height) {
         garage = new Garage<>(max_capacity);
@@ -61,6 +64,21 @@ public class Workshop<T extends IsVehicle> implements HasStorage<T>, Bumpable {
 
     @Override
     public double bBound() {
-        return y+height;
+        return y-height;
+    }
+
+    public double getX() {
+        return this.x;
+    }
+
+    public double getY() {
+        return y;
+    }
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
     }
 }

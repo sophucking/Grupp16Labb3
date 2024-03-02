@@ -6,8 +6,8 @@ import Model.Vehicles.Workshop;
 public class VisualWorkshop<T extends IsVehicle> extends ConcreteVisualItem {
         private final Workshop<T> workshop;
 
-        VisualWorkshop(Workshop<T> workshop, int x, int y, String imagePath) {
-            super(x, y, imagePath, 100, 100);
+        VisualWorkshop(Workshop<T> workshop, String imagePath) {
+            super(workshop.getX(), workshop.getY(), imagePath, workshop.getWidth(),workshop.getHeight());
             this.workshop = workshop;
         }
 

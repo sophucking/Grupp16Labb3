@@ -100,8 +100,8 @@ public class VehicleView extends JFrame implements ModelListener{
     }
 
     
-    public void addWorkshop(Workshop<?> workshop, int x, int y, String brand) {
-        vehiclesAndWorkshops.add(new VisualWorkshop<>(workshop, x, y, "pics/" + brand + "Brand.jpg"));
+    public void addWorkshop(Workshop<?> workshop, String brand) {
+        vehiclesAndWorkshops.add(new VisualWorkshop<>(workshop, "pics/" + brand + "Brand.jpg"));
     }
 
 

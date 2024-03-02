@@ -167,6 +167,6 @@ public class GroundVehicle implements IsVehicle {
 
     @Override
     public double bBound() {
-        return this.getPosition().getY() + this.getHeight();
+        return this.getPosition().getY() - this.getHeight();
     }
 }

@@ -17,7 +17,7 @@ public class ConcreteVisualItem implements VisualItem{
         return y;
     }
 
-    protected ConcreteVisualItem(int x, int y, String imagePath, int width, int height) {
+    protected ConcreteVisualItem(double x, double y, String imagePath, double width, double height) {
         this.x = x;
         this.y = y;
         this.imagePath = imagePath;
