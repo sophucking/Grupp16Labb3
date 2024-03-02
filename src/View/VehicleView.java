@@ -3,6 +3,8 @@ package View;
 import javax.swing.*;
 
 // import Controller.VehicleController;
+import Application.VehicleSimulation;
+import Application.VehicleUI;
 import Model.ModelListener;
 import Model.Vehicles.IsVehicle;
 import Model.Vehicles.Workshop;
@@ -29,10 +31,10 @@ public class VehicleView extends JFrame implements ModelListener{
     private DrawPanel controlPanel = new DrawPanel();
     private DrawPanel gasPanel = new DrawPanel();
     private ArrayList<VisualItem> vehiclesAndWorkshops = new ArrayList<>();
-
+    private final VehicleSimulation simulation;
     // Constructor
-    public VehicleView(String framename,/*  VehicleController cc, */ int x, int y){
-        // this.carC = cc;
+    public VehicleView(String framename, int x, int y, VehicleSimulation vs){
+        this.simulation = vs;
         this.drawPanel = new DrawPanel(x, y);
         this.X = x;
         this.Y = y;

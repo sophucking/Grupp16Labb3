@@ -132,7 +132,7 @@ public class VehicleSimulation {
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
         controller = new VehicleController(/* X, Y, 100, 100 */);
-        view = new VehicleView("CarSim 1.0", X, Y);
+        view = new VehicleView("CarSim 1.0", X, Y, this);
         ui = new VehicleUI(view, controller);
         ui.initWidgets();
         addModelListener(view);
