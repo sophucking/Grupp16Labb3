@@ -1,7 +1,7 @@
 package Model.Vehicles;
 import java.awt.*;
 
-public interface IsVehicle extends Movable{
+public interface IsVehicle extends Movable, Bumpable{
 
     String getModel();
 

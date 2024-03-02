@@ -7,13 +7,7 @@ import javax.swing.Timer;
 
 import Controller.VehicleController;
 import Model.ModelListener;
-import Model.Vehicles.Cargo;
-import Model.Vehicles.IsVehicle;
-import Model.Vehicles.IsVolvo;
-import Model.Vehicles.Saab95;
-import Model.Vehicles.ScaniaV8;
-import Model.Vehicles.Volvo240;
-import Model.Vehicles.Workshop;
+import Model.Vehicles.*;
 import View.VehicleView;
 
 public class VehicleSimulation {
@@ -226,15 +220,14 @@ public class VehicleSimulation {
     }
 
     private boolean workshopInteraction(IsVehicle v) {
-        if (collisionOccurs(/* v, volvoWorkshop */)) {
+        if (v.overlaps(volvoWorkshop)) {
             return enterWorkshopIfAllowed(v);
         }
         return false;
     }
 
-    private boolean collisionOccurs(/* VisualItem a, VisualItem b */) {
-        // return a.overlaps(b);
-        return false;
+    private boolean collisionOccurs(Bumpable a, Bumpable b) {
+        return a.overlaps(b);
     }
 
     // private void worldHasBouncyWalls(IsVehicle car) {

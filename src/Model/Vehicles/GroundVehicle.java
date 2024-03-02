@@ -150,4 +150,37 @@ public class GroundVehicle implements IsVehicle {
     double getWidth() {return this.width;}
     double getHeight() {return this.height;}
 
+    @Override
+    public boolean overlaps(Bumpable b) {
+        // this could all be reduced but this is more readable imo
+        // no overlap in X axis
+        if(this.lBound() > b.rBound() || this.rBound() < b.lBound()) {
+            return false;
+        }
+        // no overlap in Y axis
+        if(this.tBound() < b.bBound() || b.bBound() > this.tBound()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public double rBound() {
+        return this.position.getX() + this.getWidth();
+    }
+
+    @Override
+    public double lBound() {
+        return this.position.getX();
+    }
+
+    @Override
+    public double tBound() {
+        return this.position.getY();
+    }
+
+    @Override
+    public double bBound() {
+        return this.getPosition().getY() + this.getHeight();
+    }
 }
