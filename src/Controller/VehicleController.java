@@ -11,19 +11,19 @@ import Model.Vehicles.*;
 
 public class VehicleController {
     private final ArrayList<IsVehicle> cars;
-    private final int worldWidth;
-    private final int worldHeight;
-    private final int vehicleWidth;
-    private final int vehicleHeight;
+    // private final int worldWidth;
+    // private final int worldHeight;
+    // private final int vehicleWidth;
+    // private final int vehicleHeight;
 
 
     // methods:
-    public VehicleController(int width, int height, int vehicleWidth, int vehicleHeight) {
+    public VehicleController(/* int width, int height, int vehicleWidth, int vehicleHeight */) {
         cars = new ArrayList<>();
-        worldWidth = width;
-        worldHeight = height;
-        this.vehicleWidth = vehicleWidth;
-        this.vehicleHeight = vehicleHeight;
+        // worldWidth = width;
+        // worldHeight = height;
+        // this.vehicleWidth = vehicleWidth;
+        // this.vehicleHeight = vehicleHeight;
     }
 
     public void addVehicle(IsVehicle car) {
@@ -39,20 +39,10 @@ public class VehicleController {
     }
 
     private void moveCar(IsVehicle car) {
-        worldHasBouncyWalls(car);
+        // worldHasBouncyWalls(car);
         car.move();
     }
 
-    private void worldHasBouncyWalls(IsVehicle car) {
-        if (isOutOfBounds(car)) {
-            car.turnLeft(Math.PI);
-        }
-    }
-
-    private boolean isOutOfBounds(IsVehicle car) {
-        return (car.getPosition().getX() < -5) || (worldWidth - vehicleWidth + 5 < car.getPosition().getX()) 
-         || (car.getPosition().getY() < -5) || (worldHeight - vehicleHeight + 5< car.getPosition().getY());
-    }
 
     private boolean hasTurbo(IsVehicle car) {
         return car instanceof HasTurbo;

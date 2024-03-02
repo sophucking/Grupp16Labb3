@@ -117,5 +117,6 @@ public class VehicleUI {
         view.initGasPanel(gasSpinner, gasLabel);
         view.initControllPanel(btns);
         view.addStartStopButtons(startButton, stopButton);
+        view.packWidgets();
     }
 }

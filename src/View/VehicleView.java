@@ -4,6 +4,8 @@ import javax.swing.*;
 
 // import Controller.VehicleController;
 import Model.ModelListener;
+import Model.Vehicles.IsVehicle;
+import Model.Vehicles.Workshop;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -26,7 +28,8 @@ public class VehicleView extends JFrame implements ModelListener{
     private DrawPanel drawPanel;
     private DrawPanel controlPanel = new DrawPanel();
     private DrawPanel gasPanel = new DrawPanel();
-
+    private ArrayList<VisualVehicle> vehicles = new ArrayList<>();
+    private ArrayList<VisualWorkshop<?>> workshops = new ArrayList<>();
 
     // Constructor
     public VehicleView(String framename,/*  VehicleController cc, */ int x, int y){
@@ -50,13 +53,14 @@ public class VehicleView extends JFrame implements ModelListener{
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         // Center the frame
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.pack();
         // Make the frame visible
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void initFinished() {
+    public void packWidgets() {
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
     }
@@ -89,10 +93,6 @@ public class VehicleView extends JFrame implements ModelListener{
         drawPanel.addImage(x, y, imagePath);
     }
 
-    public void update() {
-        drawPanel.repaint();
-    }
-
     public void initGasPanel(JSpinner gasSpinner, JLabel gasLabel) {
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
@@ -100,8 +100,28 @@ public class VehicleView extends JFrame implements ModelListener{
         this.add(gasPanel);
     }
 
+    
+    public void addWorkshop(Workshop<?> workshop, int x, int y, String brand) {
+        workshops.add(new VisualWorkshop<>(workshop, x, y, "pics/" + brand + "Brand.jpg"));
+    }
+
+
+    public void addVehicle(IsVehicle vehicle) {
+        vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
+    }
+
     @Override
     public void onUpdate() {
-        update();
+        drawPanel.repaint();
+    }
+
+    
+    public void initVisuals() {
+        for (VisualVehicle vehicle : vehicles) {
+            addItem(vehicle.getX(), vehicle.getY(), vehicle.getImagePath());
+        }
+        for (VisualWorkshop<?> workshop : workshops) {
+            addItem(workshop.getX(), workshop.getY(), workshop.getImagePath());;
+        }
     }
 }

@@ -17,7 +17,7 @@ import Model.Vehicles.Workshop;
 import View.VehicleView;
 
 public class VehicleSimulation {
-    private class VisualItem {
+    /* private class VisualItem {
         protected int x;
         protected int y;
         protected final int width;
@@ -111,12 +111,14 @@ public class VehicleSimulation {
         public void openStorage() {
             workshop.openStorage();
         }
-    }
+    } */
 
     private static final int X = 800;
     private static final int Y = 400;
-    private final ArrayList<VisualVehicle> vehicles;
-    private final VisualWorkshop<IsVolvo> volvoWorkshop;
+    private final ArrayList<IsVehicle> vehicles;
+    // private final ArrayList<VisualVehicle> vehicles;
+    // private final VisualWorkshop<IsVolvo> volvoWorkshop;
+    private final Workshop<IsVolvo> volvoWorkshop;
     private VehicleController controller;
     private VehicleUI ui;
 
@@ -133,20 +135,28 @@ public class VehicleSimulation {
     VehicleSimulation() {
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
-        controller = new VehicleController(X, Y, 100, 100);
+        controller = new VehicleController(/* X, Y, 100, 100 */);
         view = new VehicleView("CarSim 1.0", X, Y);
         ui = new VehicleUI(view, controller);
         ui.initWidgets();
-        view.initFinished();
         addModelListener(view);
+        
         vehicles = new ArrayList<>();
-        volvoWorkshop = new VisualWorkshop<>(new Workshop<>(30), 300, 300, "pics/VolvoBrand.jpg");
+        volvoWorkshop = new Workshop<IsVolvo>(30);
 
         addVehicle(new Volvo240(0, 0));
         addVehicle(new Saab95(0, 100));
         addVehicle(new ScaniaV8<Cargo>(0, 200));
         addVehicle(new Volvo240(0, 300));
-        init();
+
+        initWorkshop();
+
+        view.initVisuals();
+        // init();
+    }
+
+    private void initWorkshop() {
+        view.addWorkshop(volvoWorkshop, 300, 300, "Volvo");
     }
 
     public void addModelListener(ModelListener listener) {
@@ -154,29 +164,33 @@ public class VehicleSimulation {
     }
 
     private void addVehicle(IsVehicle vehicle) {
-        vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
+        vehicles.add(vehicle);
+        controller.addVehicle(vehicle);
+        view.addVehicle(vehicle);
+        // vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
     }
 
-    private void init() {
-        for (VisualVehicle visualVehicle : vehicles) {
-            initVehicle(visualVehicle);
-        }
-        volvoWorkshop.openStorage();
-        drawVisualItem(volvoWorkshop);
-    }
 
-    private void initVehicle(VisualVehicle visualVehicle) {
-        addVehicleToControll(visualVehicle);
-        drawVisualItem(visualVehicle);
-    }
+    // private void init() {
+    //     for (VisualVehicle visualVehicle : vehicles) {
+    //         initVehicle(visualVehicle);
+    //     }
+    //     volvoWorkshop.openStorage();
+    //     drawVisualItem(volvoWorkshop);
+    // }
 
-    private void addVehicleToControll(VisualVehicle v) {
-        controller.addVehicle(v.getVehicle());
-    }
+    // private void initVehicle(VisualVehicle visualVehicle) {
+    //     addVehicleToControll(visualVehicle);
+    //     drawVisualItem(visualVehicle);
+    // }
 
-    private void drawVisualItem(VisualItem item) {
-        view.addItem(item.getX(), item.getY(), item.getImagePath());
-    }
+    // private void addVehicleToControll(VisualVehicle v) {
+    //     controller.addVehicle(v.getVehicle());
+    // }
+
+    // private void drawVisualItem(VisualItem item) {
+    //     view.addItem(item.getX(), item.getY(), item.getImagePath());
+    // }
 
     /*
      * Each step the TimerListener moves all the cars in the list and tells the
@@ -186,7 +200,6 @@ public class VehicleSimulation {
         @Override
         public void actionPerformed(ActionEvent e) {
             update();
-            informListeners();
         }
     }
 
@@ -201,47 +214,56 @@ public class VehicleSimulation {
     }
 
     public void update() {
-        VisualVehicle enteredWorkshop = null;
-        for (VisualVehicle v : vehicles) {
-            controller.update(v.getVehicle());
-            v.update();
+        IsVehicle enteredWorkshop = null;
+        for (IsVehicle v : vehicles) {
+            controller.update(v);
             if(workshopInteraction(v)) {
                 enteredWorkshop = v;
             }
-            drawVisualItem(v);
         }
         vehicles.remove(enteredWorkshop);
-        drawVisualItem(volvoWorkshop);
-        // view.update();
+        informListeners();
     }
 
-    private boolean workshopInteraction(VisualVehicle v) {
-        if (collisionOccurs(v, volvoWorkshop)) {
-            return enterWorkshopIfAllowed(v.getVehicle(), volvoWorkshop.getWorkshop());
+    private boolean workshopInteraction(IsVehicle v) {
+        if (collisionOccurs(/* v, volvoWorkshop */)) {
+            return enterWorkshopIfAllowed(v);
         }
         return false;
     }
 
-    private boolean collisionOccurs(VisualItem a, VisualItem b) {
-        return a.overlaps(b);
+    private boolean collisionOccurs(/* VisualItem a, VisualItem b */) {
+        // return a.overlaps(b);
+        return false;
     }
 
-    private boolean enterWorkshopIfAllowed(IsVehicle v, Workshop<IsVolvo> w) {
-        if (canEnter(v, w)) {
-            enterWorkshop(v, w);
+    // private void worldHasBouncyWalls(IsVehicle car) {
+    //     if (isOutOfBounds(car)) {
+    //         car.turnLeft(Math.PI);
+    //     }
+    // }
+
+    // private boolean isOutOfBounds(IsVehicle car) {
+    //     return (car.getPosition().getX() < -5) || (worldWidth - vehicleWidth + 5 < car.getPosition().getX()) 
+    //      || (car.getPosition().getY() < -5) || (worldHeight - vehicleHeight + 5< car.getPosition().getY());
+    // }
+
+    private boolean enterWorkshopIfAllowed(IsVehicle v) {
+        if (canEnter(v)) {
+            enterWorkshop(v);
             return true;
         }
         return false;
     }
 
-    private void enterWorkshop(IsVehicle v, Workshop<IsVolvo> w) {
+    private void enterWorkshop(IsVehicle v) {
         System.out.println("A " + v.getModel() + " has entered the workshop for service!");
         controller.removeVehicle(v);
-        w.addToStorage((IsVolvo)v);
+        volvoWorkshop.addToStorage((IsVolvo)v);
     }
 
-    private boolean canEnter(IsVehicle v, Workshop<? extends IsVehicle> w) {
-        return v instanceof IsVolvo && w.isStorageOpen();
+    private boolean canEnter(IsVehicle v) {
+        return v instanceof IsVolvo && volvoWorkshop.isStorageOpen();
     }
 
     public static void main(String[] args) {
