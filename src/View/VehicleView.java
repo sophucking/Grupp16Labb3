@@ -28,8 +28,8 @@ public class VehicleView extends JFrame implements ModelListener{
     private DrawPanel drawPanel;
     private DrawPanel controlPanel = new DrawPanel();
     private DrawPanel gasPanel = new DrawPanel();
-    private ArrayList<VisualVehicle> vehicles = new ArrayList<>();
-    private ArrayList<VisualWorkshop<?>> workshops = new ArrayList<>();
+    private ArrayList<VisualItem> vehicles = new ArrayList<>();
+    private ArrayList<VisualItem> workshops = new ArrayList<>();
 
     // Constructor
     public VehicleView(String framename,/*  VehicleController cc, */ int x, int y){
@@ -117,10 +117,10 @@ public class VehicleView extends JFrame implements ModelListener{
 
     
     public void initVisuals() {
-        for (VisualVehicle vehicle : vehicles) {
+        for (VisualItem vehicle : vehicles) {
             addItem(vehicle.getX(), vehicle.getY(), vehicle.getImagePath());
         }
-        for (VisualWorkshop<?> workshop : workshops) {
+        for (VisualItem workshop : workshops) {
             addItem(workshop.getX(), workshop.getY(), workshop.getImagePath());;
         }
     }

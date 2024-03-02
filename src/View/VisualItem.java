@@ -6,7 +6,7 @@ public interface VisualItem /* extends DrawPanel */ {
 
     public int getY();
 
-    public String getImage();
+    public String getImagePath();
 
     public int rBound();
 
@@ -15,4 +15,5 @@ public interface VisualItem /* extends DrawPanel */ {
     public int tBound();
 
     public int bBound();
+
 }

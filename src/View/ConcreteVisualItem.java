@@ -41,6 +41,7 @@ public class ConcreteVisualItem implements VisualItem{
                 || (otherLeft <= this.rBound() && this.rBound() <= otherRight);
     }
 
+    @Override
     public String getImagePath() {
         return imagePath;
     }
@@ -64,12 +65,6 @@ public class ConcreteVisualItem implements VisualItem{
     public int bBound() {
         return y + height;
     }
-
-    @Override
-    public String getImage() {
-        return imagePath;
-    }
-
 }
 
 
