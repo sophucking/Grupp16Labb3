@@ -2,6 +2,7 @@ package Application;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -269,5 +270,14 @@ public class VehicleSimulation {
         return v instanceof IsVolvo && volvoWorkshop.isStorageOpen();
     }
 
+    public ArrayList<IsVehicle> getVehicles() {
+        return new ArrayList<>(vehicles);
+    }
+
+    public ArrayList<Workshop<?>> getWorkshops(){
+        ArrayList<Workshop<?>> list = new ArrayList<>();
+        list.add(volvoWorkshop);
+        return list;
+    }
 
 }

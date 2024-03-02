@@ -113,8 +113,12 @@ public class VehicleView extends JFrame implements ModelListener{
 
     @Override
     public void onUpdate() {
-        for (VisualItem item : vehiclesAndWorkshops) {
-            item.update();
+        this.vehiclesAndWorkshops.clear();
+        for (IsVehicle vehicle : simulation.getVehicles()) {
+            addVehicle(vehicle);
+        }
+        for (Workshop<?> workshop : simulation.getWorkshops()) {
+            addWorkshop(workshop, "Volvo"); // TODO remove this horrid hardcoded value wherever its present
         }
         initVisuals();
         drawPanel.repaint();
