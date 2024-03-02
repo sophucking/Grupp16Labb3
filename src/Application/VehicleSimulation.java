@@ -206,7 +206,7 @@ public class VehicleSimulation {
         }
     }
 
-    private void start() {
+    public void start() {
         timer.start();
     }
 
@@ -258,10 +258,5 @@ public class VehicleSimulation {
         return v instanceof IsVolvo && volvoWorkshop.isStorageOpen();
     }
 
-    public static void main(String[] args) {
-        VehicleSimulation vSim = new VehicleSimulation();
-        // Start the timer
-        vSim.start();
-    }
 
 }
