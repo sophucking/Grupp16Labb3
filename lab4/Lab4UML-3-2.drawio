@@ -287,7 +287,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="63AlPuzgeHpce0QwhyMk-5" value="VehicleSimulation" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=default;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="63AlPuzgeHpce0QwhyMk-5" value="Application.VehicleSimulation" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=default;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="170" y="23" width="190" height="296" as="geometry" />
         </mxCell>
         <mxCell id="WaK3hL6tV99UnN04jT8w-46" value="- listeners :ArrayList&amp;lt;ModelListener&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="63AlPuzgeHpce0QwhyMk-5" vertex="1">
@@ -475,7 +475,7 @@
         <mxCell id="WaK3hL6tV99UnN04jT8w-39" value="&lt;div&gt;- window :Application.ApplicationWindow&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="WaK3hL6tV99UnN04jT8w-37" vertex="1">
           <mxGeometry y="52" width="140" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="WaK3hL6tV99UnN04jT8w-66" value="&lt;div&gt;- vs :VehicleSimulation&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="WaK3hL6tV99UnN04jT8w-37" vertex="1">
+        <mxCell id="WaK3hL6tV99UnN04jT8w-66" value="&lt;div&gt;- vs :Application.VehicleSimulation&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="WaK3hL6tV99UnN04jT8w-37" vertex="1">
           <mxGeometry y="100" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WaK3hL6tV99UnN04jT8w-41" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="WaK3hL6tV99UnN04jT8w-37" vertex="1">
@@ -610,7 +610,7 @@
         <mxCell id="rYl5fyAMYRz61KFxQ2Tf-30" value="Vehicles" style="shape=folder;fontStyle=1;spacingTop=20;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;spacing=-31;" parent="1" vertex="1">
           <mxGeometry x="10" y="640" width="150" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="rYl5fyAMYRz61KFxQ2Tf-2" value="Model.VehicleSimulation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="rYl5fyAMYRz61KFxQ2Tf-2" value="Model.Application.VehicleSimulation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="180" y="350" width="160" height="90" as="geometry" />
         </mxCell>
         <mxCell id="rYl5fyAMYRz61KFxQ2Tf-3" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="rYl5fyAMYRz61KFxQ2Tf-2" vertex="1">

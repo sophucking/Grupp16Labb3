@@ -1,3 +1,5 @@
+package Application;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
