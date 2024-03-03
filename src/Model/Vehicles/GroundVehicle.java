@@ -96,6 +96,7 @@ public class GroundVehicle implements IsVehicle {
     @Override
     public void gas(double amount) {
         if (amount < 0 || 1 < amount) {
+            System.out.println("Illegal gas amount:" + amount);
             throw new IllegalArgumentException();
         }
         if (engineOn) {
