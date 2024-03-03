@@ -66,8 +66,6 @@ public abstract class ConcreteVisualItem implements VisualItem{
         return y + height;
     }
 
-    @Override
-    public abstract void update();
 }
 
 

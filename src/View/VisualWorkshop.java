@@ -19,8 +19,5 @@ public class VisualWorkshop<T extends IsVehicle> extends ConcreteVisualItem {
             workshop.openStorage();
         }
 
-        @Override
-        public void update() {/* nothing to update (yet?) */}
-
     }
 

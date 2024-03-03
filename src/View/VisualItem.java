@@ -16,7 +16,4 @@ public interface VisualItem {
 
     public double bBound();
 
-    //update any variables for any changes that may or may not happen
-    public void update();
-
 }
