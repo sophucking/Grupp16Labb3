@@ -44,11 +44,6 @@ public class VehicleSimulation {
         vehicles = new ArrayList<>();
         volvoWorkshop = new Workshop<IsVolvo>(30, 300, 300, 100, 100);
 
-        addVehicle(new Volvo240(0, 0, 100, 100));
-        addVehicle(new Saab95(0, 100, 100, 100));
-        addVehicle(new ScaniaV8<Cargo>(0, 200, 100, 100));
-        addVehicle(new Volvo240(0, 300, 100, 100));
-
         initWorkshop();
 
         view.initItems();
@@ -63,7 +58,7 @@ public class VehicleSimulation {
         listeners.add(listener);
     }
 
-    private void addVehicle(IsVehicle vehicle) {
+    public void addVehicle(IsVehicle vehicle) {
         vehicles.add(vehicle);
         view.addVehicle(vehicle);
     }
