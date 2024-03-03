@@ -1,4 +1,4 @@
-package Application;
+package Model;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.Timer;
 
+import Application.VehicleUI;
 import Controller.VehicleController;
 import Model.ModelListener;
 import Model.Vehicles.*;
@@ -32,7 +33,7 @@ public class VehicleSimulation {
     // Start a new view and send a reference of self
     VehicleView view;
 
-    VehicleSimulation() {
+    public VehicleSimulation() {
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
         controller = new VehicleController();
