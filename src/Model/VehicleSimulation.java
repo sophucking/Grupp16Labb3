@@ -21,7 +21,6 @@ public class VehicleSimulation {
     private static final int PADD = 1;
     private final ArrayList<IsVehicle> vehicles;
     private final Workshop<IsVolvo> volvoWorkshop;
-    private VehicleController controller;
     private VehicleUI ui;
 
     // The delay 50 (ms) corresponds to 20 updates a sec (hz)
@@ -37,9 +36,8 @@ public class VehicleSimulation {
     public VehicleSimulation() {
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
-        controller = new VehicleController();
         view = new VehicleView("CarSim 1.0", X, Y);
-        ui = new VehicleUI(view, controller);
+        ui = new VehicleUI(view, new VehicleController(this));
         ui.initWidgets();
         addModelListener(view);
 
@@ -67,7 +65,6 @@ public class VehicleSimulation {
 
     private void addVehicle(IsVehicle vehicle) {
         vehicles.add(vehicle);
-        controller.addVehicle(vehicle);
         view.addVehicle(vehicle);
     }
 
@@ -202,7 +199,6 @@ public class VehicleSimulation {
 
     private void enterWorkshop(IsVehicle v) {
         System.out.println("A " + v.getModel() + " has entered the workshop for service!");
-        controller.removeVehicle(v);
         volvoWorkshop.addToStorage((IsVolvo) v);
     }
 
