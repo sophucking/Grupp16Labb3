@@ -13,7 +13,6 @@ public class VehicleController {
         this.vSim = vSim;
     }
 
-    // Calls the gas method for each car once
     public void gas(int amount) {
         vSim.gasAll(amount);
     }
