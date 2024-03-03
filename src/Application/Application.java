@@ -9,7 +9,7 @@ import Model.Vehicles.*;
 public class Application {
     public static void main(String[] args) {
         VehicleSimulation vSim = new VehicleSimulation();
-        VehicleView vehicleView = new VehicleView("CarSim 0.4", 800,400);
+        VehicleView vehicleView = new VehicleView("CarSim 0.4", 800,400, vSim);
         VehicleController controller = new VehicleController(vSim);
         VehicleUI vehicleUI = new VehicleUI(vehicleView, controller);
         vehicleUI.initWidgets();
