@@ -8,6 +8,7 @@ import Model.Vehicles.Workshop;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -123,16 +124,18 @@ public class VehicleView extends JFrame implements ModelListener{
     }
 
     private void findAndRemoveVisualCounterpart(IsVehicle v) {
+        List<VisualItem> toBeRemoved = new ArrayList<>();
         for (VisualItem vi : vehiclesAndWorkshops) {
-            if (vi instanceof VisualVehicle) {
-                removeFromListIfEqual(v, vi);
+            if (vi instanceof VisualVehicle && visualVehicleIs(v,vi)) {
+                toBeRemoved.add(vi);
             }
+        }
+        for (VisualItem visualItem : toBeRemoved) {
+            vehiclesAndWorkshops.remove(visualItem);
         }
     }
 
-    private void removeFromListIfEqual(IsVehicle v, VisualItem vi) {
-        if (((VisualVehicle)vi).is(v)) {
-            vehiclesAndWorkshops.remove(vi);
-        }
+    private boolean visualVehicleIs(IsVehicle v, VisualItem vi) {
+        return ((VisualVehicle) vi).is(v);
     }
 }

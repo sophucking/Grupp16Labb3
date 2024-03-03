@@ -1,5 +1,7 @@
 package View;
 
+import Model.Vehicles.IsVehicle;
+
 public interface VisualItem {
 
     public double getX();

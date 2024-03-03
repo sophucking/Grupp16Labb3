@@ -1,5 +1,7 @@
 package View;
 
+import Model.Vehicles.IsVehicle;
+
 public abstract class ConcreteVisualItem implements VisualItem{
     public final double width;
     public final double height;
