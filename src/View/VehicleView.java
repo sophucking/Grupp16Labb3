@@ -85,7 +85,7 @@ public class VehicleView extends JFrame implements ModelListener{
         this.add(stop);
     }
 
-    public void addItem(double x, double y, String imagePath) {
+    public void addItemToDrawPanel(double x, double y, String imagePath) {
         drawPanel.addImage(x, y, imagePath);
     }
 
@@ -97,8 +97,11 @@ public class VehicleView extends JFrame implements ModelListener{
     }
 
     
-    public void addWorkshop(Workshop<?> workshop, String brand) {
-        vehiclesAndWorkshops.add(new VisualWorkshop<>(workshop, "pics/" + brand + "Brand.jpg"));
+    public void addWorkshop() {
+        List<Workshop<?>> workshops = vSim.getWorkshops();
+        for (Workshop<?> w : workshops) {
+            vehiclesAndWorkshops.add(new VisualWorkshop<>(w, "pics/VolvoBrand.jpg"));
+        }
     }
 
 
@@ -114,7 +117,7 @@ public class VehicleView extends JFrame implements ModelListener{
 
     public void initItems() {
         for (VisualItem item : vehiclesAndWorkshops) {
-            addItem(item.getX(), item.getY(), item.getImagePath());
+            addItemToDrawPanel(item.getX(), item.getY(), item.getImagePath());
         }
     }
 

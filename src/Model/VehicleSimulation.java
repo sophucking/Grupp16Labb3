@@ -51,7 +51,7 @@ public class VehicleSimulation {
 
     private void initWorkshop() {
         volvoWorkshop.openStorage();
-        view.addWorkshop(volvoWorkshop, "Volvo");
+        view.addWorkshop();
     }
 
     public void addModelListener(ModelListener listener) {

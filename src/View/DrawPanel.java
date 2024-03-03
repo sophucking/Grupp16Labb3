@@ -70,7 +70,7 @@ public class DrawPanel extends JPanel {
         }
     }
     // private void drawVisualItem(ConcreteVisualItem item) {
-    // view.addItem(item.getX(), item.getY(), item.getImagePath());
+    // view.addItemToDrawPanel(item.getX(), item.getY(), item.getImagePath());
     // }
     // private void addVehicle(IsVehicle vehicle) {
     // vehicles.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() +
