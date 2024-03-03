@@ -105,8 +105,11 @@ public class VehicleView extends JFrame implements ModelListener{
     }
 
 
-    public void addVehicle(IsVehicle vehicle) {
-        vehiclesAndWorkshops.add(new VisualVehicle(vehicle, "pics/" + vehicle.getModel() + ".jpg"));
+    public void addVehicle() {
+        List<IsVehicle> vehicles = vSim.getVehicles();
+        for (IsVehicle v : vehicles) {
+            vehiclesAndWorkshops.add(new VisualVehicle(v, "pics/" + v.getModel() + ".jpg"));
+        }
     }
 
     @Override

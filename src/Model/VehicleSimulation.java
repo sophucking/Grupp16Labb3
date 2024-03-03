@@ -60,7 +60,7 @@ public class VehicleSimulation {
 
     public void addVehicle(IsVehicle vehicle) {
         vehicles.add(vehicle);
-        view.addVehicle(vehicle);
+        view.addVehicle();
     }
 
     public void gasAll(int amount) {
