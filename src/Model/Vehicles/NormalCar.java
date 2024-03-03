@@ -1,9 +1,10 @@
 package Model.Vehicles;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 
 // only exist as a label
-abstract class NormalCar implements IsVehicle{
+abstract class NormalCar implements IsVehicle {
     protected final GroundVehicle baseGroundVehicle;
 
     NormalCar(int nrDoors, double enginePower, String modelName, double x, double y, Color color, double w, double h) {
@@ -101,7 +102,7 @@ abstract class NormalCar implements IsVehicle{
 
     abstract void setSpeedFactor();
 
-        @Override
+    @Override
     public double rBound() {
         return baseGroundVehicle.rBound();
     }

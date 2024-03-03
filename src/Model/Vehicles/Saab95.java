@@ -1,41 +1,50 @@
 package Model.Vehicles;
+
 import java.awt.*;
 
-public class Saab95 extends NormalCar implements HasTurbo {
-    private boolean turboOn;
+import Model.Vehicles.StatePatters.TurboOff;
+import Model.Vehicles.StatePatters.TurboOn;
+import Model.Vehicles.StatePatters.TurboState;
 
-    
+public class Saab95 extends NormalCar implements HasTurbo {
+    // private boolean turboOn;
+    private TurboState state;
+
     public Saab95(double x, double y, double width, double height) {
-        super(2,110, "Saab95", x, y, Color.red, width, height);
-        turboOn = false;
+        super(2, 110, "Saab95", x, y, Color.red, width, height);
+        // turboOn = false;
+        state = TurboOff.getState();
     }
+
     public Saab95() {
-        super(2,110, "Saab95", Color.red, 100,100);
-        turboOn = false;
+        this(0, 0, 100, 100);
     }
 
     @Override
     public void setTurboOn() {
-        turboOn = true;
+        state = TurboOn.getState();
+        // turboOn = true;
         setSpeedFactor();
     }
 
     @Override
     public void setTurboOff() {
-        turboOn = false;
+        // turboOn = false;
+        state = TurboOff.getState();
         setSpeedFactor();
     }
 
     @Override
-    public boolean isTurboOn(){
-        return turboOn;
+    public boolean isTurboOn() {
+        return state.isTurboOn();
     }
 
     void setSpeedFactor() {
-        double turbo = 1;
-        if (turboOn) {
-            turbo = 1.3;
+        try {
+            baseGroundVehicle.setSpeedFactor(state.getSpeedFactorMultiplier());
+        } catch (NullPointerException e) {
+            baseGroundVehicle.setSpeedFactor(1);
         }
-        baseGroundVehicle.setSpeedFactor(turbo);
+        
     }
 }

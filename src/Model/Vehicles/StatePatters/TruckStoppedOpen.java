@@ -3,17 +3,16 @@ package Model.Vehicles.StatePatters;
 import Model.Vehicles.GroundVehicle;
 import Model.Vehicles.Trailer;
 
-public class TruckStoppedOpen implements TruckState{
+public class TruckStoppedOpen implements TruckState {
 
     private static TruckStoppedOpen stateStoppedOpen;
 
-    private TruckStoppedOpen(){
-
+    private TruckStoppedOpen() {
     }
 
     // @Override
-    public static TruckStoppedOpen getState(){
-        if(stateStoppedOpen == null){
+    public static TruckStoppedOpen getState() {
+        if (stateStoppedOpen == null) {
             stateStoppedOpen = new TruckStoppedOpen();
         }
         return stateStoppedOpen;
