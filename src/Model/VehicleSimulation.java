@@ -76,7 +76,7 @@ public class VehicleSimulation {
 
     public void brakeAll(int amount) {
         for (IsVehicle v : vehicles) {
-            v.gas(amount / 100.0);
+            v.brake(amount / 100.0);
         }
     }
 
