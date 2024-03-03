@@ -14,11 +14,13 @@ public class VisualWorkshop<T extends IsVehicle> extends ConcreteVisualItem {
         public Workshop<T> getWorkshop() {
             return workshop;
         }
-        //volvoWorkshop = new VisualWorkshop<>(new Workshop<>(30), 300, 300, "pics/VolvoBrand.jpg");
 
         public void openStorage() {
             workshop.openStorage();
         }
+
+        @Override
+        public void update() {/* nothing to update (yet?) */}
 
     }
 

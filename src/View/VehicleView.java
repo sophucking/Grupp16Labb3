@@ -30,10 +30,10 @@ public class VehicleView extends JFrame implements ModelListener{
     private DrawPanel controlPanel = new DrawPanel();
     private DrawPanel gasPanel = new DrawPanel();
     private ArrayList<VisualItem> vehiclesAndWorkshops = new ArrayList<>();
-    private final VehicleSimulation simulation;
+    // private final VehicleSimulation simulation;
     // Constructor
-    public VehicleView(String framename, int x, int y, VehicleSimulation vs){
-        this.simulation = vs;
+    public VehicleView(String framename, int x, int y/* , VehicleSimulation vs */){
+        // this.simulation = vs;
         this.drawPanel = new DrawPanel(x, y);
         this.X = x;
         this.Y = y;
@@ -112,21 +112,38 @@ public class VehicleView extends JFrame implements ModelListener{
 
     @Override
     public void onUpdate() {
-        this.vehiclesAndWorkshops.clear();
-        for (IsVehicle vehicle : simulation.getVehicles()) {
-            addVehicle(vehicle);
-        }
-        for (Workshop<?> workshop : simulation.getWorkshops()) {
-            addWorkshop(workshop, "Volvo"); // TODO remove this horrid hardcoded value wherever its present
+        for (VisualItem visualItem : vehiclesAndWorkshops) {
+            if (visualItem instanceof VisualVehicle) {
+                visualItem.update();
+            }
         }
         initVisuals();
         drawPanel.repaint();
     }
 
-    
     public void initVisuals() {
         for (VisualItem item : vehiclesAndWorkshops) {
             addItem(item.getX(), item.getY(), item.getImagePath());
+        }
+    }
+
+    public void removeAllEnteredWorkshop(ArrayList<IsVehicle> enteredWorkshop) {
+        for (IsVehicle v : enteredWorkshop) {
+            findAndRemoveVisualCounterpart(v);
+        }
+    }
+
+    private void findAndRemoveVisualCounterpart(IsVehicle v) {
+        for (VisualItem vi : vehiclesAndWorkshops) {
+            if (vi instanceof VisualVehicle) {
+                removeFromListIfEqual(v, vi);
+            }
+        }
+    }
+
+    private void removeFromListIfEqual(IsVehicle v, VisualItem vi) {
+        if (((VisualVehicle)vi).is(v)) {
+            vehiclesAndWorkshops.remove(vi);
         }
     }
 }

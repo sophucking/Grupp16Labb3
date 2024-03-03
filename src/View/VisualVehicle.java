@@ -17,4 +17,8 @@ public class VisualVehicle extends ConcreteVisualItem {
         this.x = (int) vehicle.getPosition().getX();
         this.y = (int) vehicle.getPosition().getY();
     }
+
+    public boolean is(IsVehicle v){
+        return v.equals(vehicle);
+    }
 }

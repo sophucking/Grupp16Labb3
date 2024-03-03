@@ -1,6 +1,6 @@
 package View;
 
-public class ConcreteVisualItem implements VisualItem{
+public abstract class ConcreteVisualItem implements VisualItem{
     protected double x;
     protected double y;
     public final double width;
@@ -67,8 +67,7 @@ public class ConcreteVisualItem implements VisualItem{
     }
 
     @Override
-    public void update() {
-    }
+    public abstract void update();
 }
 
 

@@ -1,6 +1,6 @@
 package View;
 
-public interface VisualItem /* extends DrawPanel */ {
+public interface VisualItem {
 
     public double getX();
 
