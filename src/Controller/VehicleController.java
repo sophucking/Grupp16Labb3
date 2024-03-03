@@ -25,15 +25,6 @@ public class VehicleController {
         cars.remove(car);
     }
 
-    // public void update(IsVehicle car) {
-    //     moveCar(car);
-    // }
-
-    // private void moveCar(IsVehicle car) {
-    //     car.move();
-    // }
-
-
     private boolean hasTurbo(IsVehicle car) {
         return car instanceof HasTurbo;
     }

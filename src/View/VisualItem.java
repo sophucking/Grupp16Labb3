@@ -1,6 +1,6 @@
 package View;
 
-public interface VisualItem /* extends DrawPanel */ {
+public interface VisualItem {
 
     public double getX();
 
@@ -15,8 +15,5 @@ public interface VisualItem /* extends DrawPanel */ {
     public double tBound();
 
     public double bBound();
-
-    //update any variables for any changes that may or may not happen
-    public void update();
 
 }

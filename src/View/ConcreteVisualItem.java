@@ -1,25 +1,17 @@
 package View;
 
-public class ConcreteVisualItem implements VisualItem{
-    protected double x;
-    protected double y;
+public abstract class ConcreteVisualItem implements VisualItem{
     public final double width;
     public final double height;
     private final String imagePath;
 
     @Override
-    public double getX() {
-        return x;
-    }
+    public abstract double getX();
 
     @Override
-    public double getY() {
-        return y;
-    }
+    public abstract double getY();
 
-    protected ConcreteVisualItem(double x, double y, String imagePath, double width, double height) {
-        this.x = x;
-        this.y = y;
+    protected ConcreteVisualItem(String imagePath, double width, double height) {
         this.imagePath = imagePath;
         this.width = width;
         this.height = height;
@@ -48,27 +40,24 @@ public class ConcreteVisualItem implements VisualItem{
 
     @Override
     public double rBound() {
-        return x + width;
+        return getX() + width;
     }
 
     @Override
     public double lBound() {
-        return x;
+        return getX();
     }
 
     @Override
     public double tBound() {
-        return y;
+        return getY();
     }
 
     @Override
     public double bBound() {
-        return y + height;
+        return getY() + height;
     }
 
-    @Override
-    public void update() {
-    }
 }
 
 
