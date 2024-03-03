@@ -11,19 +11,10 @@ import Model.Vehicles.*;
 
 public class VehicleController {
     private final ArrayList<IsVehicle> cars;
-    // private final int worldWidth;
-    // private final int worldHeight;
-    // private final int vehicleWidth;
-    // private final int vehicleHeight;
-
 
     // methods:
-    public VehicleController(/* int width, int height, int vehicleWidth, int vehicleHeight */) {
+    public VehicleController() {
         cars = new ArrayList<>();
-        // worldWidth = width;
-        // worldHeight = height;
-        // this.vehicleWidth = vehicleWidth;
-        // this.vehicleHeight = vehicleHeight;
     }
 
     public void addVehicle(IsVehicle car) {
@@ -34,14 +25,13 @@ public class VehicleController {
         cars.remove(car);
     }
 
-    public void update(IsVehicle car) {
-        moveCar(car);
-    }
+    // public void update(IsVehicle car) {
+    //     moveCar(car);
+    // }
 
-    private void moveCar(IsVehicle car) {
-        // worldHasBouncyWalls(car);
-        car.move();
-    }
+    // private void moveCar(IsVehicle car) {
+    //     car.move();
+    // }
 
 
     private boolean hasTurbo(IsVehicle car) {

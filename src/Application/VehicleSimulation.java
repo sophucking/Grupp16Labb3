@@ -224,7 +224,7 @@ public class VehicleSimulation {
     public void update() {
         IsVehicle enteredWorkshop = null;
         for (IsVehicle v : vehicles) {
-            controller.update(v);
+            v.move();
             if (isOutOfBoundsX(v) || isOutOfBoundsY(v)) {
                 v.turnLeft(Math.PI);
             }
