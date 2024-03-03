@@ -106,11 +106,11 @@ public class VehicleView extends JFrame implements ModelListener{
 
     @Override
     public void onUpdate() {
-        initVisuals();
+        initItems();
         drawPanel.repaint();
     }
 
-    public void initVisuals() {
+    public void initItems() {
         for (VisualItem item : vehiclesAndWorkshops) {
             addItem(item.getX(), item.getY(), item.getImagePath());
         }
