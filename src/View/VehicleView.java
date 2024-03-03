@@ -4,7 +4,6 @@ import javax.swing.*;
 
 // import Controller.VehicleController;
 import Application.VehicleSimulation;
-import Application.VehicleUI;
 import Model.ModelListener;
 import Model.Vehicles.IsVehicle;
 import Model.Vehicles.Workshop;

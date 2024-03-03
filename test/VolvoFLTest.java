@@ -11,7 +11,7 @@ public class VolvoFLTest {
 
     @Before
     public void init() {
-        this.testTSP = new VolvoFL(3, 3);
+        this.testTSP = new VolvoFL(3, 3, 0, 0);
         this.testTSP.startEngine();
     }
 
@@ -23,7 +23,7 @@ public class VolvoFLTest {
         assertTrue(ah1 > 1.0);
         testTSP.addToStorage(car1);
         assertEquals(0, testTSP.countThings());
-        Saab95 car2 = new Saab95(2.9,2.9);
+        Saab95 car2 = new Saab95(2.9,2.9, 0, 0);
         double ah2 = testTSP.getPosition().distance(car2.getPosition());
         assertTrue(ah2 < 1.0);
         testTSP.addToStorage(car2);
