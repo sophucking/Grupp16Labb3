@@ -6,9 +6,7 @@ public class VisualVehicle extends ConcreteVisualItem {
     private final IsVehicle vehicle;
 
     VisualVehicle(IsVehicle vehicle, String imagePath) {
-        super((int) vehicle.getPosition().getX(),
-                (int) vehicle.getPosition().getY(),
-                imagePath, 100, 100);
+        super(imagePath, 100, 100);
         this.vehicle = vehicle;
     }
 

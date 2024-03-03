@@ -7,7 +7,7 @@ public class VisualWorkshop<T extends IsVehicle> extends ConcreteVisualItem {
         private final Workshop<T> workshop;
 
         VisualWorkshop(Workshop<T> workshop, String imagePath) {
-            super(workshop.getX(), workshop.getY(), imagePath, workshop.getWidth(),workshop.getHeight());
+            super(imagePath, workshop.getWidth(),workshop.getHeight());
             this.workshop = workshop;
         }
 
@@ -17,6 +17,16 @@ public class VisualWorkshop<T extends IsVehicle> extends ConcreteVisualItem {
 
         public void openStorage() {
             workshop.openStorage();
+        }
+
+        @Override
+        public double getX() {
+            return workshop.getX();
+        }
+
+        @Override
+        public double getY() {
+            return workshop.getY();
         }
 
     }
