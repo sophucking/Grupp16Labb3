@@ -12,6 +12,7 @@ import Controller.VehicleController;
 import Model.ModelListener;
 import Model.Vehicles.*;
 import View.VehicleView;
+import View.VisualVehicle;
 
 public class VehicleSimulation {
 
@@ -69,6 +70,66 @@ public class VehicleSimulation {
         controller.addVehicle(vehicle);
         view.addVehicle(vehicle);
     }
+
+    public void gasAll(int amount) {
+        for (IsVehicle v : vehicles) {
+            v.gas(amount);
+        }
+    }
+
+    public void brakeAll(int amount) {
+        for (IsVehicle v : vehicles) {
+            v.gas(amount);
+        }
+    }
+
+    public void startAll() {
+        for (IsVehicle v : vehicles) {
+            v.startEngine();
+        }
+    }
+
+    public void stopAll() {
+        for (IsVehicle v : vehicles) {
+            v.stopEngine();
+        }
+    }
+
+    public void turboOnAll() {
+        for (IsVehicle v : vehicles) {
+            if(v instanceof HasTurbo) {
+                ((HasTurbo) v).setTurboOn();
+            }
+        }
+    }
+
+    public void turboOffAll() {
+        for (IsVehicle v : vehicles) {
+            if (v instanceof HasTurbo) {
+                ((HasTurbo) v).setTurboOff();
+            }
+        }
+    }
+
+    public void liftBedAll() {
+        for (IsVehicle v : vehicles) {
+            if (v instanceof Tippable<?>) {
+                ((Tippable<?>) v).raiseStorage(70);
+                ((Tippable<?>) v).openStorage();
+            }
+        }
+    }
+
+    public void lowerBedAll() {
+        for (IsVehicle v : vehicles) {
+            if (v instanceof Tippable<?>) {
+                ((Tippable<?>) v).lowerStorage(70);
+                ((Tippable<?>) v).closeStorage();
+            }
+        }
+    }
+
+
 
     /*
      * Each step the TimerListener moves all the cars in the list and tells the
