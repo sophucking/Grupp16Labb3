@@ -70,13 +70,13 @@ public class VehicleSimulation {
 
     public void gasAll(int amount) {
         for (IsVehicle v : vehicles) {
-            v.gas(amount);
+            v.gas(amount / 100.0);
         }
     }
 
     public void brakeAll(int amount) {
         for (IsVehicle v : vehicles) {
-            v.gas(amount);
+            v.gas(amount / 100.0);
         }
     }
 
