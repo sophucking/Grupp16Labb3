@@ -36,7 +36,6 @@ public class VehicleSimulation {
     public VehicleSimulation() {
         vehicles = new ArrayList<>();
         volvoWorkshop = new Workshop<IsVolvo>(30, 300, 300, 100, 100);
-        initWorkshop();
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
         view = new VehicleView("CarSim 1.0", X, Y, this);
@@ -44,6 +43,8 @@ public class VehicleSimulation {
         ui.initWidgets();
         addModelListener(view);
         view.initItems();
+
+        initWorkshop();
     }
 
     private void initWorkshop() {
