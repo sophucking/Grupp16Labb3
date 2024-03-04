@@ -6,12 +6,12 @@ import Model.Vehicles.StatePatters.*;
 
 public class ScaniaV8<T> extends Truck<T> implements Tippable<T> {
     private double storageAngle;
-    private ScaniaState state;
+    private TippableState state;
 
     public ScaniaV8(double x, double y, double width, double height) {
         super(200,  "ScaniaV8", 10,x,y, Color.white, width, height);
         this.storageAngle = 0.0;
-        state = ScaniaStoppedDown.getState();
+        updateState();
     }
 
     public ScaniaV8() {
@@ -23,41 +23,51 @@ public class ScaniaV8<T> extends Truck<T> implements Tippable<T> {
         return this.storageAngle;
     }
 
-    private void setStorageAngle(double angle) {
+    private Void setStorageAngle(double angle) {
         storageAngle = Math.clamp(angle, 0, 70);
-        if (storageAngle <= 0.001) {
-            state = ScaniaStoppedDown.getState();
-        } else {
-            state = ScaniaStoppedUp.getState();
-        }
+        updateState();
+        return null;
     }
 
     @Override
     public void lowerStorage(double angle) {
-        if (state.lowerStorageBed()) {
-            setStorageAngle(storageAngle - angle);
-        }
+        state.lowerStorageBed(this::setStorageAngle, storageAngle - angle);
     }
 
     @Override
     public void raiseStorage(double angle) {
-        if (state.raiseStorageBed()) {
-            setStorageAngle(storageAngle + angle);
-        }
+        state.raiseStorageBed(this::setStorageAngle, storageAngle + angle);
     }
 
+    private Void gasVehicle(double amount) {
+        super.gas(amount);
+        return null;
+    }
+
+
     @Override
-    public void gas(double ammount) {
-        if (state.gasVehicle()) {
-            super.gas(ammount);
-            state = ScaniaMovingDown.getState();
-        }
+    public void gas(double amount) {
+        state.gasVehicle(this::gasVehicle, amount);
+        updateState();
     }
 
     @Override public void brake(double amount) {
         super.brake(amount);
-        if (getCurrentSpeed() < 0.001) {
-            state = ScaniaStoppedDown.getState();
+        updateState();
+    }
+
+    private void updateState() {
+        boolean down = storageAngle <= 0.01;
+        double speed = getCurrentSpeed();
+        boolean stationary = speed <= 0.01;
+        if (down && stationary) {
+            state = TippableStoppedDown.getState();
+        } else if (!stationary) {
+            state = TippableMovingDown.getState();
+        } else if (!down) {
+            state = TippableStoppedUp.getState();
+        } else {
+            throw new IllegalStateException("Exception: ScaniaV8.state : TippableState, undefined state has been reached.");
         }
     }
 }
