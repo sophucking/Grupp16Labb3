@@ -34,6 +34,8 @@ public class VehicleView extends JFrame implements ModelListener{
         this.X = x;
         this.Y = y;
         initComponents(framename);
+        addWorkshop();
+        addVehicle();
     }
 
     // Sets everything in place and fits everything
