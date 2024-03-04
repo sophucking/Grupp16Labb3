@@ -22,8 +22,6 @@ public class VehicleSimulation {
     private final ArrayList<IsVehicle> vehicles;
     private final Workshop<IsVolvo> volvoWorkshop;
 
-    // The delay 50 (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 10;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer; 
@@ -31,7 +29,7 @@ public class VehicleSimulation {
     // The frame that represents this instance View of the MVC pattern
     // Start a new view and send a reference of self
 
-    public VehicleSimulation() {
+    public VehicleSimulation(int delay) {
         vehicles = new ArrayList<>();
         volvoWorkshop = new Workshop<IsVolvo>(30, 300, 300, 100, 100);
         timer = new Timer(delay, new TimerListener());

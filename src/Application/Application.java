@@ -6,9 +6,10 @@ import View.VehicleView;
 import Model.Vehicles.*;
 
 
+
 public class Application {
     public static void main(String[] args) {
-        VehicleSimulation vSim = new VehicleSimulation();
+        VehicleSimulation vSim = new VehicleSimulation(10);
         vSim.addVehicle(new Volvo240(0, 0, 100, 100));
         vSim.addVehicle(new Saab95(0, 100, 100, 100));
         vSim.addVehicle(new ScaniaV8<Cargo>(0, 200, 100, 100));
@@ -21,8 +22,6 @@ public class Application {
         vehicleView.initItems();
 
         vSim.start();
-
-
     }
 
 
