@@ -98,10 +98,8 @@ public class VehicleView extends JFrame implements ModelListener{
 
     
     public void addWorkshop() {
-        List<Workshop<?>> workshops = vSim.getWorkshops();
-        for (Workshop<?> w : workshops) {
-            vehiclesAndWorkshops.add(new VisualWorkshop<>(w, "pics/VolvoBrand.jpg"));
-        }
+        Workshop<?> w = vSim.getWorkshop();
+        vehiclesAndWorkshops.add(new VisualWorkshop<>(w, "pics/VolvoBrand.jpg"));
     }
 
 

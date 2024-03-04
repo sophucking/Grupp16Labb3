@@ -202,13 +202,11 @@ public class VehicleSimulation {
     }
 
     public ArrayList<IsVehicle> getVehicles() {
-        return new ArrayList<>(vehicles);
+        return vehicles;
     }
 
-    public ArrayList<Workshop<?>> getWorkshops() {
-        ArrayList<Workshop<?>> list = new ArrayList<>();
-        list.add(volvoWorkshop);
-        return list;
+    public Workshop<?> getWorkshop() {
+        return volvoWorkshop;
     }
 
 }
