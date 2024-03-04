@@ -7,12 +7,10 @@ import Model.Vehicles.StatePatters.TurboOn;
 import Model.Vehicles.StatePatters.TurboState;
 
 public class Saab95 extends NormalCar implements HasTurbo {
-    // private boolean turboOn;
     private TurboState state;
 
     public Saab95(double x, double y, double width, double height) {
         super(2, 110, "Saab95", x, y, Color.red, width, height);
-        // turboOn = false;
         state = TurboOff.getState();
     }
 
@@ -23,13 +21,11 @@ public class Saab95 extends NormalCar implements HasTurbo {
     @Override
     public void setTurboOn() {
         state = TurboOn.getState();
-        // turboOn = true;
         setSpeedFactor();
     }
 
     @Override
     public void setTurboOff() {
-        // turboOn = false;
         state = TurboOff.getState();
         setSpeedFactor();
     }
