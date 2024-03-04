@@ -21,7 +21,6 @@ public class VehicleSimulation {
     private static final int PADD = 1;
     private final ArrayList<IsVehicle> vehicles;
     private final Workshop<IsVolvo> volvoWorkshop;
-    private VehicleUI ui;
 
     // The delay 50 (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 10;
@@ -31,25 +30,17 @@ public class VehicleSimulation {
     private List<ModelListener> listeners;
     // The frame that represents this instance View of the MVC pattern
     // Start a new view and send a reference of self
-    //VehicleView view;
 
     public VehicleSimulation() {
         vehicles = new ArrayList<>();
         volvoWorkshop = new Workshop<IsVolvo>(30, 300, 300, 100, 100);
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
-        //view = new VehicleView("CarSim 1.0", X, Y, this);
-        //ui = new VehicleUI(view, new VehicleController(this));
-        //ui.initWidgets();
-        //addModelListener(view);
-        //view.initItems();
-
         initWorkshop();
     }
 
     private void initWorkshop() {
         volvoWorkshop.openStorage();
-        //view.addWorkshop();
     }
 
     public void addModelListener(ModelListener listener) {
@@ -58,7 +49,6 @@ public class VehicleSimulation {
 
     public void addVehicle(IsVehicle vehicle) {
         vehicles.add(vehicle);
-        //view.addVehicle();
     }
 
     public void gasAll(int amount) {
@@ -158,7 +148,6 @@ public class VehicleSimulation {
             ifEnterWorkshop(enteredWorkshop, v);
         }
         vehicles.removeAll(enteredWorkshop);
-        //view.removeAllEnteredWorkshop(enteredWorkshop);
         informListeners();
     }
 
