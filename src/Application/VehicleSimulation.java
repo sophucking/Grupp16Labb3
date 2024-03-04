@@ -36,11 +36,12 @@ public class VehicleSimulation {
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
         controller = new VehicleController();
+        // -- vv - TODO: move
         view = new VehicleView("CarSim 1.0", X, Y);
         ui = new VehicleUI(view, controller);
         ui.initWidgets();
         addModelListener(view);
-
+        // -- ^^ 
         vehicles = new ArrayList<>();
         volvoWorkshop = new Workshop<IsVolvo>(30, 300, 300, 100, 100);
 
@@ -50,8 +51,9 @@ public class VehicleSimulation {
         addVehicle(new Volvo240(0, 300, 100, 100));
 
         initWorkshop();
-
+        // -- vv
         view.initItems();
+        // -- ^^
     }
 
     private void initWorkshop() {
