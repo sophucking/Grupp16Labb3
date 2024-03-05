@@ -32,12 +32,13 @@ public class VehicleUI {
     private final JButton removeCarButton = new JButton("Remove a random car");
     private final VehicleView view;
     private final VehicleController carC;
+    private final int defaultVehicleWidth, defaultVehicleHeight;
 
-
-    public VehicleUI(VehicleView view, VehicleController carC) {
+    public VehicleUI(VehicleView view, VehicleController carC, int defaultVehicleWidth, int defaultVehicleHeight) {
+        this.defaultVehicleHeight = defaultVehicleHeight;
+        this.defaultVehicleWidth = defaultVehicleWidth;
         this.view = view;
         this.carC = carC;
-        // initWidgets();
     }
 
     public void initWidgets(){
@@ -118,7 +119,7 @@ public class VehicleUI {
 
         addCarButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {carC.addRandomVehicle();}
+            public void actionPerformed(ActionEvent e) {carC.addRandomVehicle(defaultVehicleWidth,defaultVehicleHeight);}
         });
         removeCarButton.addActionListener(new ActionListener() {
             @Override
