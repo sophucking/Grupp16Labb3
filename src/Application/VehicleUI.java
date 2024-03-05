@@ -30,8 +30,8 @@ public class VehicleUI {
     private final JButton stopButton = new JButton("Stop all cars");
     private final JButton addCarButton =  new JButton("Add a random car");
     private final JButton removeCarButton = new JButton("Remove a random car");
-    private VehicleView view;
-    private VehicleController carC;
+    private final VehicleView view;
+    private final VehicleController carC;
 
 
     public VehicleUI(VehicleView view, VehicleController carC) {
