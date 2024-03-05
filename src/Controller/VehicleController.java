@@ -44,4 +44,8 @@ public class VehicleController {
     public void lowerBed() {
         vSim.lowerBedAll();
     }
+
+    public void addRandomVehicle() {vSim.addRandomVehicle();}
+
+    public void removeRandomVehicle() {vSim.removeRandomVehicle();}
 }
