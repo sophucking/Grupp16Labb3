@@ -194,7 +194,7 @@ public class VehicleSimulation {
 
     public void addRandomVehicle(double w, double h) {
         RandomCarFactory randomCarFactory = new RandomCarFactory();
-        vehicles.add(randomCarFactory.makeRandomCar(w,h));
+        vehicles.add(randomCarFactory.makeRandomVehicle(w,h));
     }
 
     public void removeRandomVehicle() {
