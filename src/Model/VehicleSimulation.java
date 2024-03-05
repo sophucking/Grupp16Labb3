@@ -192,11 +192,13 @@ public class VehicleSimulation {
         return volvoWorkshop;
     }
 
-    public void addRandomVehicle() {
+    public void addRandomVehicle(double w, double h) {
+        RandomCarFactory randomCarFactory = new RandomCarFactory();
+        vehicles.add(randomCarFactory.makeRandomCar(w,h));
     }
 
     public void removeRandomVehicle() {
-        
+        vehicles.remove((int) (Math.random() * vehicles.size()));
     }
 
 }
