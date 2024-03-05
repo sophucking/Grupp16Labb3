@@ -26,8 +26,6 @@ public class VehicleSimulation {
     // each step between delays.
     private Timer timer; 
     private List<ModelListener> listeners;
-    // The frame that represents this instance View of the MVC pattern
-    // Start a new view and send a reference of self
 
     public VehicleSimulation(int delay) {
         vehicles = new ArrayList<>();
