@@ -115,6 +115,15 @@ public class VehicleUI {
             }
         });
         btns.add(lowerBedButton);
+
+        addCarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {carC.addRandomVehicle();}
+        });
+        removeCarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {carC.removeRandomVehicle();}
+        });
         
         view.initGasPanel(gasSpinner, gasLabel);
         view.initControllPanel(btns);
