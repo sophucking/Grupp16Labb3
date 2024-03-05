@@ -7,17 +7,12 @@ import java.util.List;
 
 import javax.swing.Timer;
 
-import Application.VehicleUI;
-import Controller.VehicleController;
-import Model.ModelListener;
 import Model.Vehicles.*;
-import View.VehicleView;
-import View.VisualVehicle;
 
 public class VehicleSimulation {
 
-    private static final int X = 800;
-    private static final int Y = 400;
+    private static final int WORLD_WIDTH = 800;
+    private static final int WROLD_HEIGHT = 400;
     private static final int PADD = 1;
     private final ArrayList<IsVehicle> vehicles;
     private final Workshop<IsVolvo> volvoWorkshop;
@@ -129,11 +124,11 @@ public class VehicleSimulation {
     }
 
     private boolean isOutOfBoundsY(IsVehicle v) {
-        return v.tBound() < 0 - PADD || v.bBound() > Y + PADD;
+        return v.tBound() < 0 - PADD || v.bBound() > WROLD_HEIGHT + PADD;
     }
 
     private boolean isOutOfBoundsX(IsVehicle v) {
-        return v.rBound() > X + PADD || v.lBound() < 0 - PADD;
+        return v.rBound() > WORLD_WIDTH + PADD || v.lBound() < 0 - PADD;
     }
 
     public void update() {
@@ -193,8 +188,7 @@ public class VehicleSimulation {
     }
 
     public void addRandomVehicle(double w, double h) {
-        RandomCarFactory randomCarFactory = new RandomCarFactory();
-        vehicles.add(randomCarFactory.makeRandomVehicle(w,h));
+        vehicles.add(new RandomVehicleFactory().makeRandomVehicle(w,h, WORLD_WIDTH, WROLD_HEIGHT));
     }
 
     public void removeRandomVehicle() {
