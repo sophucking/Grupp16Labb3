@@ -12,18 +12,20 @@ import Model.Vehicles.*;
 public class VehicleSimulation {
 
     private static final int WORLD_WIDTH = 800;
-    private static final int WROLD_HEIGHT = 400;
+    private static final int WORLD_HEIGHT = 400;
     private static final int PADD = 1;
     private final ArrayList<IsVehicle> vehicles;
     private final Workshop<IsVolvo> volvoWorkshop;
 
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer; 
+    private Timer timer;
     private List<ModelListener> listeners;
+    private VehiclesState vehiclesState;
 
     public VehicleSimulation(int delay) {
         vehicles = new ArrayList<>();
+        vehiclesState = new MinVehiclesState();
         volvoWorkshop = new Workshop<IsVolvo>(30, 300, 300, 100, 100);
         timer = new Timer(delay, new TimerListener());
         listeners = new ArrayList<>();
@@ -39,7 +41,7 @@ public class VehicleSimulation {
     }
 
     public void addVehicle(IsVehicle vehicle) {
-        vehicles.add(vehicle);
+        this.vehiclesState = vehiclesState.addVehicle(vehicle);
     }
 
     public void gasAll(int amount) {
@@ -68,7 +70,7 @@ public class VehicleSimulation {
 
     public void turboOnAll() {
         for (IsVehicle v : vehicles) {
-            if(v instanceof HasTurbo) {
+            if (v instanceof HasTurbo) {
                 ((HasTurbo) v).setTurboOn();
             }
         }
@@ -101,7 +103,6 @@ public class VehicleSimulation {
     }
 
 
-
     /*
      * Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
@@ -124,7 +125,7 @@ public class VehicleSimulation {
     }
 
     private boolean isOutOfBoundsY(IsVehicle v) {
-        return v.tBound() < 0 - PADD || v.bBound() > WROLD_HEIGHT + PADD;
+        return v.tBound() < 0 - PADD || v.bBound() > WORLD_HEIGHT + PADD;
     }
 
     private boolean isOutOfBoundsX(IsVehicle v) {
@@ -138,7 +139,9 @@ public class VehicleSimulation {
             worldHasBouncyWalls(v);
             ifEnterWorkshop(enteredWorkshop, v);
         }
-        vehicles.removeAll(enteredWorkshop);
+        for (IsVehicle vehicle : enteredWorkshop) {
+            this.vehiclesState = vehiclesState.removeVehicle(vehicle);
+        }
         informListeners();
     }
 
@@ -187,12 +190,116 @@ public class VehicleSimulation {
         return volvoWorkshop;
     }
 
+
+    private abstract interface VehiclesState {
+
+        // may or may not add provided vehicle and returns the new state
+        public VehiclesState addVehicle(IsVehicle v);
+
+        // may or may not remove the provided vehicle and return the new state
+        public VehiclesState removeVehicle(IsVehicle v);
+
+        // Takes the height and with of a car, may or may not mutate the vehicles list (adds a car) and returns the next state
+        public VehiclesState addRandomVehicle(double width, double height);
+
+        // May or may not mutate the vehicles list (removes a car) and returns the next state
+        public VehiclesState removeRandomVehicle();
+    }
+
+    private class MaxVehiclesState implements VehiclesState {
+        @Override
+        public VehiclesState addVehicle(IsVehicle v) {
+            return this;
+        }
+
+        @Override
+        public VehiclesState removeVehicle(IsVehicle v) {
+            vehicles.remove(v);
+            return new SomeVehicleState();
+        }
+
+        @Override
+        public VehiclesState addRandomVehicle(double width, double height) {
+            return this;
+        }
+
+        @Override
+        public VehiclesState removeRandomVehicle() {
+            vehicles.remove((int) (Math.random() * vehicles.size()));
+            return new SomeVehicleState();
+        }
+    }
+
+    private class MinVehiclesState implements VehiclesState {
+        @Override
+        public VehiclesState addVehicle(IsVehicle v) {
+            vehicles.add(v);
+            return new SomeVehicleState();
+        }
+
+        @Override
+        public VehiclesState removeVehicle(IsVehicle v) {
+            return this;
+        }
+
+        @Override
+        public VehiclesState addRandomVehicle(double width, double height) {
+            vehicles.add(new RandomVehicleFactory().makeRandomVehicle(width, height, WORLD_WIDTH, WORLD_HEIGHT));
+            return new SomeVehicleState();
+        }
+
+        @Override
+        public VehiclesState removeRandomVehicle() {
+            return this;
+        }
+    }
+
+    private class SomeVehicleState implements VehiclesState {
+
+        @Override
+        public VehiclesState addVehicle(IsVehicle v) {
+            vehicles.add(v);
+            if (vehicles.size() >= 10) {
+                return new MaxVehiclesState();
+            }
+            return this;
+        }
+
+        @Override
+        public VehiclesState removeVehicle(IsVehicle v) {
+            vehicles.remove(v);
+            if (vehicles.isEmpty()) {
+                return new MinVehiclesState();
+            }
+            return this;
+        }
+
+        @Override
+        public VehiclesState addRandomVehicle(double width, double height) {
+            vehicles.add(new RandomVehicleFactory().makeRandomVehicle(width, height, WORLD_WIDTH, WORLD_HEIGHT));
+            if (vehicles.size() >= 10) {
+                return new MaxVehiclesState();
+            }
+            return this;
+        }
+
+        @Override
+        public VehiclesState removeRandomVehicle() {
+            vehicles.remove((int) (Math.random() * vehicles.size()));
+            if (vehicles.isEmpty()) {
+                return new MinVehiclesState();
+            }
+            return this;
+        }
+    }
+
+
     public void addRandomVehicle(double w, double h) {
-        vehicles.add(new RandomVehicleFactory().makeRandomVehicle(w,h, WORLD_WIDTH, WROLD_HEIGHT));
+        this.vehiclesState = vehiclesState.addRandomVehicle(w, h);
     }
 
     public void removeRandomVehicle() {
-        vehicles.remove((int) (Math.random() * vehicles.size()));
+        this.vehiclesState = vehiclesState.removeRandomVehicle();
     }
 
 }
