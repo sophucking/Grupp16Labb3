@@ -20,16 +20,16 @@ public class VehicleUI {
     private JLabel gasLabel = new JLabel("Amount of gas");
 
     private int gasAmount = 0;
-    private JButton gasButton = new JButton("Gas");
-    private JButton brakeButton = new JButton("Brake");
-    private JButton turboOnButton = new JButton("Saab Turbo on");
-    private JButton turboOffButton = new JButton("Saab Turbo off");
-    private JButton liftBedButton = new JButton("Scania Lift Bed");
-    private JButton lowerBedButton = new JButton("Scania Lower Bed");
-
-    private JButton startButton = new JButton("Start all cars");
-    private JButton stopButton = new JButton("Stop all cars");
-
+    private final JButton gasButton = new JButton("Gas");
+    private final JButton brakeButton = new JButton("Brake");
+    private final JButton turboOnButton = new JButton("Saab Turbo on");
+    private final JButton turboOffButton = new JButton("Saab Turbo off");
+    private final JButton liftBedButton = new JButton("Scania Lift Bed");
+    private final JButton lowerBedButton = new JButton("Scania Lower Bed");
+    private final JButton startButton = new JButton("Start all cars");
+    private final JButton stopButton = new JButton("Stop all cars");
+    private final JButton addCarButton =  new JButton("Add a random car");
+    private final JButton removeCarButton = new JButton("Remove a random car");
     private VehicleView view;
     private VehicleController carC;
 
