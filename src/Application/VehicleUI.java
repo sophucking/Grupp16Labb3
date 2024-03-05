@@ -121,10 +121,12 @@ public class VehicleUI {
             @Override
             public void actionPerformed(ActionEvent e) {carC.addRandomVehicle(defaultVehicleWidth,defaultVehicleHeight);}
         });
+        btns.add(addCarButton);
         removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {carC.removeRandomVehicle();}
         });
+        btns.add(removeCarButton);
         
         view.initGasPanel(gasSpinner, gasLabel);
         view.initControllPanel(btns);
