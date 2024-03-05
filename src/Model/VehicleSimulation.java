@@ -194,4 +194,11 @@ public class VehicleSimulation {
         return volvoWorkshop;
     }
 
+    public void addRandomVehicle() {
+    }
+
+    public void removeRandomVehicle() {
+        
+    }
+
 }
