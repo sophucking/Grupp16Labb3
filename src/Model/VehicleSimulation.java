@@ -244,7 +244,7 @@ public class VehicleSimulation {
 
         @Override
         public VehiclesState addRandomVehicle(double width, double height) {
-            vehicles.add(new RandomVehicleFactory().makeRandomVehicle(width, height, WORLD_WIDTH, WORLD_HEIGHT));
+            vehicles.add(RandomVehicleFactory.makeRandomVehicle(width, height, WORLD_WIDTH, WORLD_HEIGHT));
             return new SomeVehicleState();
         }
 
@@ -276,7 +276,7 @@ public class VehicleSimulation {
 
         @Override
         public VehiclesState addRandomVehicle(double width, double height) {
-            vehicles.add(new RandomVehicleFactory().makeRandomVehicle(width, height, WORLD_WIDTH, WORLD_HEIGHT));
+            vehicles.add(RandomVehicleFactory.makeRandomVehicle(width, height, WORLD_WIDTH, WORLD_HEIGHT));
             if (vehicles.size() >= 10) {
                 return new MaxVehiclesState();
             }

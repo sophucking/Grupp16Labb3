@@ -34,7 +34,7 @@
 
 ### CarView
 
-- \+\- Inte något ändrat mycket utr MVC synpunkt 
+- \+\- Inte ändrat mycket ur MVC synpunkt 
 
 ### DrawPanell
 

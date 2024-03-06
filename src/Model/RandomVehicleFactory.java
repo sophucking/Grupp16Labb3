@@ -4,7 +4,7 @@ import Model.Vehicles.*;
 
 // A class to generate random cars. Makes dependencies nicer than putting this in Simulation
 public class RandomVehicleFactory {
-    public IsVehicle makeRandomVehicle(double vehicleWidth, double vehicleHeight, double worldWidth, double worldHeight) {
+    public static IsVehicle makeRandomVehicle(double vehicleWidth, double vehicleHeight, double worldWidth, double worldHeight) {
         double vehicleXPos = Math.random() * (worldWidth - vehicleWidth);
         double vehicleYPos = Math.random() * (worldHeight - vehicleHeight);
         switch ((int) (Math.random() * 3)) {
