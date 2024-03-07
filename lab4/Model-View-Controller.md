@@ -40,8 +40,22 @@
 
 - \+\- ingen ändring ur MVC synpunkt
 
-### Simulation (Application) <- (Changed to model)
+### Simulation 
 
-- - \+ (FLYTTAD TILL EN NEW APPLICATION KLASS) Har nu main metod samt håller i alla andra delar
+- - \+ Har nu main metod samt håller i alla andra delar
 - - \- Har logik som hanterar workshops. Bör flyttas till modellen
 - - \- Hanterar bilder åt view, bör göras med någon form av decorator pattern eller liknande
+
+#### Efter andra refaktoriseringen
+### Simulation
+- - Logik som hanterar interaktion mellan IsVehicle och Workshop
+- - Kollision med världens kant
+
+### Application
+- - Hanterar main metoden och håller i Simulation, View och Controller
+
+### VehicleUI
+- - Skapar wigets, lägger till wigets på view, kopplar wigets till controller
+
+### CarViewgit 
+- - Har inte längre några wigets.
